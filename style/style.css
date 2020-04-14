@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
 }
 .header {
     max-width: 1200px;
