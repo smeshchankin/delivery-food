@@ -1,5 +1,8 @@
 * {
     box-sizing: border-box;
+}
+body {
+    margin: auto;
 
     font-family: 'Roboto', sans-serif;
 }
@@ -33,13 +36,18 @@
     border: 1px solid #d9d9d9;
     border-radius: 2px;
 }
-.input-address {
-    width: 690px;
-
-    background-image: url(../img/home.svg);
+.input-icon {
     background-repeat: no-repeat;
     background-position: left 11px center;
     padding-left: 38px;
+}
+.input-address {
+    width: 690px;
+    background-image: url(../img/home.svg);
+}
+.input-search {
+    width: 300px;
+    background-image: url(../img/search.svg);
 }
 .button {
     padding: 8px 16px;
@@ -93,4 +101,9 @@
     line-height: 28px;
 
     color: #302C34;
+}
+.restaurants-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
