@@ -6,7 +6,8 @@
 .header {
     max-width: 1200px;
     margin: auto;
-    margin-top: 44px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 
     display: flex;
     align-items: center;
@@ -62,4 +63,34 @@
 }
 .button-text {
     vertical-align: middle;
+}
+
+.promo {
+    width: 1200px;
+    height: 300px;
+    margin: auto;
+    padding: 68px 70px;
+
+    background: #FFF1B8 url(../img/promo.jpeg) no-repeat top -100px right -247px / 924px;
+    border-radius: 10px;
+    box-shadow: 0px 7px 12px rgba(158, 158, 163, 0.1);
+}
+.promo-title {
+    max-width: 430px;
+    margin: 0;
+
+    font-weight: bold;
+    font-size: 39px;
+    line-height: 46px;
+
+    color: #302C34;
+}
+.promo-text {
+    max-width: 580px;
+    margin-top: 16px;
+
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #302C34;
 }
