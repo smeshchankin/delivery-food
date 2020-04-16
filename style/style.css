@@ -73,10 +73,12 @@ body {
     vertical-align: middle;
 }
 
-.promo {
-    width: 1200px;
-    height: 300px;
+.container {
     margin: auto;
+    width: 1200px;
+}
+.promo {
+    height: 300px;
     padding: 68px 70px;
 
     background: #FFF1B8 url(../img/promo.jpeg) no-repeat top -100px right -247px / 924px;
