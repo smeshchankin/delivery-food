@@ -27,35 +27,67 @@
         </div>
     </header>
 
-    <section class="container">
-        <div class="promo">
-            <h1 class="promo-title">Home Food Delivery Online Service</h1>
-            <p class="promo-text">Dishes from your favorite restaurant will be delivered by a courier in gloves, a mask and an antiseptic</p>
-        </div>
-
-        <section class="restaurants">
-            <div class="restaurants-header">
-                <h2 class="restaurants-title">Restaurants</h2>
-                <input type="text" class="input input-icon input-search" placeholder="Searching dishes and restaurants" />
+    <main class="main">
+        <section class="container">
+            <div class="promo">
+                <h1 class="promo-title">Home Food Delivery Online Service</h1>
+                <p class="promo-text">Dishes from your favorite restaurant will be delivered by a courier in gloves, a mask and an antiseptic</p>
             </div>
-            <div id='cards' class="cards">
-                <div class="card">
-                    <img src="img/cards/rest-00.jpg" alt="Card image" class="card-image" />
-                    <div class="card-text">
-                       <div class="card-header">
-                           <h3 class="card-title">{{title}}</h3>
-                           <span class="card-tag tag">{{tag}}</span>
-                       </div>
-                       <div class="card-info">
-                            <div class="rating">{{rating}}</div>
-                            <div class="price">{{price}}</div>
-                            <div class="category">{{category}}</div>
+
+            <section class="restaurants">
+                <div class="restaurants-header">
+                    <h2 class="restaurants-title">Restaurants</h2>
+                    <input type="text" class="input input-icon input-search" placeholder="Searching dishes and restaurants" />
+                </div>
+                <div id='cards' class="cards">
+                    <div class="card">
+                        <img src="img/cards/rest-00.jpg" alt="Card image" class="card-image" />
+                        <div class="card-text">
+                           <div class="card-header">
+                               <h3 class="card-title">{{title}}</h3>
+                               <span class="card-tag tag">{{tag}}</span>
+                           </div>
+                           <div class="card-info">
+                                <div class="rating">{{rating}}</div>
+                                <div class="price">{{price}}</div>
+                                <div class="category">{{category}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </section>
-    </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-block">
+                <div class="logo">
+                    <img src="img/logo.svg" alt="Logo Delivery Food" class="logo-image" />
+                    <span class="logo-name">Delivery Food</span>
+                </div>
+
+                <nav class="footer-nav">
+                    <a href="#" class="footer-link">For Restaurants</a>
+                    <a href="#" class="footer-link">For Couriers</a>
+                    <a href="#" class="footer-link">Press Center</a>
+                    <a href="#" class="footer-link">Contacts</a>
+                </nav>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <img src="img/instagram.svg" alt="Instagram" />
+                    </a>
+                    <a href="#" class="social-link">
+                        <img src="img/fb.svg" alt="Facebook" />
+                    </a>
+                    <a href="#" class="social-link">
+                        <img src="img/vk.svg" alt="VKontakte" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
 </body>
 </html>
