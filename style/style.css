@@ -1,9 +1,11 @@
 * {
     box-sizing: border-box;
 }
+h1, h2, h3 {
+    margin: 0;
+}
 body {
     margin: auto;
-
     font-family: 'Roboto', sans-serif;
 }
 .header {
@@ -87,7 +89,6 @@ body {
 }
 .promo-title {
     max-width: 430px;
-    margin: 0;
 
     font-weight: bold;
     font-size: 39px;
@@ -104,8 +105,89 @@ body {
 
     color: #302C34;
 }
+.restaurants {
+    margin-top: 50px;
+}
 .restaurants-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 44px;
+}
+.restaurants-title {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+}
+.cards {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.card {
+    margin-bottom: 30px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 7px;
+    overflow: hidden;
+}
+.card-image {
+    width: 384px;
+    height: 250px;
+    object-fit: cover;
+}
+.card-text {
+    padding: 8px 24px 35px 24px;
+}
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+}
+.card-tag {
+    padding: 1px 8px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #ffffff;
+    background: #262626;
+    border-radius: 2px;
+}
+.card-info {
+    display: flex;
+    align-items: center;
+}
+.rating {
+    font-size: 18px;
+    line-height: 32px;
+    color: #FFC107;
+}
+.rating::before {
+    content: url('/img/star.svg');
+    margin-right: 7px;
+}
+.price, .category {
+    font-size: 18px;
+    line-height: 32px;
+    color: #8C8C8C;
+}
+.price {
+    margin-left: 26px;
+    margin-right: 10px;
+}
+.price::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: #8C8C8C;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-left: 10px;
 }
