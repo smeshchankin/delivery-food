@@ -38,24 +38,24 @@
                 <h2 class="restaurants-title">Restaurants</h2>
                 <input type="text" class="input input-icon input-search" placeholder="Searching dishes and restaurants" />
             </div>
-            <div class="cards">
+            <div id='cards' class="cards">
                 <div class="card">
-                    <img src="img/cards/rest-01.jpg" alt="Card image" class="card-image" />
+                    <img src="{{img}}" alt="Card image" class="card-image" />
                     <div class="card-text">
                        <div class="card-header">
-                           <h3 class="card-title">Pizza Plus Plus</h3>
-                           <span class="card-tag tag">50 min</span>
+                           <h3 class="card-title">{{title}}</h3>
+                           <span class="card-tag tag">{{tag}}</span>
                        </div>
                        <div class="card-info">
-                            <div class="rating">4.5</div>
-                            <div class="price">From $9.99</div>
-                            <div class="category">Pizza</div>
+                            <div class="rating">{{rating}}</div>
+                            <div class="price">{{price}}</div>
+                            <div class="category">{{category}}</div>
                         </div>
                     </div>
                 </div>
-                <!-- /.card -->
             </div>
         </section>
     </section>
+    <script src="js/main.js"></script>
 </body>
 </html>
