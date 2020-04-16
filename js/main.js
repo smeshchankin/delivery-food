@@ -33,10 +33,9 @@
     const modal = document.querySelector('.modal');
     const cartButton = document.querySelector('#cart');
     const closeButton = document.querySelector('.close');
-    cartButton.addEventListener('click', function(event) {
-        modal.classList.add('is-open');
-    });
-    closeButton.addEventListener('click', function(event) {
-        modal.classList.remove('is-open');
-    });
+    cartButton.addEventListener('click', toggleModal);
+    closeButton.addEventListener('click', toggleModal);
+    function toggleModal() {
+        modal.classList.toggle('is-open');
+    }
 }());
