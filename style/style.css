@@ -162,12 +162,14 @@ body {
     font-size: 24px;
     line-height: 32px;
 }
+.tag {
+    color: #ffffff;
+    background: #262626;
+}
 .card-tag {
     padding: 1px 8px;
     font-size: 12px;
     line-height: 20px;
-    color: #ffffff;
-    background: #262626;
     border-radius: 2px;
 }
 .card-info {
@@ -245,7 +247,6 @@ body {
 .modal-dialog {
     max-width: 780px;
     width: 95%;
-    min-height: 552px;
     background: #fff;
     border-radius: 5px;
     margin: auto;
@@ -266,4 +267,17 @@ body {
     font-size: 36px;
     border: none;
     background-color: transparent;
+}
+
+.modal-footer {
+    margin-top: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.price-tag {
+    padding: 15px 20px;
+    font-size: 20px;
+    line-height: 23px;
+    border-radius: 5px;
 }
