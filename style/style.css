@@ -256,6 +256,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 45px;
 }
 .modal-title {
     margin: 0;
@@ -267,6 +268,50 @@ body {
     font-size: 36px;
     border: none;
     background-color: transparent;
+}
+
+.product-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.product-name {
+    font-size: 18px;
+    line-height: 32px;
+}
+.product-price {
+    margin-left: auto;
+    margin-right: 45px;
+    font-size: 20px;
+    line-height: 32px;
+}
+.product-counter {
+    display: flex;
+    align-items: center;
+}
+.button-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39px;
+    height: 32px;
+
+    background-color: #fff;
+    border: 1px solid #40a9ff;
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    font-size: 14px;
+    line-height: 22px;
+    color: #40a9ff;
+}
+.counter {
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .modal-footer {
