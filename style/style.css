@@ -5,8 +5,12 @@ h1, h2, h3 {
     margin: 0;
 }
 body {
-    margin: auto;
+    margin: 0;
     font-family: 'Roboto', sans-serif;
+}
+.container {
+    margin: auto;
+    max-width: 1200px;
 }
 .header {
     max-width: 1200px;
@@ -51,7 +55,14 @@ body {
     width: 300px;
     background-image: url(../img/search.svg);
 }
+.buttons {
+    display: flex;
+    align-items: center;
+}
 .button {
+    display: flex;
+    align-items: center;
+
     padding: 8px 16px;
     background: #fff;
     border: 1px solid #d9d9d9;
@@ -62,10 +73,12 @@ body {
     font-size: 16px;
     line-height: 24px;
 }
-.button-active {
+.button-primary {
     background-color: #1890ff;
     border-color: #1890ff;
     color: #fff;
+
+    margin-right: 10px;
 }
 .button-icon {
     margin-right: 6px;
@@ -76,10 +89,6 @@ body {
 }
 .main {
     background: linear-gradient(180deg, rgba(245, 245, 245, 0) 1.04%, #F5F5F5 100%);
-}
-.container {
-    margin: auto;
-    width: 1200px;
 }
 .promo {
     height: 300px;
