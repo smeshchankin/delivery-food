@@ -1,7 +1,7 @@
 (function() {
     let restaurants = [
         {img: '01.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
-        {img: '02.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'},
+        {img: '02.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza, Rolls, Sushi'},
         {img: '03.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
         {img: '04.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'},
         {img: '05.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
