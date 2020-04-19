@@ -344,6 +344,27 @@ body {
         background-size: 650px;
     }
     .category, .price {
+        font-size: 14px;
+    }
+}
 
+@media (max-width: 992px) {
+    .container {
+        max-width: 750px;
+    }
+    .promo {
+        padding: 50px;
+        background-size: 500px;
+        background-position: center right -200px;
+    }
+    .promo-text {
+        font-size: 18px;
+        max-width: 450px;
+    }
+    .card {
+        flex-basis: 49%;
+    }
+    .footer-link {
+        font-size: 16px;
     }
 }
