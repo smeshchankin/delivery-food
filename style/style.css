@@ -52,6 +52,7 @@ body {
     background-image: url(../img/home.svg);
 }
 .input-search {
+    margin-left: auto;
     width: 300px;
     background-image: url(../img/search.svg);
 }
@@ -122,13 +123,13 @@ body {
 .restaurants-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 44px;
 }
 .restaurants-title {
     font-weight: bold;
     font-size: 36px;
     line-height: 42px;
+    margin-right: 30px;
 }
 .cards {
     display: flex;
