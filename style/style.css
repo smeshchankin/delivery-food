@@ -132,7 +132,8 @@ body {
 }
 .cards {
     display: flex;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: stretch;
     justify-content: space-between;
     flex-wrap: wrap;
 }
