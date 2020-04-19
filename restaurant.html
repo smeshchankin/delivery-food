@@ -45,14 +45,18 @@
                     <div class="card">
                         <img src="img/cards/rest-00.jpg" alt="Card image" class="card-image" />
                         <div class="card-text">
-                           <div class="card-header">
-                               <h3 class="card-title">{{title}}</h3>
-                               <span class="card-tag tag">{{tag}}</span>
-                           </div>
-                           <div class="card-info">
-                                <div class="rating">{{rating}}</div>
-                                <div class="price">{{price}}</div>
-                                <div class="category">{{category}}</div>
+                            <div class="card-header">
+                               <h3 class="card-title card-title-reg">{{title}}</h3>
+                            </div>
+                            <div class="card-info">
+                                <div class="ingredients">{{category}}</div>
+                            </div>
+                            <div class="card-buttons">
+                                <button class="button button-primary">
+                                    <span class="button-card-text">Add to cart</span>
+                                    <img src="img/cart-white.svg" alt="Add to the shopping cart"  class="button-card-icon" />
+                                </button>
+                                <strong class="card-price-bold">{{price}}</strong>
                             </div>
                         </div>
                     </div>
