@@ -185,7 +185,6 @@ body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 24px;
 }
 .card-price-bold {
     font-weight: bold;
@@ -196,6 +195,7 @@ body {
 .card-buttons {
     display: flex;
     align-items: center;
+    margin-top: 24px;
 }
 .rating {
     font-size: 18px;
@@ -401,7 +401,7 @@ body {
     .card-info {
         flex-wrap: wrap;
     }
-    .rating {
+    .card .rating {
         flex-basis: 100%;
     }
     .card-title {
