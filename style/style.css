@@ -396,3 +396,52 @@ body {
         max-width: 350px;
     }
 }
+
+@media (max-width: 578px) {
+    .container {
+        width: 90%;
+    }
+    .header {
+        flex-wrap: wrap;
+    }
+    .input-address {
+        margin-top: 15px;
+        order: 5;
+        flex: 1;
+    }
+    .promo {
+        background-image: none;
+    }
+    .promo-title {
+        margin-bottom: 10px;
+    }
+    .restaurants-title {
+        font-size: 20px;
+    }
+    .card {
+        flex-basis: 100%;
+    }
+    .card-image {
+        width: 100%;
+    }
+    .footer {
+        padding: 30px 0;
+    }
+    .footer-block {
+        align-items: flex-start;
+    }
+    .footer-nav {
+        margin-left: 0;
+        margin-right: 0;
+        order: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .footer-logo {
+        margin-right: 15px;
+        order: 1;
+    }
+    .social-links {
+        order: 2;
+    }
+}
