@@ -25,6 +25,8 @@ body {
 .logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: #000;
 }
 .logo-name {
     margin-left: 11px;
@@ -148,6 +150,7 @@ body {
     overflow: hidden;
     margin-bottom: 30px;
     flex-basis: 31%;
+    text-decoration: none;
 }
 .card-image {
     width: 384px;
