@@ -36,7 +36,7 @@
     if (isRestaurant) {
         let id = window.location.hash.replace(/[^0-9]/g, '');
         let restaurantNode = document.querySelector('#restaurant-info');
-        let restaurantInfo = restaurants.find(obj => obj.id == id);
+        let restaurantInfo = restaurants.find(function(obj) { return obj.id == id; });
 
         if (restaurantInfo) {
             populateData('#cards', '.card', restaurantInfo.products);
