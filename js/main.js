@@ -1,19 +1,52 @@
 (function() {
     let restaurants = [
-        {img: '01.jpg', title: 'Pizza Burger', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
-        {img: '02.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza, Rolls, Sushi'},
-        {img: '03.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
-        {img: '04.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'},
-        {img: '05.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
-        {img: '06.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'}
+        {id: 1, img: '01.jpg', title: 'Pizza Burger', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
+        {id: 2, img: '02.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza, Rolls, Sushi'},
+        {id: 3, img: '03.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
+        {id: 4, img: '04.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'},
+        {id: 5, img: '05.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza'},
+        {id: 6, img: '06.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'}
     ];
+    let products = {
+        '1': [],
+        '2': [
+            {img: '01.jpg', title: 'Roll eel standard', ingredients: 'Rice, eel, unagi sauce, sesame, nori seaweed.', price: '$16.66'},
+            {img: '02.jpg', title: 'California Salmon Standard', ingredients: 'Rice, salmon, avocado, cucumber, mayonnaise, masago caviar, nori seaweed.', price: '$6.66'},
+            {img: '03.jpg', title: 'Okinawa standard', ingredients: 'Rice, boiled shrimp, cream cheese, salmon, fresh cucumber ...', price: '$7.77'},
+            {img: '04.jpg', title: 'Цезарь маки хl', ingredients: 'Rice, smoked chicken breast, masago caviar, tomato, iceberg, Caesar dressing ...', price: '$3.33'}
+        ],
+        '3': [
+            {img: '05.jpg', title: 'Yasai Maki standard 185 g', ingredients: 'Rice, fresh tomato, bell pepper, avocado, cucumber, iceberg', price: '$8.88'},
+            {img: '06.jpg', title: 'Shrimp Roll Standard', ingredients: 'Rice, nori seaweed, boiled shrimp, cream cheese, cucumbers', price: '$4.44'}
+        ],
+        '4': [
+            {img: '02.jpg', title: 'California Salmon Standard', ingredients: 'Rice, salmon, avocado, cucumber, mayonnaise, masago caviar, nori seaweed.', price: '$6.66'},
+            {img: '03.jpg', title: 'Okinawa standard', ingredients: 'Rice, boiled shrimp, cream cheese, salmon, fresh cucumber ...', price: '$7.77'},
+            {img: '04.jpg', title: 'Цезарь маки хl', ingredients: 'Rice, smoked chicken breast, masago caviar, tomato, iceberg, Caesar dressing ...', price: '$3.33'}
+        ],
+        '5': [
+            {img: '01.jpg', title: 'Roll eel standard', ingredients: 'Rice, eel, unagi sauce, sesame, nori seaweed.', price: '$16.66'},
+            {img: '02.jpg', title: 'California Salmon Standard', ingredients: 'Rice, salmon, avocado, cucumber, mayonnaise, masago caviar, nori seaweed.', price: '$6.66'},
+            {img: '03.jpg', title: 'Okinawa standard', ingredients: 'Rice, boiled shrimp, cream cheese, salmon, fresh cucumber ...', price: '$7.77'},
+            {img: '04.jpg', title: 'Цезарь маки хl', ingredients: 'Rice, smoked chicken breast, masago caviar, tomato, iceberg, Caesar dressing ...', price: '$3.33'},
+            {img: '05.jpg', title: 'Yasai Maki standard 185 g', ingredients: 'Rice, fresh tomato, bell pepper, avocado, cucumber, iceberg', price: '$8.88'},
+            {img: '06.jpg', title: 'Shrimp Roll Standard', ingredients: 'Rice, nori seaweed, boiled shrimp, cream cheese, cucumbers', price: '$4.44'}
+        ]
+    };
     let cart = [
-        {name: 'God Pizza', price: '$43.00', count: 4},
-        {name: 'The best sushi', price: '$11.99', count: 3},
-        {name: 'All in one dishes', price: '$19.99', count: 2}
+        {id: 1, name: 'God Pizza', price: '$43.00', count: 4},
+        {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
+        {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
     ];
+    let isRestaurant = window.location.pathname.includes('restaurant.html');
 
-    populateData('#cards', '.card', restaurants);
+    if (isRestaurant) {
+        let id = window.location.hash.replace(/[^0-9]/g, '');
+        populateData('#cards', '.card', products[id]);
+    } else {
+        populateData('#cards', '.card', restaurants);
+    }
+    
     populateData('#product-list', '.product-row', cart);
 
 
@@ -32,13 +65,18 @@
         let templateNode = parentNode.querySelector(templateSelector);
         parentNode.removeChild(templateNode);
 
-        for (let i = 0; i < data.length; i++) {
-            parentNode.appendChild(fillNode(templateNode, data[i]));
+        if (data) {
+            for (let i = 0; i < data.length; i++) {
+                parentNode.appendChild(fillNode(templateNode, data[i]));
+            }
         }
     }
 
     function fillNode(templateNode, data) {
         let node = templateNode.cloneNode(true);
+        if (node.href && data.id) {
+            node.href = node.href.replace('{{id}}', data.id);
+        }
         if (data.img) {
             node.innerHTML = node.innerHTML.replace('00.jpg', data.img);
         }
