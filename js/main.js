@@ -62,6 +62,7 @@
     closeAuthButton.addEventListener('click', toggleModal(modalAuth));
 
     const signInForm = document.querySelector('#logInForm');
+    const userNameLabel = document.querySelector('.user-name');
     signInForm.addEventListener('submit', submitHandler);
 
     function toggleModal(elem) {
@@ -72,6 +73,10 @@
 
     function submitHandler(event) {
         event.preventDefault();
+
+        let loginText = document.querySelector('#login').value;
+        userNameLabel.textContent = loginText.trim();
+
         toggleModal(modalAuth)();
     }
 
