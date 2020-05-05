@@ -61,10 +61,18 @@
     loginButton.addEventListener('click', toggleModal(modalAuth));
     closeAuthButton.addEventListener('click', toggleModal(modalAuth));
 
+    const signInForm = document.querySelector('#logInForm');
+    signInForm.addEventListener('submit', submitHandler);
+
     function toggleModal(elem) {
         return function() {
             elem.classList.toggle('is-open');
         }
+    }
+
+    function submitHandler(event) {
+        event.preventDefault();
+        toggleModal(modalAuth)();
     }
 
     function populateData(parentSelector, templateSelector, data) {
