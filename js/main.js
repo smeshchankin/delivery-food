@@ -63,11 +63,14 @@
 
     const signInForm = document.querySelector('#logInForm');
     signInForm.addEventListener('submit', submitHandler);
-    const userNameLabel = document.querySelector('.user-name');
+    const usernameLabel = document.querySelector('.user-name');
     const usernameText = document.querySelector('#login');
     const logoutButton = document.querySelector('#logouButton');
     logoutButton.addEventListener('click', logoutHandler);
-    logoutButton.style.display = 'none';
+
+    const savedUsername = localStorage.getItem('delivery-food.username') || '';
+    login(savedUsername);
+
 
     function toggleModal(elem) {
         return function() {
@@ -88,14 +91,15 @@
     function login(username) {
         let login = username.trim();
         if (login) {
-            userNameLabel.textContent = login;
+            usernameLabel.textContent = login;
             loginButton.style.display = 'none';
             logoutButton.style.display = '';
         } else {
-            userNameLabel.textContent = '';
+            usernameLabel.textContent = '';
             loginButton.style.display = '';
             logoutButton.style.display = 'none';
         }
+        localStorage.setItem('delivery-food.username', login);
 
         usernameText.value = '';
     }
