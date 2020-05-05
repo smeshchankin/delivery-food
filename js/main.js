@@ -62,8 +62,12 @@
     closeAuthButton.addEventListener('click', toggleModal(modalAuth));
 
     const signInForm = document.querySelector('#logInForm');
-    const userNameLabel = document.querySelector('.user-name');
     signInForm.addEventListener('submit', submitHandler);
+    const userNameLabel = document.querySelector('.user-name');
+    const usernameText = document.querySelector('#login');
+    const logoutButton = document.querySelector('#logouButton');
+    logoutButton.addEventListener('click', logoutHandler);
+    logoutButton.style.display = 'none';
 
     function toggleModal(elem) {
         return function() {
@@ -74,10 +78,21 @@
     function submitHandler(event) {
         event.preventDefault();
 
-        let loginText = document.querySelector('#login').value;
-        userNameLabel.textContent = loginText.trim();
+        let login = usernameText.value.trim();
+        if (login) {
+            userNameLabel.textContent = login;
+            loginButton.style.display = 'none';
+            logoutButton.style.display = '';
+        }
 
+        usernameText.value = '';
         toggleModal(modalAuth)();
+    }
+
+    function logoutHandler() {
+        userNameLabel.textContent = '';
+        loginButton.style.display = '';
+        logoutButton.style.display = 'none';
     }
 
     function populateData(parentSelector, templateSelector, data) {
