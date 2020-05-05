@@ -80,8 +80,12 @@
 
     function submitHandler(event) {
         event.preventDefault();
-        login(usernameText.value);
-        toggleModal(modalAuth)();
+        if (login(usernameText.value)) {
+            toggleModal(modalAuth)();
+            usernameText.style.borderColor = '';
+        } else {
+            usernameText.style.borderColor = 'red';
+        }
     }
 
     function logoutHandler() {
@@ -102,6 +106,8 @@
         localStorage.setItem('delivery-food.username', login);
 
         usernameText.value = '';
+
+        return login;
     }
 
     function populateData(parentSelector, templateSelector, data) {
