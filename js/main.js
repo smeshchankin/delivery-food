@@ -77,22 +77,27 @@
 
     function submitHandler(event) {
         event.preventDefault();
-
-        let login = usernameText.value.trim();
-        if (login) {
-            userNameLabel.textContent = login;
-            loginButton.style.display = 'none';
-            logoutButton.style.display = '';
-        }
-
-        usernameText.value = '';
+        login(usernameText.value);
         toggleModal(modalAuth)();
     }
 
     function logoutHandler() {
-        userNameLabel.textContent = '';
-        loginButton.style.display = '';
-        logoutButton.style.display = 'none';
+        login('');
+    }
+
+    function login(username) {
+        let login = username.trim();
+        if (login) {
+            userNameLabel.textContent = login;
+            loginButton.style.display = 'none';
+            logoutButton.style.display = '';
+        } else {
+            userNameLabel.textContent = '';
+            loginButton.style.display = '';
+            logoutButton.style.display = 'none';
+        }
+
+        usernameText.value = '';
     }
 
     function populateData(parentSelector, templateSelector, data) {
