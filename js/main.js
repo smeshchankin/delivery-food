@@ -52,11 +52,19 @@
     const modal = document.querySelector('.modal');
     const cartButton = document.querySelector('#cart');
     const closeButton = document.querySelector('.close');
-    cartButton.addEventListener('click', toggleModal);
-    closeButton.addEventListener('click', toggleModal);
+    cartButton.addEventListener('click', toggleModal(modal));
+    closeButton.addEventListener('click', toggleModal(modal));
 
-    function toggleModal() {
-        modal.classList.toggle('is-open');
+    const modalAuth = document.querySelector('.modal-auth');
+    const loginButton = document.querySelector('#loginButton');
+    const closeAuthButton = document.querySelector('.close-auth');
+    loginButton.addEventListener('click', toggleModal(modalAuth));
+    closeAuthButton.addEventListener('click', toggleModal(modalAuth));
+
+    function toggleModal(elem) {
+        return function() {
+            elem.classList.toggle('is-open');
+        }
     }
 
     function populateData(parentSelector, templateSelector, data) {

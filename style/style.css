@@ -267,7 +267,7 @@ body {
     margin-right: 31px;
 }
 
-.modal {
+.modal, .modal-auth {
     position: fixed;
     left: 0;
     top: 0;
@@ -299,7 +299,7 @@ body {
     font-size: 36px;
     line-height: 42px;
 }
-.close {
+.close, .close-auth {
     font-size: 36px;
     border: none;
     background-color: transparent;
@@ -361,6 +361,33 @@ body {
     font-size: 20px;
     line-height: 23px;
     border-radius: 5px;
+}
+
+.modal-dialog-auth {
+    width: auto;
+    position: relative;
+}
+.modal-title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+}
+.close-auth {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.label-auth {
+    display: block;
+    margin: 30px;
+}
+.label-auth span {
+    width: 80px;
+    display: inline-block;
+}
+.modal-auth .modal-footer {
+    justify-content: flex-end;
 }
 
 @media (max-width: 1366px) {
