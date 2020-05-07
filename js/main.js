@@ -65,6 +65,7 @@
     const closeButton = document.querySelector('.close');
     cartButton.addEventListener('click', toggleModal(modal));
     closeButton.addEventListener('click', toggleModal(modal));
+    populateData('#product-list', '.product-row', cart);
 
     const modalAuth = document.querySelector('.modal-auth');
     const loginButton = document.querySelector('#loginButton');
