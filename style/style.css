@@ -51,12 +51,12 @@ body {
 }
 .input-address {
     flex: 0.8;
-    background-image: url(../img/home.svg);
+    background-image: url(../icon/home.svg);
 }
 .input-search {
     margin-left: auto;
     width: 300px;
-    background-image: url(../img/search.svg);
+    background-image: url(../icon/search.svg);
 }
 .buttons {
     display: flex;
@@ -213,7 +213,7 @@ body {
     margin-right: 26px;
 }
 .rating::before {
-    content: url('../img/star.svg');
+    content: url('../icon/star.svg');
     margin-right: 7px;
 }
 .price, .category {
