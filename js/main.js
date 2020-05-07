@@ -31,11 +31,12 @@
         {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
         {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
     ];
-    let isRestaurant = window.location.pathname.includes('restaurant.html');
 
-    if (isRestaurant) {
-        let id = window.location.hash.replace(/[^0-9]/g, '');
+    let id = window.location.hash.replace(/[^0-9]/g, '');
+    if (id) {
         let restaurantNode = document.querySelector('#restaurant-info');
+        restaurantNode.classList.remove('hide');
+
         let restaurantInfo = restaurants.find(function(obj) { return obj.id == id; });
 
         if (restaurantInfo) {
