@@ -396,6 +396,10 @@ body {
     justify-content: flex-end;
 }
 
+.hide {
+    display: none;
+}
+
 @media (max-width: 1366px) {
     .container {
         max-width: 960px;

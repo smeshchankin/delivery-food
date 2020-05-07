@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="style/style.css" rel="stylesheet">
-    <title>Delivery Food</title>
+    <title>Delivery Food - delivery food to home</title>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <a href="index.html"iv class="logo">
+            <a href="index.html" class="logo">
                 <img src="img/logo.svg" alt="Logo Delivery Food" class="logo-image" />
                 <span class="logo-name">Delivery Food</span>
             </a>
@@ -50,6 +50,16 @@
                     <h2 class="restaurants-title">Restaurants</h2>
                     <input type="text" class="input input-icon input-search" placeholder="Searching dishes and restaurants" />
                 </div>
+
+                <div id='restaurant-info' class="restaurants-header hide">
+                    <h2 class="restaurants-title">{{title}}</h2>
+                    <div class="card-info">
+                        <div class="rating">{{rating}}</div>
+                        <div class="price">{{price}}</div>
+                        <div class="category">{{category}}</div>
+                    </div>
+                </div>
+
                 <div id='cards' class="cards">
                     <a href="restaurant.html#{{id}}" class="card">
                         <img src="img/cards/rest-00.jpg" alt="Card image" class="card-image" />
@@ -65,6 +75,25 @@
                             </div>
                         </div>
                     </a>
+
+                    <div class="card product hide">
+                        <img src="img/cards/food-00.jpg" alt="Card image" class="card-image" />
+                        <div class="card-text">
+                            <div class="card-header">
+                               <h3 class="card-title card-title-reg">{{title}}</h3>
+                            </div>
+                            <div class="card-info">
+                                <div class="ingredients">{{ingredients}}</div>
+                            </div>
+                            <div class="card-buttons">
+                                <button class="button button-primary">
+                                    <span class="button-text button-card-text">Add to cart</span>
+                                    <img src="img/cart-white.svg" alt="Add to the shopping cart"  class="button-card-icon" />
+                                </button>
+                                <strong class="card-price-bold">{{price}}</strong>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
