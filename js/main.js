@@ -32,23 +32,33 @@
         {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
     ];
 
-    let id = window.location.hash.replace(/[^0-9]/g, '');
-    if (id) {
-        let restaurantNode = document.querySelector('#restaurant-info');
-        restaurantNode.classList.remove('hide');
+    init();
 
-        let restaurantInfo = restaurants.find(function(obj) { return obj.id == id; });
+    window.addEventListener('hashchange', function(event) {
+        init();
+    });
 
-        if (restaurantInfo) {
-            populateData('#cards', '.card', restaurantInfo.products);
-            fillNode(restaurantNode, restaurantInfo);
+    function init() {
+        let id = window.location.hash.replace(/[^0-9]/g, '');
+        if (id) {
+            document.querySelector('.restaurants-header').classList.add('hide');
+
+            let restaurantNode = document.querySelector('#restaurant-info');
+            restaurantNode.classList.remove('hide');
+
+            document.querySelector('#providers').classList.add('hide');
+            document.querySelector('#products').classList.remove('hide');
+
+            let restaurantInfo = restaurants.find(function(obj) { return obj.id == id; });
+
+            if (restaurantInfo) {
+                populateData('#products', '.card', restaurantInfo.products);
+                fillNode(restaurantNode, restaurantInfo);
+            }
+        } else {
+            populateData('#providers', '.card', restaurants);
         }
-    } else {
-        populateData('#cards', '.card', restaurants);
     }
-    
-    populateData('#product-list', '.product-row', cart);
-
 
     const modal = document.querySelector('.modal');
     const cartButton = document.querySelector('#cart');
