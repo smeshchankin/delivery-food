@@ -8,32 +8,44 @@ window.app.auth = (function() {
         init: init
     };
 
-    let modalAuth = document.querySelector('.modal-auth');
-    let loginButton = document.querySelector('#loginButton');
-    let closeAuthButton = document.querySelector('.close-auth');
-    let signInForm = document.querySelector('#logInForm');
-    let usernameLabel = document.querySelector('.user-name');
-    let usernameText = document.querySelector('#login');
-    let logoutButton = document.querySelector('#logouButton');
+    let elems = {
+        username: document.querySelector('.user-name'),
+        button: {
+            login: document.querySelector('#loginButton'),
+            logout: document.querySelector('#logouButton')
+        },
+        modal: {
+            id: document.querySelector('.modal-auth'),
+            close: document.querySelector('.close-auth')
+        },
+        form: {
+            id: document.querySelector('#logInForm'),
+            username: document.querySelector('#login')
+        }
+    }
 
     function init() {
-        loginButton.addEventListener('click', dialog.toggle(modalAuth));
-        closeAuthButton.addEventListener('click', dialog.toggle(modalAuth));
+        elems.button.login.addEventListener('click', toggle);
+        elems.modal.close.addEventListener('click', toggle);
 
-        signInForm.addEventListener('submit', submitHandler);
-        logoutButton.addEventListener('click', logoutHandler);
+        elems.form.id.addEventListener('submit', submitHandler);
+        elems.button.logout.addEventListener('click', logoutHandler);
 
         let savedUsername = localStorage.getItem('delivery-food.username') || '';
         login(savedUsername);
     }
 
+    function toggle() {
+        return dialog.toggle(elems.modal.id);
+    }
+
     function submitHandler(event) {
         event.preventDefault();
-        if (login(usernameText.value)) {
-            dialog.toggle(modalAuth)();
-            usernameText.style.borderColor = '';
+        if (login(elems.form.username.value)) {
+            toggle();
+            elems.form.username.style.borderColor = '';
         } else {
-            usernameText.style.borderColor = 'red';
+            elems.form.username.style.borderColor = 'red';
         }
     }
 
@@ -44,17 +56,17 @@ window.app.auth = (function() {
     function login(username) {
         let login = username.trim();
         if (login) {
-            usernameLabel.textContent = login;
-            loginButton.style.display = 'none';
-            logoutButton.style.display = '';
+            elems.username.textContent = login;
+            elems.button.login.style.display = 'none';
+            elems.button.logout.style.display = '';
         } else {
-            usernameLabel.textContent = '';
-            loginButton.style.display = '';
-            logoutButton.style.display = 'none';
+            elems.username.textContent = '';
+            elems.button.login.style.display = '';
+            elems.button.logout.style.display = 'none';
         }
         localStorage.setItem('delivery-food.username', login);
 
-        usernameText.value = '';
+        elems.form.username.value = '';
 
         return login;
     }
