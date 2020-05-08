@@ -4,6 +4,7 @@ window.app = window.app || {};
 window.app.auth = (function() {
     let dialog = window.app.dialog;
     let utils = window.app.utils;
+    let storage = window.app.storage;
 
     let module = {
         init: init
@@ -24,8 +25,7 @@ window.app.auth = (function() {
         elems.form.id.addEventListener('submit', submitHandler);
         elems.button.logout.addEventListener('click', logoutHandler);
 
-        let savedUsername = localStorage.getItem('delivery-food.username') || '';
-        login(savedUsername);
+        login(storage.user.get());
     }
 
     function toggle() {
@@ -48,18 +48,16 @@ window.app.auth = (function() {
 
     function login(username) {
         let login = username.trim();
-        if (login) {
-            elems.username.textContent = login;
-            elems.button.login.style.display = 'none';
-            elems.button.logout.style.display = '';
-        } else {
-            elems.username.textContent = '';
-            elems.button.login.style.display = '';
-            elems.button.logout.style.display = 'none';
-        }
-        localStorage.setItem('delivery-food.username', login);
-
+        elems.username.textContent = login;
+        elems.button.login.style.display = login ? 'none' : '';
+        elems.button.logout.style.display = login ? '' : 'none';
         elems.form.username.value = '';
+
+        if (login) {
+            storage.user.update(login);
+        } else {
+            storage.user.delete();
+        }
 
         return login;
     }
