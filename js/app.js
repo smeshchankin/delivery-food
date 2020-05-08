@@ -1,6 +1,9 @@
 'use strict';
 
 (function() {
+    let module = window.app.module;
+    module.bar(module.foo());
+
     async function getData(url) {
         const response = await fetch(url);
         if (!response.ok) {
