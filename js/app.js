@@ -2,6 +2,7 @@
 
 (function() {
     let dialog = window.app.dialog;
+    let auth = window.app.auth;
 
     async function getData(url) {
         const response = await fetch(url);
@@ -72,53 +73,8 @@
     populateData('#product-list', '.product-row', cart);
 
 
-    const modalAuth = document.querySelector('.modal-auth');
-    const loginButton = document.querySelector('#loginButton');
-    const closeAuthButton = document.querySelector('.close-auth');
-    loginButton.addEventListener('click', dialog.toggle(modalAuth));
-    closeAuthButton.addEventListener('click', dialog.toggle(modalAuth));
+    auth.init();
 
-    const signInForm = document.querySelector('#logInForm');
-    signInForm.addEventListener('submit', submitHandler);
-    const usernameLabel = document.querySelector('.user-name');
-    const usernameText = document.querySelector('#login');
-    const logoutButton = document.querySelector('#logouButton');
-    logoutButton.addEventListener('click', logoutHandler);
-
-    const savedUsername = localStorage.getItem('delivery-food.username') || '';
-    login(savedUsername);
-
-    function submitHandler(event) {
-        event.preventDefault();
-        if (login(usernameText.value)) {
-            dialog.toggle(modalAuth)();
-            usernameText.style.borderColor = '';
-        } else {
-            usernameText.style.borderColor = 'red';
-        }
-    }
-
-    function logoutHandler() {
-        login('');
-    }
-
-    function login(username) {
-        let login = username.trim();
-        if (login) {
-            usernameLabel.textContent = login;
-            loginButton.style.display = 'none';
-            logoutButton.style.display = '';
-        } else {
-            usernameLabel.textContent = '';
-            loginButton.style.display = '';
-            logoutButton.style.display = 'none';
-        }
-        localStorage.setItem('delivery-food.username', login);
-
-        usernameText.value = '';
-
-        return login;
-    }
 
     function populateData(parentSelector, templateSelector, data) {
         let parentNode = document.querySelector(parentSelector);
