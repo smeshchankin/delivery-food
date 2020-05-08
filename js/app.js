@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
     async function getData(url) {
         const response = await fetch(url);
@@ -66,6 +68,7 @@
     cartButton.addEventListener('click', toggleModal(modal));
     closeButton.addEventListener('click', toggleModal(modal));
     populateData('#product-list', '.product-row', cart);
+
 
     const modalAuth = document.querySelector('.modal-auth');
     const loginButton = document.querySelector('#loginButton');
