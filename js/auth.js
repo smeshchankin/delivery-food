@@ -3,26 +3,19 @@
 window.app = window.app || {};
 window.app.auth = (function() {
     let dialog = window.app.dialog;
+    let utils = window.app.utils;
 
     let module = {
         init: init
     };
 
     let elems = {
-        username: document.querySelector('.user-name'),
-        button: {
-            login: document.querySelector('#loginButton'),
-            logout: document.querySelector('#logouButton')
-        },
-        modal: {
-            id: document.querySelector('.modal-auth'),
-            close: document.querySelector('.close-auth')
-        },
-        form: {
-            id: document.querySelector('#logInForm'),
-            username: document.querySelector('#login')
-        }
-    }
+        username: '.user-name',
+        button: { login: '#loginButton', logout: '#logouButton' },
+        modal: { id: '.modal-auth', close: '.close-auth' },
+        form: { id: '#logInForm', username: '#login' }
+    };
+    elems = utils.applySelector(elems);
 
     function init() {
         elems.button.login.addEventListener('click', toggle);
@@ -36,7 +29,7 @@ window.app.auth = (function() {
     }
 
     function toggle() {
-        return dialog.toggle(elems.modal.id);
+        return dialog.toggle(elems.modal.id)();
     }
 
     function submitHandler(event) {
