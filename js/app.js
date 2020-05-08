@@ -1,8 +1,7 @@
 'use strict';
 
 (function() {
-    let module = window.app.module;
-    module.bar(module.foo());
+    let dialog = window.app.dialog;
 
     async function getData(url) {
         const response = await fetch(url);
@@ -65,19 +64,19 @@
         {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
     ];
 
-    const modal = document.querySelector('.modal');
+    const cartModal = document.querySelector('.modal');
     const cartButton = document.querySelector('#cart');
     const closeButton = document.querySelector('.close');
-    cartButton.addEventListener('click', toggleModal(modal));
-    closeButton.addEventListener('click', toggleModal(modal));
+    cartButton.addEventListener('click', dialog.toggle(cartModal));
+    closeButton.addEventListener('click', dialog.toggle(cartModal));
     populateData('#product-list', '.product-row', cart);
 
 
     const modalAuth = document.querySelector('.modal-auth');
     const loginButton = document.querySelector('#loginButton');
     const closeAuthButton = document.querySelector('.close-auth');
-    loginButton.addEventListener('click', toggleModal(modalAuth));
-    closeAuthButton.addEventListener('click', toggleModal(modalAuth));
+    loginButton.addEventListener('click', dialog.toggle(modalAuth));
+    closeAuthButton.addEventListener('click', dialog.toggle(modalAuth));
 
     const signInForm = document.querySelector('#logInForm');
     signInForm.addEventListener('submit', submitHandler);
@@ -89,17 +88,10 @@
     const savedUsername = localStorage.getItem('delivery-food.username') || '';
     login(savedUsername);
 
-
-    function toggleModal(elem) {
-        return function() {
-            elem.classList.toggle('is-open');
-        }
-    }
-
     function submitHandler(event) {
         event.preventDefault();
         if (login(usernameText.value)) {
-            toggleModal(modalAuth)();
+            dialog.toggle(modalAuth)();
             usernameText.style.borderColor = '';
         } else {
             usernameText.style.borderColor = 'red';
