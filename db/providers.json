@@ -1,0 +1,62 @@
+[
+  {
+    "id": "pp",
+    "name": "Pizza Plus",
+    "time_of_delivery": 50,
+    "rating": 4.5,
+    "price": 900,
+    "category": "Pizza",
+    "image": "img/providers/pizza-plus.jpg",
+    "products": "pizza-plus.json"
+  },
+  {
+    "id": "tn",
+    "name": "Tanuki",
+    "time_of_delivery": 60,
+    "rating": 4.3,
+    "price": 1200,
+    "category": "Sushi, rolls",
+    "image": "img/providers/tanuki.jpg",
+    "products": "tanuki.json"
+  },
+  {
+    "id": "fb",
+    "name": "FoodBand",
+    "time_of_delivery": 40,
+    "rating": 4.4,
+    "price": 450,
+    "category": "Pizza",
+    "image": "img/providers/food-band.jpg",
+    "products": "food-band.json"
+  },
+  {
+    "id": "ps",
+    "name": "Palki skalki",
+    "time_of_delivery": 55,
+    "rating": 4.1,
+    "price": 500,
+    "category": "Pizza",
+    "image": "img/providers/palki-skalki.jpg",
+    "products": "palki-skalki.json"
+  },
+  {
+    "id": "gl",
+    "name": "Gusi Lebedi",
+    "time_of_delivery": 75,
+    "rating": 4.7,
+    "price": 1000,
+    "category": "Russian cuisine",
+    "image": "img/providers/gusi-lebedi.jpg",
+    "products": "gusi-lebedi.json"
+  },
+  {
+    "id": "pb",
+    "name": "PizzaBurger",
+    "time_of_delivery": 45,
+    "rating": 4.6,
+    "price": 700,
+    "category": "Pizza",
+    "image": "img/providers/pizza-burger.jpg",
+    "products": "pizza-burger.json"
+  }
+]

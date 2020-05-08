@@ -52,7 +52,7 @@
                 </div>
 
                 <div id='restaurant-info' class="restaurants-header hide">
-                    <h2 class="restaurants-title">{{title}}</h2>
+                    <h2 class="restaurants-title">{{name}}</h2>
                     <div class="card-info">
                         <div class="rating">{{rating}}</div>
                         <div class="price">{{price}}</div>
@@ -62,10 +62,10 @@
 
                 <div id='providers' class="cards">
                     <a href="index.html#{{id}}" class="card">
-                        <img src="img/cards/rest-00.jpg" alt="Card image" class="card-image" />
+                        <img src="img/dummy.jpg" alt="Card image" class="card-image" />
                         <div class="card-text">
                            <div class="card-header">
-                               <h3 class="card-title">{{title}}</h3>
+                               <h3 class="card-title">{{name}}</h3>
                                <span class="card-tag tag">{{tag}}</span>
                            </div>
                            <div class="card-info">
@@ -78,14 +78,14 @@
                 </div>
 
                 <div id='products' class="cards hide">
-                    <div class="card">
-                        <img src="img/cards/food-00.jpg" alt="Card image" class="card-image" />
+                    <div id='{{id}}' class="card">
+                        <img src="img/dummy.jpg" alt="Card image" class="card-image" />
                         <div class="card-text">
                             <div class="card-header">
-                               <h3 class="card-title card-title-reg">{{title}}</h3>
+                               <h3 class="card-title card-title-reg">{{name}}</h3>
                             </div>
                             <div class="card-info">
-                                <div class="ingredients">{{ingredients}}</div>
+                                <div class="ingredients">{{description}}</div>
                             </div>
                             <div class="card-buttons">
                                 <button class="button button-primary">

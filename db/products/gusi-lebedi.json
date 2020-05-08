@@ -1,0 +1,65 @@
+[
+  {
+    "id": "gl01",
+    "name": "Dumplings Calf and Piglet",
+    "description": "Real self-made dumplings from fluffy dough on rustic yolks and sour cream",
+    "price": 390,
+    "image": "img/products/gusi-lebedi/dumplings.jpg"
+  },
+  {
+    "id": "gl02",
+    "name": "Pilaf",
+    "description": "Charcoal pilaf from proper rice with lamb, spices and vegetables with fat tail fat",
+    "price": 520,
+    "image": "img/products/gusi-lebedi/plov.jpg"
+  },
+  {
+    "id": "gl03",
+    "name": "Skewer Chicken",
+    "description": "Served on pita bread with fresh tomato and cucumber, with pickled onions and with barbecue sauce",
+    "price": 490,
+    "image": "img/products/gusi-lebedi/chick.jpg"
+  },
+  {
+    "id": "gl04",
+    "name": "Soup Chicken Ryaba",
+    "description": "Chicken carcass, carrots, pasta, greens, egg, salt, spices",
+    "price": 140,
+    "image": "img/products/gusi-lebedi/chicken-soup.jpg"
+  },
+  {
+    "id": "gl05",
+    "name": "Pig Chop",
+    "description": "A thick piece of fresh pork with tomatoes and mushrooms under a cheese crust",
+    "price": 490,
+    "image": "img/products/gusi-lebedi/pig-chop.jpg"
+  },
+  {
+    "id": "gl06",
+    "name": "Calf in a Creamy Sauce",
+    "description": "Calf with mushrooms and onions fried in a creamy sour cream sauce with mashed potatoes and pickles",
+    "price": 530,
+    "image": "img/products/gusi-lebedi/calf-sauce.jpg"
+  },
+  {
+    "id": "gl07",
+    "name": "Baked Pike Perch",
+    "description": "Pike perch fillet with potatoes, rustic sour cream, herbs and onions",
+    "price": 490,
+    "image": "img/products/gusi-lebedi/zander.jpg"
+  },
+  {
+    "id": "gl08",
+    "name": "Murmansk squid",
+    "description": "Murmansk squid with garlic butter",
+    "price": 420,
+    "image": "img/products/gusi-lebedi/squid.jpg"
+  },
+  {
+    "id": "gl09",
+    "name": "Pike Soup on Crucians",
+    "description": "Riches Camping Soup on Four Fish, Laurel, Pepper and Onion with Vodka",
+    "price": 380,
+    "image": "img/products/gusi-lebedi/fish-soup.jpg"
+  }
+]

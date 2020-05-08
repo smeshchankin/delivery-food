@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ps01",
+    "name": "Combo 3 pizzas",
+    "description": "Pepperoni, Chicken BBQ, Capricesa",
+    "price": 899,
+    "image": "img/products/palki-skalki/combo.jpg"
+  },
+  {
+    "id": "ps02",
+    "name": "Pizza Roman",
+    "description": "30 cm. Gherkins, tomato sauce, sausage, red onion, mozzarella cheese, cherry tomatoes, greens",
+    "price": 408,
+    "image": "img/products/palki-skalki/rome.jpg"
+  },
+  {
+    "id": "ps03",
+    "name": "Pizza Fusion",
+    "description": "Mozzarella cheese, tomato sauce, chicken, pepperoni, bell pepper, tomatoes, red onion, burger sauce, green onion",
+    "price": 499,
+    "image": "img/products/palki-skalki/fusion.jpg"
+  },
+  {
+    "id": "ps04",
+    "name": "Ebi Udon",
+    "description": "Japanese miso soup soup with eggs, tiger shrimp, noodles, mushrooms and green onion",
+    "price": 319,
+    "image": "img/products/palki-skalki/udon.jpg"
+  },
+  {
+    "id": "ps05",
+    "name": "Cheeseburger",
+    "description": "Meat cutlet, Iceberg salad, Chef sauce, tomatoes, gherkins, Cheddar cheese, BBQ sauce",
+    "price": 358,
+    "image": "img/products/palki-skalki/cheeseburger.jpg"
+  },
+  {
+    "id": "ps06",
+    "name": "Burrito with Chicken",
+    "description": "Cheese, tomato, chicken, sweet pepper, onion, salad, egg pancake, cheese sauce, tortilla, ketchup",
+    "price": 356,
+    "image": "img/products/palki-skalki/burrito.jpg"
+  }
+]

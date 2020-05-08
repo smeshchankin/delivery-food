@@ -1,45 +1,39 @@
 (function() {
-    let restaurants = [
-        {id: 1, img: '01.jpg', title: 'Pizza Burger', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza', products: []},
-        {id: 2, img: '02.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza, Rolls, Sushi', products: [
-            {img: '01.jpg', title: 'Roll eel standard', ingredients: 'Rice, eel, unagi sauce, sesame, nori seaweed.', price: '$16.66'},
-            {img: '02.jpg', title: 'California Salmon Standard', ingredients: 'Rice, salmon, avocado, cucumber, mayonnaise, masago caviar, nori seaweed.', price: '$6.66'},
-            {img: '03.jpg', title: 'Okinawa standard', ingredients: 'Rice, boiled shrimp, cream cheese, salmon, fresh cucumber ...', price: '$7.77'},
-            {img: '04.jpg', title: 'Цезарь маки хl', ingredients: 'Rice, smoked chicken breast, masago caviar, tomato, iceberg, Caesar dressing ...', price: '$3.33'}
-        ]},
-        {id: 3, img: '03.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza', products: [
-            {img: '05.jpg', title: 'Yasai Maki standard 185 g', ingredients: 'Rice, fresh tomato, bell pepper, avocado, cucumber, iceberg', price: '$8.88'},
-            {img: '06.jpg', title: 'Shrimp Roll Standard', ingredients: 'Rice, nori seaweed, boiled shrimp, cream cheese, cucumbers', price: '$4.44'}
-        ]},
-        {id: 4, img: '04.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza', products: [
-            {img: '02.jpg', title: 'California Salmon Standard', ingredients: 'Rice, salmon, avocado, cucumber, mayonnaise, masago caviar, nori seaweed.', price: '$6.66'},
-            {img: '03.jpg', title: 'Okinawa standard', ingredients: 'Rice, boiled shrimp, cream cheese, salmon, fresh cucumber ...', price: '$7.77'},
-            {img: '04.jpg', title: 'Цезарь маки хl', ingredients: 'Rice, smoked chicken breast, masago caviar, tomato, iceberg, Caesar dressing ...', price: '$3.33'}
-        ]},
-        {id: 5, img: '05.jpg', title: 'Pizza Plus Plus', tag: '50 min', rating: 4.5, price: 'From $9.99', category: 'Pizza', products: [
-            {img: '01.jpg', title: 'Roll eel standard', ingredients: 'Rice, eel, unagi sauce, sesame, nori seaweed.', price: '$16.66'},
-            {img: '02.jpg', title: 'California Salmon Standard', ingredients: 'Rice, salmon, avocado, cucumber, mayonnaise, masago caviar, nori seaweed.', price: '$6.66'},
-            {img: '03.jpg', title: 'Okinawa standard', ingredients: 'Rice, boiled shrimp, cream cheese, salmon, fresh cucumber ...', price: '$7.77'},
-            {img: '04.jpg', title: 'Цезарь маки хl', ingredients: 'Rice, smoked chicken breast, masago caviar, tomato, iceberg, Caesar dressing ...', price: '$3.33'},
-            {img: '05.jpg', title: 'Yasai Maki standard 185 g', ingredients: 'Rice, fresh tomato, bell pepper, avocado, cucumber, iceberg', price: '$8.88'},
-            {img: '06.jpg', title: 'Shrimp Roll Standard', ingredients: 'Rice, nori seaweed, boiled shrimp, cream cheese, cucumbers', price: '$4.44'}
-        ]},
-        {id: 6, img: '06.jpg', title: 'Pizza Minus Minus', tag: '150 min', rating: 4.1, price: 'From $4.99', category: 'Pizza'}
-    ];
-    let cart = [
-        {id: 1, name: 'God Pizza', price: '$43.00', count: 4},
-        {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
-        {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
-    ];
+    async function getData(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Can\'t read data from ${url}. Status code: ${response.status}`);
+        }
+        return await response.json();
+    }
 
-    init();
+    let restaurants;
+    async function loadProviders(url) {
+        return getData(url).then(function(providers) {
+            restaurants = [];
+            providers.forEach(function(provider) {
+                provider.tag = provider.time_of_delivery + " min";
+                provider.price = "From $" + provider.price + ".00";
+                restaurants.push(provider);
+                getData('db/products/' + provider.products).then(function(products) {
+                    provider.products = [];
+                    products.forEach(function(product) {
+                        product.price = '$' + product.price + ".00";
+                        provider.products.push(product);
+                    });
+                })
+            });
+        });
+    }
+
+    loadProviders('db/providers.json').then(init);
 
     window.addEventListener('hashchange', function(event) {
         init();
     });
 
     function init() {
-        let id = window.location.hash.replace(/[^0-9]/g, '');
+        let id = window.location.hash.replace('#', '');
         if (id) {
             document.querySelector('.restaurants-header').classList.add('hide');
 
@@ -59,6 +53,12 @@
             populateData('#providers', '.card', restaurants);
         }
     }
+
+    let cart = [
+        {id: 1, name: 'God Pizza', price: '$43.00', count: 4},
+        {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
+        {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
+    ];
 
     const modal = document.querySelector('.modal');
     const cartButton = document.querySelector('#cart');
@@ -139,8 +139,11 @@
         if (node.href && data.id) {
             node.href = node.href.replace('{{id}}', data.id);
         }
-        if (data.img) {
-            node.innerHTML = node.innerHTML.replace('00.jpg', data.img);
+        if (node.id && data.id) {
+            node.id = node.id.replace('{{id}}', data.id);
+        }
+        if (data.image) {
+            node.innerHTML = node.innerHTML.replace('img/dummy.jpg', data.image);
         }
 
         Object.keys(data).forEach(function(key) {

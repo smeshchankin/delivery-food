@@ -1,0 +1,44 @@
+[
+  {
+    "id": "pb01",
+    "name": "Pizza from the Chef",
+    "description": "Mozzarella cheese, tomatoes, salami, bacon, Parmesan cheese, greens, ham",
+    "price": 638,
+    "image": "img/products/pizza-burger/pizza-chef.jpg"
+  },
+  {
+    "id": "pb02",
+    "name": "Pizza Meat Made Dish",
+    "description": "Mozzarella cheese, special sauce, tomatoes, chicken breast, bacon, pork, beef, greens",
+    "price": 693,
+    "image": "img/products/pizza-burger/pizza-meat.jpg"
+  },
+  {
+    "id": "pb03",
+    "name": "Pizza Countrylike",
+    "description": "Mozzarella cheese, pizza sauce, garlic, Parmesan cheese, champignons, tomatoes, herbs, onions, chicken, bacon, ham, pepperoni",
+    "price": 705,
+    "image": "img/products/pizza-burger/pizza-countrylike.jpg"
+  },
+  {
+    "id": "pb04",
+    "name": "Pizza Caesar",
+    "description": "Caesar sauce, chicken breast, Parmesan cheese, mozzarella, croutons, tomatoes, iceberg salad",
+    "price": 759,
+    "image": "img/products/pizza-burger/pizza-caesar.jpg"
+  },
+  {
+    "id": "pb05",
+    "name": "Pepperoni Pizza",
+    "description": "Mozzarella cheese, pizza sauce, champignons, pepperoni",
+    "price": 475,
+    "image": "img/products/pizza-burger/pizza-pepperoni.jpg"
+  },
+  {
+    "id": "pb06",
+    "name": "Pizza Villatic",
+    "description": "Mozzarella cheese, pizza sauce, bacon, french fries, chicken breast, tomatoes, pepperoni, ham, greens",
+    "price": 649,
+    "image": "img/products/pizza-burger/pizza-vliiatic.jpg"
+  }
+]
