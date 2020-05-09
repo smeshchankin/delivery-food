@@ -2,6 +2,7 @@
 
 window.app = window.app || {};
 window.app.cart = (function() {
+    let filler = window.app.filler;
     let dialog = window.app.dialog;
     let utils = window.app.utils;
 
