@@ -1,6 +1,7 @@
 'use strict';
 
 (function() {
+    let filler = window.app.filler;
     let dialog = window.app.dialog;
     let auth = window.app.auth;
 
@@ -51,11 +52,11 @@
             let restaurantInfo = restaurants.find(function(obj) { return obj.id == id; });
 
             if (restaurantInfo) {
-                populateData('#products', '.card', restaurantInfo.products);
-                fillNode(restaurantNode, restaurantInfo);
+                filler.populateData('#products', '.card', restaurantInfo.products);
+                filler.fillNode(restaurantNode, restaurantInfo);
             }
         } else {
-            populateData('#providers', '.card', restaurants);
+            filler.populateData('#providers', '.card', restaurants);
         }
     }
 
@@ -70,41 +71,7 @@
     const closeButton = document.querySelector('.close');
     cartButton.addEventListener('click', dialog.toggle(cartModal));
     closeButton.addEventListener('click', dialog.toggle(cartModal));
-    populateData('#product-list', '.product-row', cart);
-
+    filler.populateData('#product-list', '.product-row', cart);
 
     auth.init();
-
-
-    function populateData(parentSelector, templateSelector, data) {
-        let parentNode = document.querySelector(parentSelector);
-        let templateNode = parentNode.querySelector(templateSelector);
-        parentNode.removeChild(templateNode);
-
-        if (data) {
-            for (let i = 0; i < data.length; i++) {
-                let node = templateNode.cloneNode(true);
-                parentNode.appendChild(fillNode(node, data[i]));
-            }
-        }
-    }
-
-    function fillNode(node, data) {
-        if (node.href && data.id) {
-            node.href = node.href.replace('{{id}}', data.id);
-        }
-        if (node.id && data.id) {
-            node.id = node.id.replace('{{id}}', data.id);
-        }
-        if (data.image) {
-            node.innerHTML = node.innerHTML.replace('img/dummy.jpg', data.image);
-        }
-
-        Object.keys(data).forEach(function(key) {
-            let value = data[key];
-            node.innerHTML = node.innerHTML.replace('{{' + key + '}}', value);
-        });
-
-        return node;
-    }
 }());
