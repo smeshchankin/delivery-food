@@ -18,12 +18,12 @@
         if (id) {
             providers.hide();
 
-            let restaurantInfo = db.getRestaurants().find(function(obj) { return obj.id == id; });
-            products.init(restaurantInfo);
+            products.init(db.getRestaurant(id));
             products.show();
         } else {
             providers.init(db.getRestaurants());
             providers.show();
+
             products.hide();
         }
     }

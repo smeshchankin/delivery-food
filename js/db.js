@@ -32,6 +32,10 @@ window.app.db = (function() {
         return restaurants;
     }
 
+    function getRestaurant(id) {
+        return restaurants.find(function(obj) { return obj.id == id; })
+    }
+
     async function getData(url) {
         const response = await fetch(url);
         if (!response.ok) {
