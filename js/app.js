@@ -15,21 +15,22 @@
 
     let restaurants;
     async function loadProviders(url) {
-        return getData(url).then(function(providers) {
-            restaurants = [];
-            providers.forEach(function(provider) {
-                provider.tag = provider.time_of_delivery + " min";
-                provider.price = "From $" + provider.price + ".00";
-                restaurants.push(provider);
-                getData('db/products/' + provider.products).then(function(products) {
-                    provider.products = [];
-                    products.forEach(function(product) {
-                        product.price = '$' + product.price + ".00";
-                        provider.products.push(product);
-                    });
-                })
+        restaurants = [];
+        const providers = await getData(url);
+        let promises = providers.map(async function(provider) {
+            provider.tag = provider.time_of_delivery + " min";
+            provider.price = "From $" + provider.price + ".00";
+            restaurants.push(provider);
+
+            return getData('db/products/' + provider.products).then(function(products) {
+                provider.products = [];
+                products.forEach(function(product) {
+                    product.price = '$' + product.price + ".00";
+                    provider.products.push(product);
+                });
             });
         });
+        return Promise.all(promises);
     }
 
     loadProviders('db/providers.json').then(init);
