@@ -2,7 +2,7 @@
 
 (function() {
     let filler = window.app.filler;
-    let dialog = window.app.dialog;
+    let cart = window.app.cart;
     let auth = window.app.auth;
 
     async function getData(url) {
@@ -61,18 +61,6 @@
         }
     }
 
-    let cart = [
-        {id: 1, name: 'God Pizza', price: '$43.00', count: 4},
-        {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
-        {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
-    ];
-
-    const cartModal = document.querySelector('.modal');
-    const cartButton = document.querySelector('#cart');
-    const closeButton = document.querySelector('.close');
-    cartButton.addEventListener('click', dialog.toggle(cartModal));
-    closeButton.addEventListener('click', dialog.toggle(cartModal));
-    filler.populateData('#product-list', '.product-row', cart);
-
+    cart.init();
     auth.init();
 }());
