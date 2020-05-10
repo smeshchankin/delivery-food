@@ -14,13 +14,14 @@ window.app.auth = (function() {
         username: '.user-name',
         button: { login: '#loginButton', logout: '#logouButton' },
         modal: { id: '.modal-auth', close: '.close-auth' },
-        form: { id: '#logInForm', username: '#login' }
+        form: { id: '#logInForm', username: '#login', password: '#password' }
     };
     elems = utils.applySelector(elems);
 
     function init() {
         elems.button.login.addEventListener('click', toggle);
         elems.modal.close.addEventListener('click', toggle);
+        elems.modal.close.addEventListener('click', clearForm);
 
         elems.form.id.addEventListener('submit', submitHandler);
         elems.button.logout.addEventListener('click', logoutHandler);
@@ -32,11 +33,17 @@ window.app.auth = (function() {
         return dialog.toggle(elems.modal.id)();
     }
 
+    function clearForm() {
+        elems.form.username.value = '';
+        elems.form.password.value = '';
+        elems.form.username.style.borderColor = '';
+    }
+
     function submitHandler(event) {
         event.preventDefault();
         if (login(elems.form.username.value)) {
             toggle();
-            elems.form.username.style.borderColor = '';
+            clearForm();
         } else {
             elems.form.username.style.borderColor = 'red';
         }
