@@ -9,7 +9,8 @@ window.app.db = (function() {
 
     let module = {
         init: init,
-        getRestaurants: getRestaurants
+        getRestaurants: getRestaurants,
+        getRestaurant: getRestaurant
     };
 
     async function init() {
