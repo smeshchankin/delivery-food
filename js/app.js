@@ -4,29 +4,10 @@
     let db = window.app.db;
     let cart = window.app.cart;
     let auth = window.app.auth;
-    let products = window.app.view.products;
-    let providers = window.app.view.providers;
+    let router = window.app.router;
 
-    db.init().then(init);
-
-    window.addEventListener('hashchange', function(event) {
-        init();
-    });
-
-    function init() {
-        let id = window.location.hash.replace('#', '');
-        if (id) {
-            providers.hide();
-
-            products.init(db.getRestaurant(id));
-            products.show();
-        } else {
-            providers.init(db.getRestaurants());
-            providers.show();
-
-            products.hide();
-        }
-    }
+    db.init()
+        .then(router.init);
 
     cart.init();
     auth.init();
