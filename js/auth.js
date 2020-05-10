@@ -7,7 +7,9 @@ window.app.auth = (function() {
     let storage = window.app.storage;
 
     let module = {
-        init: init
+        init: init,
+        toggle: toggle,
+        isAuthorized: isAuthorized
     };
 
     let elems = {
@@ -17,6 +19,8 @@ window.app.auth = (function() {
         form: { id: '#logInForm', username: '#login', password: '#password' }
     };
     elems = utils.applySelector(elems);
+
+    let loginName = '';
 
     function init() {
         elems.button.login.addEventListener('click', toggle);
@@ -31,6 +35,10 @@ window.app.auth = (function() {
 
     function toggle() {
         return dialog.toggle(elems.modal.id)();
+    }
+
+    function isAuthorized() {
+        return !!loginName;
     }
 
     function clearForm() {
@@ -54,19 +62,19 @@ window.app.auth = (function() {
     }
 
     function login(username) {
-        let login = username.trim();
-        elems.username.textContent = login;
-        elems.button.login.style.display = login ? 'none' : '';
-        elems.button.logout.style.display = login ? '' : 'none';
+        loginName = username.trim();
+        elems.username.textContent = loginName;
+        elems.button.login.style.display = loginName ? 'none' : '';
+        elems.button.logout.style.display = loginName ? '' : 'none';
         elems.form.username.value = '';
 
-        if (login) {
-            storage.user.update(login);
+        if (loginName) {
+            storage.user.update(loginName);
         } else {
             storage.user.delete();
         }
 
-        return login;
+        return loginName;
     }
 
     return module;
