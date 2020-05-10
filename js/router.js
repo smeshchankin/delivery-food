@@ -7,8 +7,7 @@ window.app.router = (function() {
     let providers = window.app.view.providers;
 
     let module = {
-        init: init,
-        route: route
+        init: init
     };
 
     function init() {
