@@ -439,10 +439,21 @@ body {
     .container {
         max-width: 750px;
     }
-    .promo {
+    .pizza {
         padding: 50px;
         background-size: 500px;
         background-position: center right -200px;
+    }
+    .kebab {
+        background-position: top 30px right -125px;
+        background-size: 385px;
+    }
+    .vegetables {
+        background-position: top 0 right -280px;
+        background-size: 810px;
+    }
+    .sushi {
+        background-position: top 30px right -175px;
     }
     .promo-text {
         font-size: 18px;
