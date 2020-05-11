@@ -480,9 +480,21 @@ body {
     .card-title {
         font-size: 18px;
     }
-    .promo {
+    .pizza {
         background-size: 400px;
         background-position: bottom 50px right -200px;
+    }
+    .kebab {
+        background-position: top -5px right -74px;
+        background-size: 300px;
+    }
+    .vegetables {
+        background-position: top 0 right -240px;
+        background-size: 702px;
+    }
+    .sushi {
+        background-position: top 25px right -75px;
+        background-size: 302px;
     }
     .promo-title {
         font-size: 24px;
