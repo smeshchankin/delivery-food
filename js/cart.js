@@ -14,6 +14,8 @@ window.app.cart = (function() {
         button: '#cart',
         modal: {
             id: '.modal',
+            list: '#product-list',
+            template: '#product-list > .product-row',
             close: '.close'
         }
     }
@@ -25,7 +27,7 @@ window.app.cart = (function() {
             {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
             {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
         ];
-        filler.populateData('#product-list', '.product-row', data);
+        filler.populateData(elems.modal.list, elems.modal.template, data);
 
         elems.button.addEventListener('click', toggle);
         elems.modal.close.addEventListener('click', toggle);

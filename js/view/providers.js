@@ -14,12 +14,13 @@ window.app.view.providers = (function() {
 
     let elems = {
         header: '.restaurants-header',
-        providers: '#providers'
+        list: '#providers',
+        template: '#providers > .card'
     };
     elems = utils.applySelector(elems);
 
     function init(list) {
-        filler.populateData('#providers', '.card', list);
+        filler.populateData(elems.list, elems.template, list);
     }
 
     function show() {
@@ -27,7 +28,7 @@ window.app.view.providers = (function() {
 
     function hide() {
         elems.header.classList.add('hide');
-        elems.providers.classList.add('hide');
+        elems.list.classList.add('hide');
     }
 
     return module;

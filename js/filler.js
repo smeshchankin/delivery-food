@@ -7,10 +7,8 @@ window.app.filler = (function() {
         fillNode: fillNode
     };
 
-    function populateData(parentSelector, templateSelector, data) {
-        let parentNode = document.querySelector(parentSelector);
-        let templateNode = parentNode.querySelector(templateSelector);
-        parentNode.removeChild(templateNode);
+    function populateData(parentNode, templateNode, data) {
+        parentNode.textContent = '';
 
         if (data) {
             for (let i = 0; i < data.length; i++) {

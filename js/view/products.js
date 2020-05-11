@@ -14,20 +14,21 @@ window.app.view.products = (function() {
 
     let elems = {
         restaurant: '#restaurant-info',
-        products: '#products'
+        list: '#products',
+        template: '#products > .card'
     };
     elems = utils.applySelector(elems);
 
     function init(restaurantInfo) {
         if (restaurantInfo) {
             filler.fillNode(elems.restaurant, restaurantInfo);
-            filler.populateData('#products', '.card', restaurantInfo.products);
+            filler.populateData(elems.list, elems.template, restaurantInfo.products);
         }
     }
 
     function show() {
         elems.restaurant.classList.remove('hide');
-        elems.products.classList.remove('hide');
+        elems.list.classList.remove('hide');
     }
 
     function hide() {
