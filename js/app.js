@@ -11,4 +11,9 @@
 
     cart.init();
     auth.init();
+
+    new Swiper('.swiper-container', {
+        loop: true,
+        autoplay: true
+    });
 }());

@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="style/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
+    <link rel="stylesheet" href="style/style.css" />
     <title>Delivery Food - delivery food to home</title>
 </head>
 <body>
@@ -37,13 +38,35 @@
 
     <main class="main">
         <div class="container">
-            <section class="promo">
-                <h1 class="promo-title">Home Food Delivery Online Service</h1>
-                <p class="promo-text">
-                    Dishes from your favorite restaurant will be delivered
-                    by a courier in gloves, a mask and an antiseptic
-                </p>
-            </section>
+            <div class="container-promo swiper-container">
+                <div class="swiper-wrapper">
+                    <section class="swiper-slide promo pizza">
+                        <h1 class="promo-title">Home Food Delivery Online Service</h1>
+                        <p class="promo-text">
+                            Dishes from your favorite restaurant will be delivered
+                            by a courier in gloves, a mask and an antiseptic
+                        </p>
+                    </section>
+                    <section class="swiper-slide promo kebab">
+	    				<h1 class="promo-title">Kebabs for May with a 35% discount</h1>
+    					<p class="promo-text">
+					    	Order kebabs in any restaurant until May 10 and get a discount on OMAGAD promo code
+				    	</p>
+			    	</section>
+		    		<section class="swiper-slide promo vegetables">
+	    				<h1 class="promo-title">20% discount on all food with LOVE.JS promo code</h1>
+    					<p class="promo-text">
+					    	A dish from the restaurant will be brought along with two front-end gift books
+				    	</p>
+			    	</section>
+		    		<section class="swiper-slide promo sushi">
+	    				<h1 class="promo-title">Sets with up to 30% discount in restaurants</h1>
+    					<p class="promo-text">
+						    Discounts for sets until May 30 according to the DADADA promo code
+					    </p>
+                    </section>
+                </div>
+            </div>
 
             <section class="restaurants">
                 <div class="restaurants-header">
@@ -180,6 +203,8 @@
 			</form>
 		</div>
 	</div>
+
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
 
     <script src="js/dialog.js"></script>
     <script src="js/utils.js"></script>

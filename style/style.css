@@ -106,12 +106,23 @@ body {
     height: 300px;
     padding: 68px 70px;
 
-    background: #FFF1B8 url(../img/promo.jpeg) no-repeat top -100px right -247px / 924px;
     border-radius: 10px;
     box-shadow: 0px 7px 12px rgba(158, 158, 163, 0.1);
 }
+.pizza {
+    background: #fff1b8 url(../img/promo/pizza.png) no-repeat top -100px right -250px / 830px
+}
+.kebab {
+    background: #D6E4FF url(../img/promo/kebab.png) no-repeat top 45px right 40px / 450px;
+}
+.vegetables {
+    background: #FFF566 url(../img/promo/vegetables.png) no-repeat top 0 right 0 / 825px
+}
+.sushi {
+    background: #FFF1F0 url(../img/promo/sushi.png) no-repeat top 10px right 15px / 500px
+}
 .promo-title {
-    max-width: 430px;
+    max-width: 474px;
 
     font-weight: bold;
     font-size: 39px;
