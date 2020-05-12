@@ -24,6 +24,8 @@ window.app.view.providers = (function() {
     }
 
     function show() {
+        elems.header.classList.remove('hide');
+        elems.list.classList.remove('hide');
     }
 
     function hide() {

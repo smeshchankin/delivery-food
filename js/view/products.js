@@ -32,6 +32,8 @@ window.app.view.products = (function() {
     }
 
     function hide() {
+        elems.restaurant.classList.add('hide');
+        elems.list.classList.add('hide');
     }
 
     return module;

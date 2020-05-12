@@ -18,7 +18,7 @@ window.app.router = (function() {
     }
 
     function go(path) {
-        window.location.hash = path;
+        window.location.hash = path || '';
         route();
     }
 
