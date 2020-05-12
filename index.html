@@ -111,9 +111,9 @@
                                 <div class="ingredients">{{description}}</div>
                             </div>
                             <div class="card-buttons">
-                                <button class="button button-primary">
+                                <button class="button button-primary" onclick="app.cart.add('{{id}}')">
                                     <span class="button-text button-card-text">Add to cart</span>
-                                    <img src="icon/cart-white.svg" alt="Add to the shopping cart"  class="button-card-icon" />
+                                    <img src="icon/cart-white.svg" alt="Add to the shopping cart" class="button-card-icon" />
                                 </button>
                                 <strong class="card-price-bold">{{price}}</strong>
                             </div>
@@ -208,12 +208,12 @@
 
     <script src="js/dialog.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/formatter.js"></script>
+    <script src="js/db.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/filler.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/formatter.js"></script>
-    <script src="js/db.js"></script>
     <script src="js/view/providers.js"></script>
     <script src="js/view/products.js"></script>
     <script src="js/search.js"></script>

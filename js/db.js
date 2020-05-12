@@ -11,7 +11,8 @@ window.app.db = (function() {
         init: init,
         getRestaurants: getRestaurants,
         getRestaurant: getRestaurant,
-        searchProducts: searchProducts
+        searchProducts: searchProducts,
+        productById: productById
     };
 
     async function init() {
@@ -42,6 +43,11 @@ window.app.db = (function() {
         let text = str.toLowerCase().trim();
         return restaurants.map(res => res.products).flat()
             .filter(p => p.name.toLowerCase().includes(text));
+    }
+
+    function productById(id) {
+        return restaurants.map(res => res.products).flat()
+            .find(p => p.id === id);
     }
 
     async function getData(url) {
