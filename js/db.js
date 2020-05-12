@@ -10,7 +10,8 @@ window.app.db = (function() {
     let module = {
         init: init,
         getRestaurants: getRestaurants,
-        getRestaurant: getRestaurant
+        getRestaurant: getRestaurant,
+        searchProducts: searchProducts
     };
 
     async function init() {
@@ -35,6 +36,12 @@ window.app.db = (function() {
 
     function getRestaurant(id) {
         return restaurants.find(function(obj) { return obj.id == id; })
+    }
+
+    function searchProducts(str) {
+        let text = str.toLowerCase().trim();
+        return restaurants.map(res => res.products).flat()
+            .filter(p => p.name.toLowerCase().includes(text));
     }
 
     async function getData(url) {

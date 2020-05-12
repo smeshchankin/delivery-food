@@ -6,6 +6,7 @@ window.app.router = (function() {
     let auth = window.app.auth;
     let products = window.app.view.products;
     let providers = window.app.view.providers;
+    let search = window.app.search;
 
     let module = {
         init: init,
@@ -27,7 +28,7 @@ window.app.router = (function() {
         if (id) {
             if (auth.isAuthorized()) {
                 providers.hide();
-                products.init(db.getRestaurant(id));
+                products.init(id === 'search' ? search.getResult() : db.getRestaurant(id));
                 products.show();
             } else {
                 window.location.hash = '';
