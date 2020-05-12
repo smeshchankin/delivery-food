@@ -8,11 +8,17 @@ window.app.router = (function() {
     let providers = window.app.view.providers;
 
     let module = {
-        init: init
+        init: init,
+        go: go
     };
 
     function init() {
         window.addEventListener('hashchange', route);
+        route();
+    }
+
+    function go(path) {
+        window.location.hash = path;
         route();
     }
 
@@ -25,7 +31,7 @@ window.app.router = (function() {
                 products.show();
             } else {
                 window.location.hash = '';
-                auth.toggle();
+                auth.toggle(id);
             }
         } else {
             products.hide();

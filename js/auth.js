@@ -5,6 +5,7 @@ window.app.auth = (function() {
     let dialog = window.app.dialog;
     let utils = window.app.utils;
     let storage = window.app.storage;
+    let router;
 
     let module = {
         init: init,
@@ -21,8 +22,11 @@ window.app.auth = (function() {
     elems = utils.applySelector(elems);
 
     let loginName = '';
+    let redirect = '';
 
     function init() {
+        router = window.app.router;
+
         elems.button.login.addEventListener('click', toggle);
         elems.modal.close.addEventListener('click', toggle);
         elems.modal.close.addEventListener('click', clearForm);
@@ -33,7 +37,8 @@ window.app.auth = (function() {
         login(storage.user.get());
     }
 
-    function toggle() {
+    function toggle(url) {
+        redirect = url || '';
         return dialog.toggle(elems.modal.id)();
     }
 
@@ -50,8 +55,9 @@ window.app.auth = (function() {
     function submitHandler(event) {
         event.preventDefault();
         if (login(elems.form.username.value)) {
-            toggle();
             clearForm();
+            router.go(redirect);
+            toggle();
         } else {
             elems.form.username.style.borderColor = 'red';
         }
