@@ -41,7 +41,7 @@ window.app.auth = (function() {
     }
 
     function toggle(url) {
-        redirect = url || '';
+        redirect = typeof url === 'string' ? url || '' : '';
         return dialog.toggle(elems.modal.id)();
     }
 
