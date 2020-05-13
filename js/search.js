@@ -22,7 +22,7 @@ window.app.search = (function() {
         id: 'search',
         name: 'Search result',
         tag: '',
-        rating: '',
+        rating: '5.0',
         price: '',
         category: '',
         image: 'img/dummy.jpg',
@@ -47,6 +47,8 @@ window.app.search = (function() {
                 target.value = '';
                 result.name = 'Search result: ' + value;
                 result.products = db.searchProducts(value);
+                result.price = result.products.length === 0 ? 0 :
+                    Math.min(...result.products.map(p => p.price));
                 router.go('search');
             }
         }
