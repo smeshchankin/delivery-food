@@ -3,22 +3,22 @@
 window.app = window.app || {};
 window.app.filler = (function() {
     let module = {
-        populateData: populateData,
-        fillNode: fillNode
+        list: populateList,
+        object: populateObject
     };
 
-    function populateData(parentNode, templateNode, data, formatFunction) {
+    function populateList(parentNode, templateNode, data, formatFunction) {
         parentNode.textContent = '';
 
         if (data) {
             for (let i = 0; i < data.length; i++) {
                 let node = templateNode.cloneNode(true);
-                parentNode.appendChild(fillNode(node, data[i], formatFunction));
+                parentNode.appendChild(populateObject(node, data[i], formatFunction));
             }
         }
     }
 
-    function fillNode(node, data, formatFunction) {
+    function populateObject(node, data, formatFunction) {
         let obj = Object.assign({}, data);
         if (formatFunction) {
             obj = formatFunction(obj);

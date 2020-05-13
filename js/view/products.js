@@ -22,8 +22,8 @@ window.app.view.products = (function() {
 
     function init(restaurantInfo) {
         if (restaurantInfo) {
-            filler.fillNode(elems.restaurant, restaurantInfo, formatter.provider);
-            filler.populateData(elems.list, elems.template, restaurantInfo.products, formatter.product);
+            filler.object(elems.restaurant, restaurantInfo, formatter.provider);
+            filler.list(elems.list, elems.template, restaurantInfo.products, formatter.product);
         }
     }
 

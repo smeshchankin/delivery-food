@@ -73,7 +73,7 @@ window.app.cart = (function() {
 
     function render() {
         data = storage.cart.get(user());
-        filler.populateData(elems.modal.list, elems.modal.template, data, formatter.product);
+        filler.list(elems.modal.list, elems.modal.template, data, formatter.product);
         const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
         elems.modal.total.textContent = formatter.price(total);
     }

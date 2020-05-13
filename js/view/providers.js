@@ -21,7 +21,7 @@ window.app.view.providers = (function() {
     elems = utils.applySelector(elems);
 
     function init(list) {
-        filler.populateData(elems.list, elems.template, list, formatter.provider);
+        filler.list(elems.list, elems.template, list, formatter.provider);
     }
 
     function show() {
