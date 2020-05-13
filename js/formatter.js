@@ -8,13 +8,14 @@ window.app.formatter = (function() {
     };
 
     function formatProvider(obj) {
-        obj.tag = obj.time_of_delivery + " min";
-        obj.price = "From $" + obj.price + ".00";
+        obj.tag = obj.time_of_delivery;
+        //obj.tag = obj.time_of_delivery + " min";
+        //obj.price = "From $" + obj.price + ".00";
         return obj;
     }
 
     function formatProduct(obj) {
-        obj.price = '$' + obj.price + ".00";
+        //obj.price = '$' + obj.price + ".00";
         return obj;
     }
 

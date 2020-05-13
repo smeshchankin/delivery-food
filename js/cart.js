@@ -59,7 +59,7 @@ window.app.cart = (function() {
 
     function render() {
         filler.populateData(elems.modal.list, elems.modal.template, data);
-        const total = data.reduce((sum, row) => sum + row.price, 0);
+        const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
         elems.modal.total.textContent = '$' + total + '.00';
     }
 
