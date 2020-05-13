@@ -24,21 +24,25 @@ window.app.filler = (function() {
             obj = formatFunction(obj);
         }
         if (node.href && obj.id) {
-            node.href = node.href.replace('{{id}}', obj.id);
+            node.href = fill(node.href, 'id', obj.id);
         }
         if (node.id && obj.id) {
-            node.id = node.id.replace('{{id}}', obj.id);
+            node.id = fill(node.id, 'id', obj.id);
         }
         if (obj.image) {
-            node.innerHTML = node.innerHTML.replace('img/dummy.jpg', obj.image);
+            node.innerHTML = node.innerHTML.split('img/dummy.jpg').join(obj.image);
         }
 
         Object.keys(obj).forEach(function(key) {
             let value = obj[key];
-            node.innerHTML = node.innerHTML.replace('{{' + key + '}}', value);
+            node.innerHTML = fill(node.innerHTML, key, value);
         });
 
         return node;
+    }
+
+    function fill(str, search, replacement) {
+        return str.split('{{' + search + '}}').join(replacement);
     }
 
     return module;
