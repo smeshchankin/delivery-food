@@ -14,6 +14,7 @@ window.app.view.products = (function() {
     };
 
     let elems = {
+        restaurantTemplate: '#restaurant-info',
         restaurant: '#restaurant-info',
         list: '#products',
         template: '#products > .card'
@@ -22,7 +23,7 @@ window.app.view.products = (function() {
 
     function init(restaurantInfo) {
         if (restaurantInfo) {
-            filler.object(elems.restaurant, restaurantInfo, formatter.provider);
+            elems.restaurant = filler.object(elems.restaurantTemplate, restaurantInfo, formatter.provider);
             filler.list(elems.list, elems.template, restaurantInfo.products, formatter.product);
         }
     }

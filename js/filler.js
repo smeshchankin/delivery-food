@@ -13,16 +13,31 @@ window.app.filler = (function() {
         if (data) {
             for (let i = 0; i < data.length; i++) {
                 let node = templateNode.cloneNode(true);
-                parentNode.appendChild(populateObject(node, data[i], formatFunction));
+                parentNode.appendChild(fillNode(node, data[i], formatFunction));
             }
         }
     }
 
-    function populateObject(node, data, formatFunction) {
+    function populateObject(templateNode, obj, formatFunction) {
+        let parent = templateNode.parentElement;
+        let next = templateNode.nextSibling;
+        let clone = templateNode.cloneNode(true);
+        clone.dataset.clone = '';
+        if (next && next.dataset && next.dataset.clone !== undefined) {
+            parent.replaceChild(clone, next);
+        } else {
+            parent.insertBefore(clone, next);
+        }
+
+        return fillNode(clone, obj, formatFunction);
+    }
+
+    function fillNode(node, data, formatFunction) {
         let obj = Object.assign({}, data);
         if (formatFunction) {
             obj = formatFunction(obj);
         }
+
         if (node.href && obj.id) {
             node.href = fill(node.href, 'id', obj.id);
         }
