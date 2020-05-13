@@ -3,6 +3,7 @@
 window.app = window.app || {};
 window.app.cart = (function() {
     let filler = window.app.filler;
+    let formatter = window.app.formatter;
     let dialog = window.app.dialog;
     let utils = window.app.utils;
     let db = window.app.db;
@@ -24,14 +25,9 @@ window.app.cart = (function() {
     }
     elems = utils.applySelector(elems);
 
-    let data = [];
+    let data = []; // {id: 'identificator', name: 'Product name', price: 10, count: 1}
 
     function init() {
-        // let data = [
-        //     {id: 1, name: 'God Pizza', price: '$43.00', count: 4},
-        //     {id: 2, name: 'The best sushi', price: '$11.99', count: 3},
-        //     {id: 3, name: 'All in one dishes', price: '$19.99', count: 2}
-        // ];
         render();
         elems.button.addEventListener('click', toggle);
         elems.modal.close.addEventListener('click', toggle);
@@ -58,9 +54,9 @@ window.app.cart = (function() {
     }
 
     function render() {
-        filler.populateData(elems.modal.list, elems.modal.template, data);
+        filler.populateData(elems.modal.list, elems.modal.template, data, formatter.product);
         const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
-        elems.modal.total.textContent = '$' + total + '.00';
+        elems.modal.total.textContent = formatter.price(total);
     }
 
     function toggle() {

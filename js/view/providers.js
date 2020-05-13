@@ -3,8 +3,9 @@
 window.app = window.app || {};
 window.app.view = window.app.view || {};
 window.app.view.providers = (function() {
-    let filler = window.app.filler;
     let utils = window.app.utils;
+    let filler = window.app.filler;
+    let formatter = window.app.formatter;
 
     let module = {
         init: init,
@@ -20,7 +21,7 @@ window.app.view.providers = (function() {
     elems = utils.applySelector(elems);
 
     function init(list) {
-        filler.populateData(elems.list, elems.template, list);
+        filler.populateData(elems.list, elems.template, list, formatter.provider);
     }
 
     function show() {

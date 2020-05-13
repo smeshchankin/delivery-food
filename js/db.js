@@ -2,8 +2,6 @@
 
 window.app = window.app || {};
 window.app.db = (function() {
-    let formatter = window.app.formatter;
-
     const PATH = 'db/providers.json';
     let restaurants = [];
 
@@ -19,13 +17,10 @@ window.app.db = (function() {
         restaurants = [];
         const providers = await getData(PATH);
         let promises = providers.map(async function(provider) {
-            restaurants.push(formatter.provider(provider));
+            restaurants.push(provider);
 
             return getData('db/products/' + provider.products).then(function(products) {
-                provider.products = [];
-                products.map(formatter.product).forEach(function(product) {
-                    provider.products.push(product);
-                });
+                provider.products = products;
             });
         });
         return Promise.all(promises);

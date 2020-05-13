@@ -7,30 +7,34 @@ window.app.filler = (function() {
         fillNode: fillNode
     };
 
-    function populateData(parentNode, templateNode, data) {
+    function populateData(parentNode, templateNode, data, formatFunction) {
         parentNode.textContent = '';
 
         if (data) {
             for (let i = 0; i < data.length; i++) {
                 let node = templateNode.cloneNode(true);
-                parentNode.appendChild(fillNode(node, data[i]));
+                parentNode.appendChild(fillNode(node, data[i], formatFunction));
             }
         }
     }
 
-    function fillNode(node, data) {
-        if (node.href && data.id) {
-            node.href = node.href.replace('{{id}}', data.id);
+    function fillNode(node, data, formatFunction) {
+        let obj = Object.assign({}, data);
+        if (formatFunction) {
+            obj = formatFunction(obj);
         }
-        if (node.id && data.id) {
-            node.id = node.id.replace('{{id}}', data.id);
+        if (node.href && obj.id) {
+            node.href = node.href.replace('{{id}}', obj.id);
         }
-        if (data.image) {
-            node.innerHTML = node.innerHTML.replace('img/dummy.jpg', data.image);
+        if (node.id && obj.id) {
+            node.id = node.id.replace('{{id}}', obj.id);
+        }
+        if (obj.image) {
+            node.innerHTML = node.innerHTML.replace('img/dummy.jpg', obj.image);
         }
 
-        Object.keys(data).forEach(function(key) {
-            let value = data[key];
+        Object.keys(obj).forEach(function(key) {
+            let value = obj[key];
             node.innerHTML = node.innerHTML.replace('{{' + key + '}}', value);
         });
 

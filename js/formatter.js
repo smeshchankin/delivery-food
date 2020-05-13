@@ -4,19 +4,23 @@ window.app = window.app || {};
 window.app.formatter = (function() {
     let module = {
         provider: formatProvider,
-        product: formatProduct
+        product: formatProduct,
+        price: formatPrice
     };
 
     function formatProvider(obj) {
-        obj.tag = obj.time_of_delivery;
-        //obj.tag = obj.time_of_delivery + " min";
-        //obj.price = "From $" + obj.price + ".00";
+        obj.tag = obj.time_of_delivery + ' min';
+        obj.price = 'From ' + formatPrice(obj.price);
         return obj;
     }
 
     function formatProduct(obj) {
-        //obj.price = '$' + obj.price + ".00";
+        obj.price = formatPrice(obj.price);
         return obj;
+    }
+
+    function formatPrice(price) {
+        return '$' + price + '.00';
     }
 
     return module;

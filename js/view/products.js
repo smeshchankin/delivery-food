@@ -3,8 +3,9 @@
 window.app = window.app || {};
 window.app.view = window.app.view || {};
 window.app.view.products = (function() {
-    let filler = window.app.filler;
     let utils = window.app.utils;
+    let filler = window.app.filler;
+    let formatter = window.app.formatter;
 
     let module = {
         init: init,
@@ -21,8 +22,8 @@ window.app.view.products = (function() {
 
     function init(restaurantInfo) {
         if (restaurantInfo) {
-            filler.fillNode(elems.restaurant, restaurantInfo);
-            filler.populateData(elems.list, elems.template, restaurantInfo.products);
+            filler.fillNode(elems.restaurant, restaurantInfo, formatter.provider);
+            filler.populateData(elems.list, elems.template, restaurantInfo.products, formatter.product);
         }
     }
 
