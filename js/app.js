@@ -11,6 +11,7 @@
         .then(router.init);
 
     cart.init();
+    auth.addLoginListener(cart.render);
     auth.init();
     search.init();
 

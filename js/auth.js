@@ -10,7 +10,9 @@ window.app.auth = (function() {
     let module = {
         init: init,
         toggle: toggle,
-        isAuthorized: isAuthorized
+        isAuthorized: isAuthorized,
+        getUser: getUser,
+        addLoginListener: addLoginListener
     };
 
     let elems = {
@@ -23,6 +25,7 @@ window.app.auth = (function() {
 
     let loginName = '';
     let redirect = '';
+    let listeners = [];
 
     function init() {
         router = window.app.router;
@@ -44,6 +47,14 @@ window.app.auth = (function() {
 
     function isAuthorized() {
         return !!loginName;
+    }
+
+    function getUser() {
+        return loginName;
+    }
+
+    function addLoginListener(fun) {
+        listeners.push(fun);
     }
 
     function clearForm() {
@@ -80,6 +91,8 @@ window.app.auth = (function() {
         } else {
             storage.user.delete();
         }
+
+        listeners.forEach(f => f());
 
         return loginName;
     }

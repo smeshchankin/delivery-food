@@ -7,11 +7,14 @@ window.app.cart = (function() {
     let dialog = window.app.dialog;
     let utils = window.app.utils;
     let db = window.app.db;
+    let auth = window.app.auth;
+    let storage = window.app.storage;
 
     let module = {
         init: init,
         add: add,
-        clear: clear
+        clear: clear,
+        render: render
     };
 
     let elems = {
@@ -27,6 +30,7 @@ window.app.cart = (function() {
     elems = utils.applySelector(elems);
 
     let data = []; // {id: 'identificator', name: 'Product name', price: 10, count: 1}
+    let user = auth.getUser;
 
     function init() {
         render();
@@ -56,15 +60,19 @@ window.app.cart = (function() {
             data = data.filter(product => product.id !== id);
         }
 
+        storage.cart.update(user(), data);
+
         render();
     }
 
     function clear() {
         data = [];
+        storage.cart.delete(user());
         render();
     }
 
     function render() {
+        data = storage.cart.get(user());
         filler.populateData(elems.modal.list, elems.modal.template, data, formatter.product);
         const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
         elems.modal.total.textContent = formatter.price(total);
