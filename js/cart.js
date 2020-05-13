@@ -10,7 +10,8 @@ window.app.cart = (function() {
 
     let module = {
         init: init,
-        add: add
+        add: add,
+        clear: clear
     };
 
     let elems = {
@@ -55,6 +56,11 @@ window.app.cart = (function() {
             data = data.filter(product => product.id !== id);
         }
 
+        render();
+    }
+
+    function clear() {
+        data = [];
         render();
     }
 
