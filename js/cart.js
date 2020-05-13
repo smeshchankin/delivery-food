@@ -33,10 +33,11 @@ window.app.cart = (function() {
         elems.modal.close.addEventListener('click', toggle);
     }
 
-    function add(id) {
+    function add(id, added) {
+        let count = added || 1;
         let row = data.find(row => row.id === id);
         if (row) {
-            row.count++;
+            row.count += count;
         } else {
             const product = db.productById(id);
             if (product) {
@@ -44,10 +45,14 @@ window.app.cart = (function() {
                     id: product.id,
                     name: product.name,
                     price: product.price,
-                    count: 1
+                    count: count
                 };
                 data.push(row);
             }
+        }
+
+        if (row.count <= 0) {
+            data = data.filter(product => product.id !== id);
         }
 
         render();

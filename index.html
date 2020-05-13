@@ -164,9 +164,9 @@
                     <span class="product-name">{{name}}</span>
                     <strong class="product-price">{{price}}</strong>
                     <div class="product-counter">
-                        <button class="button-counter">-</button>
+                        <button class="button-counter" onclick="app.cart.add('{{id}}', -1)">-</button>
                         <span class="counter">{{count}}</span>
-                        <button class="button-counter">+</button>
+                        <button class="button-counter" onclick="app.cart.add('{{id}}', +1)">+</button>
                     </div>
                 </div>
             </div>
