@@ -72,6 +72,11 @@ window.app.cart = (function() {
     }
 
     function render() {
+        if (auth.isAuthorized()) {
+            elems.button.classList.remove('hide');
+        } else {
+            elems.button.classList.add('hide');
+        }
         data = storage.cart.get(user());
         filler.list(elems.modal.list, elems.modal.template, data, formatter.product);
         const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
