@@ -87,11 +87,11 @@
                     <a href="#{{id}}" class="card">
                         <img data-src="{{image}}" alt="Card image" class="card-image" />
                         <div class="card-text">
-                           <div class="card-header">
-                               <h3 class="card-title">{{name}}</h3>
-                               <span class="card-tag tag">{{tag}}</span>
-                           </div>
-                           <div class="card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">{{name}}</h3>
+                                <span class="card-tag tag">{{tag}}</span>
+                            </div>
+                            <div class="card-info">
                                 <div class="rating">{{rating}}</div>
                                 <div class="price">{{price}}</div>
                                 <div class="category">{{category}}</div>
@@ -104,21 +104,19 @@
                     <div id='{{id}}' class="card">
                         <img data-src="{{image}}" alt="Card image" class="card-image" />
                         <div class="card-text">
-                            <div>
-                                <div class="card-header">
-                                    <h3 class="card-title card-title-reg">{{name}}</h3>
-                                </div>
-                                <div class="card-info">
-                                    <div class="ingredients">{{description}}</div>
-                                </div>
+                            <div class="card-header">
+                                <h3 class="card-title card-title-reg">{{name}}</h3>
                             </div>
-                            <div class="card-buttons">
-                                <button class="button button-primary" onclick="app.cart.add('{{id}}')">
-                                    <span class="button-text button-card-text">Add to cart</span>
-                                    <img src="icon/cart-white.svg" alt="Add to the shopping cart" class="button-card-icon" />
-                                </button>
-                                <strong class="card-price-bold">{{price}}</strong>
+                            <div class="card-info">
+                                <div class="ingredients">{{description}}</div>
                             </div>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="button button-primary" onclick="app.cart.add('{{id}}')">
+                                <span class="button-text button-card-text">Add to cart</span>
+                                <img src="icon/cart-white.svg" alt="Add to the shopping cart" class="button-card-icon" />
+                            </button>
+                            <strong class="card-price-bold">{{price}}</strong>
                         </div>
                     </div>
                 </div>
