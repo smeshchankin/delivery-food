@@ -13,6 +13,7 @@ window.app.cart = (function() {
     let module = {
         init: init,
         add: add,
+        remove: remove,
         clear: clear,
         render: render
     };
@@ -62,6 +63,12 @@ window.app.cart = (function() {
 
         storage.cart.update(user(), data);
 
+        render();
+    }
+
+    function remove(id) {
+        data = data.filter(product => product.id !== id);
+        storage.cart.update(user(), data);
         render();
     }
 
