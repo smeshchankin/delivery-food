@@ -30,6 +30,7 @@ window.app.router = (function() {
                 providers.hide();
                 products.init(id === 'search' ? search.getResult() : db.getRestaurant(id));
                 products.show();
+                window.scrollTo(0, 0);
             } else {
                 window.location.hash = '';
                 auth.toggle(id);
@@ -38,6 +39,7 @@ window.app.router = (function() {
             products.hide();
             providers.init(db.getRestaurants());
             providers.show();
+            window.scrollTo(0, 0);
         }
     }
 
