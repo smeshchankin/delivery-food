@@ -45,7 +45,7 @@ window.app.filler = (function() {
             node.id = fill(node.id, 'id', obj.id);
         }
         if (obj.image) {
-            node.innerHTML = node.innerHTML.split('img/dummy.jpg').join(obj.image);
+            node.innerHTML = node.innerHTML.split('data-src').join('src');
         }
 
         Object.keys(obj).forEach(function(key) {
