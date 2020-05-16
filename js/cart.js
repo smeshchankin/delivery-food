@@ -29,7 +29,7 @@ window.app.cart = (function() {
     }
     elems = utils.applySelector(elems);
 
-    let data = []; // {id: 'identificator', name: 'Product name', price: 10, count: 1}
+    let list = []; // {id: 'identificator', name: 'Product name', price: 10, count: 1}
     let user = auth.getUser;
 
     function init() {
@@ -40,7 +40,7 @@ window.app.cart = (function() {
 
     function add(id, added) {
         let count = added || 1;
-        let row = data.find(row => row.id === id);
+        let row = list.find(row => row.id === id);
         if (row) {
             row.count += count;
         } else {
@@ -52,27 +52,27 @@ window.app.cart = (function() {
                     price: product.price,
                     count: count
                 };
-                data.push(row);
+                list.push(row);
             }
         }
 
         if (row.count <= 0) {
-            data = data.filter(product => product.id !== id);
+            list = list.filter(product => product.id !== id);
         }
 
-        storage.cart.update(user(), data);
+        storage.cart.update(user(), list);
 
         render();
     }
 
     function remove(id) {
-        data = data.filter(product => product.id !== id);
-        storage.cart.update(user(), data);
+        list = list.filter(product => product.id !== id);
+        storage.cart.update(user(), list);
         render();
     }
 
     function clear() {
-        data = [];
+        list = [];
         storage.cart.delete(user());
         render();
     }
@@ -83,9 +83,9 @@ window.app.cart = (function() {
         } else {
             elems.button.classList.add('hide');
         }
-        data = storage.cart.get(user());
-        filler.list(elems.modal.template, data, formatter.product);
-        const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
+        list = storage.cart.get(user());
+        filler.populate(elems.modal.template, list, formatter.product);
+        const total = list.reduce((sum, row) => sum + row.price * row.count, 0);
         elems.modal.total.textContent = formatter.price(total);
     }
 

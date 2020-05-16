@@ -15,27 +15,28 @@ window.app.view.products = (function() {
 
     let elems = {
         restaurantTemplate: '#restaurant-info',
-        restaurant: '#restaurant-info',
         list: '#products',
+        restaurant: '#undefined',
         template: '#products > .card'
     };
     elems = utils.applySelector(elems);
 
     function init(restaurantInfo) {
         if (restaurantInfo) {
-            elems.restaurant = filler.object(elems.restaurantTemplate, restaurantInfo, formatter.provider);
-            filler.list(elems.template, restaurantInfo.products, formatter.product);
+            elems.restaurant = filler.populate(elems.restaurantTemplate, restaurantInfo, formatter.provider);
+            filler.populate(elems.template, restaurantInfo.products, formatter.product);
         }
     }
 
     function show() {
-        elems.restaurant.classList.remove('hide');
         elems.list.classList.remove('hide');
     }
 
     function hide() {
-        elems.restaurant.classList.add('hide');
         elems.list.classList.add('hide');
+        if (elems.restaurant) {
+            elems.restaurant.classList.add('hide');
+        }
     }
 
     return module;

@@ -3,12 +3,20 @@
 window.app = window.app || {};
 window.app.filler = (function() {
     let module = {
-        list: populateList,
-        object: populateObject
+        populate: populate
     };
+
+    function populate(templateNode, data, formatFunction) {
+        if (data instanceof Array) {
+            return populateList(templateNode, data, formatFunction);
+        } else {
+            return populateObject(templateNode, data, formatFunction);
+        }
+    }
 
     function populateList(templateNode, data, formatFunction) {
         let next = removeComponents(templateNode);
+        let nodes = [];
         if (data) {
             let parent = templateNode.parentElement;
             for (let i = 0; i < data.length; i++) {
@@ -17,8 +25,11 @@ window.app.filler = (function() {
                 component.classList.remove('hide');
                 parent.insertBefore(component, next);
                 fillNode(component, data[i], formatFunction);
+
+                nodes.push(component);
             }
         }
+        return nodes;
     }
 
     function populateObject(templateNode, obj, formatFunction) {
@@ -29,8 +40,9 @@ window.app.filler = (function() {
         component.dataset.component = '';
         component.classList.remove('hide');
         parent.insertBefore(component, next);
+        fillNode(component, obj, formatFunction);
 
-        return fillNode(component, obj, formatFunction);
+        return component;
     }
 
     function removeComponents(templateNode) {
