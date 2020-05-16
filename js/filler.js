@@ -12,7 +12,7 @@ window.app.filler = (function() {
         if (data instanceof Array) {
             return populateList(templateNode, data, formatFunction);
         } else {
-            return populateObject(templateNode, data, formatFunction);
+            return populateList(templateNode, [data], formatFunction);
         }
     }
 
@@ -47,19 +47,6 @@ window.app.filler = (function() {
             }
         }
         return nodes;
-    }
-
-    function populateObject(templateNode, obj, formatFunction) {
-        let next = removeComponents(templateNode);
-        let parent = templateNode.parentElement;
-
-        let component = templateNode.cloneNode(true);
-        component.dataset.component = '';
-        component.classList.remove('hide');
-        parent.insertBefore(component, next);
-        fillNode(component, obj, formatFunction);
-
-        return [component];
     }
 
     function removeComponents(templateNode) {
