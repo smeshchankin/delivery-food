@@ -32,9 +32,7 @@ window.app.view.products = (function() {
     }
 
     function hide() {
-        nodes.forEach(function(node) {
-            node.classList.add('hide');
-        });
+        filler.hide(nodes);
     }
 
     return module;

@@ -31,9 +31,7 @@ window.app.view.providers = (function() {
 
     function hide() {
         elems.header.classList.add('hide');
-        nodes.forEach(function(node) {
-            node.classList.add('hide');
-        });
+        filler.hide(nodes);
     }
 
     return module;

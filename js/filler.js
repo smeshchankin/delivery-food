@@ -3,7 +3,8 @@
 window.app = window.app || {};
 window.app.filler = (function() {
     let module = {
-        populate: populate
+        populate: populate,
+        hide: hide
     };
 
     function populate(templateNode, data, formatFunction) {
@@ -12,6 +13,12 @@ window.app.filler = (function() {
         } else {
             return populateObject(templateNode, data, formatFunction);
         }
+    }
+
+    function hide(nodes) {
+        nodes.forEach(function(node) {
+            node.classList.add('hide');
+        });
     }
 
     function populateList(templateNode, data, formatFunction) {
