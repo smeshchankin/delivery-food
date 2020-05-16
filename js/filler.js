@@ -42,7 +42,7 @@ window.app.filler = (function() {
         parent.insertBefore(component, next);
         fillNode(component, obj, formatFunction);
 
-        return component;
+        return [component];
     }
 
     function removeComponents(templateNode) {

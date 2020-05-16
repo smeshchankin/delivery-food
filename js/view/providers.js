@@ -15,23 +15,25 @@ window.app.view.providers = (function() {
 
     let elems = {
         header: '.restaurants-header',
-        list: '#providers',
         template: '#providers > .card'
     };
     elems = utils.applySelector(elems);
 
+    let nodes = [];
+
     function init(list) {
-        filler.populate(elems.template, list, formatter.provider);
+        nodes = filler.populate(elems.template, list, formatter.provider);
     }
 
     function show() {
         elems.header.classList.remove('hide');
-        elems.list.classList.remove('hide');
     }
 
     function hide() {
         elems.header.classList.add('hide');
-        elems.list.classList.add('hide');
+        nodes.forEach(function(node) {
+            node.classList.add('hide');
+        });
     }
 
     return module;
