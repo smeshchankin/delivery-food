@@ -52,14 +52,15 @@ window.app.filler = (function() {
         if (node.id && obj.id) {
             node.id = fill(node.id, 'id', obj.id);
         }
-        if (obj.image) {
-            node.innerHTML = node.innerHTML.split('data-src').join('src');
-        }
 
         Object.keys(obj).forEach(function(key) {
             let value = obj[key];
             node.innerHTML = fill(node.innerHTML, key, value);
         });
+
+        if (obj.image) {
+            node.innerHTML = node.innerHTML.split('data-src').join('src');
+        }
 
         return node;
     }
