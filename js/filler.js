@@ -7,13 +7,16 @@ window.app.filler = (function() {
         object: populateObject
     };
 
-    function populateList(parentNode, templateNode, data, formatFunction) {
-        parentNode.textContent = '';
-
+    function populateList(templateNode, data, formatFunction) {
+        let next = removeComponents(templateNode);
         if (data) {
+            let parent = templateNode.parentElement;
             for (let i = 0; i < data.length; i++) {
-                let node = templateNode.cloneNode(true);
-                parentNode.appendChild(fillNode(node, data[i], formatFunction));
+                let component = templateNode.cloneNode(true);
+                component.dataset.component = '';
+                component.classList.remove('hide');
+                parent.insertBefore(component, next);
+                fillNode(component, data[i], formatFunction);
             }
         }
     }
@@ -24,6 +27,7 @@ window.app.filler = (function() {
 
         let component = templateNode.cloneNode(true);
         component.dataset.component = '';
+        component.classList.remove('hide');
         parent.insertBefore(component, next);
 
         return fillNode(component, obj, formatFunction);
@@ -31,10 +35,10 @@ window.app.filler = (function() {
 
     function removeComponents(templateNode) {
         let parent = templateNode.parentElement;
-        let next = templateNode.nextSibling;
-        if (next && next.dataset && next.dataset.component !== undefined) {
+        let next = templateNode.nextElementSibling;
+        while (next && next.dataset && next.dataset.component !== undefined) {
             let prev = next;
-            next = next.nextSibling;
+            next = next.nextElementSibling;
             parent.removeChild(prev);
         }
         return next;

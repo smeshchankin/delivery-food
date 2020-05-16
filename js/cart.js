@@ -22,7 +22,6 @@ window.app.cart = (function() {
         button: '#cart',
         modal: {
             id: '.modal',
-            list: '#product-list',
             template: '#product-list > .product-row',
             total: '.price-tag',
             close: '.close'
@@ -85,7 +84,7 @@ window.app.cart = (function() {
             elems.button.classList.add('hide');
         }
         data = storage.cart.get(user());
-        filler.list(elems.modal.list, elems.modal.template, data, formatter.product);
+        filler.list(elems.modal.template, data, formatter.product);
         const total = data.reduce((sum, row) => sum + row.price * row.count, 0);
         elems.modal.total.textContent = formatter.price(total);
     }

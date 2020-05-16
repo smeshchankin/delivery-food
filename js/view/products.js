@@ -24,7 +24,7 @@ window.app.view.products = (function() {
     function init(restaurantInfo) {
         if (restaurantInfo) {
             elems.restaurant = filler.object(elems.restaurantTemplate, restaurantInfo, formatter.provider);
-            filler.list(elems.list, elems.template, restaurantInfo.products, formatter.product);
+            filler.list(elems.template, restaurantInfo.products, formatter.product);
         }
     }
 
