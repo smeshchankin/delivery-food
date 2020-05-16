@@ -19,17 +19,25 @@ window.app.filler = (function() {
     }
 
     function populateObject(templateNode, obj, formatFunction) {
+        let next = removeComponents(templateNode);
+        let parent = templateNode.parentElement;
+
+        let component = templateNode.cloneNode(true);
+        component.dataset.component = '';
+        parent.insertBefore(component, next);
+
+        return fillNode(component, obj, formatFunction);
+    }
+
+    function removeComponents(templateNode) {
         let parent = templateNode.parentElement;
         let next = templateNode.nextSibling;
-        let clone = templateNode.cloneNode(true);
-        clone.dataset.clone = '';
-        if (next && next.dataset && next.dataset.clone !== undefined) {
-            parent.replaceChild(clone, next);
-        } else {
-            parent.insertBefore(clone, next);
+        if (next && next.dataset && next.dataset.component !== undefined) {
+            let prev = next;
+            next = next.nextSibling;
+            parent.removeChild(prev);
         }
-
-        return fillNode(clone, obj, formatFunction);
+        return next;
     }
 
     function fillNode(node, data, formatFunction) {
