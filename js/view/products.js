@@ -9,6 +9,7 @@ window.app.view.products = (function() {
 
     let module = {
         init: init,
+        destroy: destroy,
         show: show,
         hide: hide
     };
@@ -26,6 +27,10 @@ window.app.view.products = (function() {
             nodes.push(...filler.populate(elems.restaurantTemplate, restaurantInfo, formatter.provider));
             nodes.push(...filler.populate(elems.template, restaurantInfo.products, formatter.product));
         }
+    }
+
+    function destroy() {
+        filler.delete(nodes);
     }
 
     function show() {

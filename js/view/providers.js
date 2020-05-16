@@ -9,6 +9,7 @@ window.app.view.providers = (function() {
 
     let module = {
         init: init,
+        destroy: destroy,
         show: show,
         hide: hide
     };
@@ -23,6 +24,10 @@ window.app.view.providers = (function() {
 
     function init(list) {
         nodes = filler.populate(elems.template, list, formatter.provider);
+    }
+
+    function destroy() {
+        filler.delete(nodes);
     }
 
     function show() {

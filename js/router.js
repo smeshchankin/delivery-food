@@ -28,6 +28,7 @@ window.app.router = (function() {
         if (id) {
             if (auth.isAuthorized()) {
                 providers.hide();
+                providers.destroy();
                 products.init(id === 'search' ? search.getResult() : db.getRestaurant(id));
                 products.show();
                 window.scrollTo(0, 0);
@@ -37,6 +38,7 @@ window.app.router = (function() {
             }
         } else {
             products.hide();
+            products.destroy();
             providers.init(db.getRestaurants());
             providers.show();
             window.scrollTo(0, 0);

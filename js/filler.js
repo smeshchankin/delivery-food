@@ -4,6 +4,7 @@ window.app = window.app || {};
 window.app.filler = (function() {
     let module = {
         populate: populate,
+        delete: remove,
         hide: hide
     };
 
@@ -13,6 +14,15 @@ window.app.filler = (function() {
         } else {
             return populateObject(templateNode, data, formatFunction);
         }
+    }
+
+    function remove(nodes) {
+        nodes.forEach(function(node) {
+            let parent = node.parentElement;
+            if (parent) {
+                parent.removeChild(node);
+            }
+        });
     }
 
     function hide(nodes) {
@@ -53,13 +63,14 @@ window.app.filler = (function() {
     }
 
     function removeComponents(templateNode) {
-        let parent = templateNode.parentElement;
+        let list = [];
         let next = templateNode.nextElementSibling;
         while (next && next.dataset && next.dataset.component !== undefined) {
-            let prev = next;
+            list.push(next);
             next = next.nextElementSibling;
-            parent.removeChild(prev);
         }
+        remove(list);
+
         return next;
     }
 
