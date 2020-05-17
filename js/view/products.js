@@ -37,7 +37,6 @@ window.app.view.products = (function() {
     }
 
     function hide() {
-        filler.hide(nodes);
     }
 
     return module;

@@ -4,8 +4,7 @@ window.app = window.app || {};
 window.app.filler = (function() {
     let module = {
         populate: populate,
-        delete: remove,
-        hide: hide
+        delete: remove
     };
 
     function populate(templateNode, data, formatFunction) {
@@ -22,12 +21,6 @@ window.app.filler = (function() {
             if (parent) {
                 parent.removeChild(node);
             }
-        });
-    }
-
-    function hide(nodes) {
-        nodes.forEach(function(node) {
-            node.classList.add('hide');
         });
     }
 
