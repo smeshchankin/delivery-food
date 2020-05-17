@@ -8,6 +8,10 @@ window.app.utils = (function() {
     };
 
     function applyFunction(obj, fun, context) {
+        if (!isObject(obj)) {
+            return fun.call(context, obj);
+        }
+
         let res = {};
         Object.keys(obj).forEach(function(key) {
             res[key] = typeof obj[key] === 'object' ?
@@ -19,6 +23,10 @@ window.app.utils = (function() {
 
     function applySelector(obj) {
         return applyFunction(obj, document.querySelector, document);
+    }
+
+    function isObject(obj) {
+        return Object.prototype.toString.call(obj) === '[object Object]';
     }
 
     return module;

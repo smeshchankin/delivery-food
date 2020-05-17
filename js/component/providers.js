@@ -14,19 +14,18 @@ window.app.component.providers = (function() {
         hide: hide
     };
 
-    let elems = {
-        template: '#providers > .card'
-    };
-    elems = utils.applySelector(elems);
+    let template = '#providers > .card';
+    template = utils.applySelector(template);
 
     let nodes = [];
 
     function init(list) {
-        nodes = filler.populate(elems.template, list, formatter.provider);
+        nodes = filler.populate(template, list, formatter.provider);
     }
 
     function destroy() {
         filler.delete(nodes);
+        nodes = [];
     }
 
     function show() {

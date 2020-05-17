@@ -12,10 +12,8 @@ window.app.component.providersHeader = (function() {
         hide: hide
     };
 
-    let elems = {
-        template: '.restaurants-header'
-    };
-    elems = utils.applySelector(elems);
+    let template = '.restaurants-header';
+    template = utils.applySelector(template);
 
     let nodes = [];
 
@@ -26,11 +24,11 @@ window.app.component.providersHeader = (function() {
     }
 
     function show() {
-        elems.template.classList.remove('hide');
+        template.classList.remove('hide');
     }
 
     function hide() {
-        elems.template.classList.add('hide');
+        template.classList.add('hide');
     }
 
     return module;

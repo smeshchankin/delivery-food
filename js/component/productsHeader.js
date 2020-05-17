@@ -14,19 +14,18 @@ window.app.component.productsHeader = (function() {
         hide: hide
     };
 
-    let elems = {
-        template: '#restaurant-info'
-    };
-    elems = utils.applySelector(elems);
+    let template = '#restaurant-info';
+    template = utils.applySelector(template);
 
     let nodes = [];
 
     function init(obj) {
-        nodes.push(...filler.populate(elems.template, obj, formatter.provider));
+        nodes.push(...filler.populate(template, obj, formatter.provider));
     }
 
     function destroy() {
         filler.delete(nodes);
+        nodes.length = 0;
     }
 
     function show() {

@@ -14,19 +14,18 @@ window.app.component.products = (function() {
         hide: hide
     };
 
-    let elems = {
-        template: '#products > .card'
-    };
-    elems = utils.applySelector(elems);
+    let template = '#products > .card';
+    template = utils.applySelector(template);
 
     let nodes = [];
 
     function init(obj) {
-        nodes.push(...filler.populate(elems.template, obj.products, formatter.product));
+        nodes.push(...filler.populate(template, obj.products, formatter.product));
     }
 
     function destroy() {
         filler.delete(nodes);
+        nodes.length = 0;
     }
 
     function show() {
