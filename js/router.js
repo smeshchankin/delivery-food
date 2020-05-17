@@ -48,7 +48,7 @@ window.app.router = (function() {
 
         productsHeader.init(data);
         productsHeader.show();
-        products.init(data);
+        products.init(data.products);
         products.show();
 
         window.scrollTo(0, 0);

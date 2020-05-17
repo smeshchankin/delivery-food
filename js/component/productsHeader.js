@@ -20,12 +20,12 @@ window.app.component.productsHeader = (function() {
     let nodes = [];
 
     function init(obj) {
-        nodes.push(...filler.populate(template, obj, formatter.provider));
+        nodes = filler.populate(template, obj, formatter.provider);
     }
 
     function destroy() {
         filler.delete(nodes);
-        nodes.length = 0;
+        nodes = [];
     }
 
     function show() {

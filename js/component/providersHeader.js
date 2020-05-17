@@ -17,7 +17,7 @@ window.app.component.providersHeader = (function() {
 
     let nodes = [];
 
-    function init(list) {
+    function init(obj) {
     }
 
     function destroy() {

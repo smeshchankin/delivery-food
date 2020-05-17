@@ -19,13 +19,13 @@ window.app.component.products = (function() {
 
     let nodes = [];
 
-    function init(obj) {
-        nodes.push(...filler.populate(template, obj.products, formatter.product));
+    function init(list) {
+        nodes = filler.populate(template, list, formatter.product);
     }
 
     function destroy() {
         filler.delete(nodes);
-        nodes.length = 0;
+        nodes = [];
     }
 
     function show() {
