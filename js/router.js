@@ -4,8 +4,8 @@ window.app = window.app || {};
 window.app.router = (function() {
     let db = window.app.db;
     let auth = window.app.auth;
-    let products = window.app.view.products;
-    let providers = window.app.view.providers;
+    let products = window.app.component.products;
+    let providers = window.app.component.providers;
     let search = window.app.search;
 
     let module = {

@@ -1,8 +1,8 @@
 'use strict';
 
 window.app = window.app || {};
-window.app.view = window.app.view || {};
-window.app.view.products = (function() {
+window.app.component = window.app.component || {};
+window.app.component.products = (function() {
     let utils = window.app.utils;
     let filler = window.app.filler;
     let formatter = window.app.formatter;
