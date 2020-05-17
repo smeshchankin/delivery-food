@@ -8,7 +8,7 @@ window.app.utils = (function() {
     };
 
     function applyFunction(obj, fun, context) {
-        if (!isObject(obj)) {
+        if (isPrimitive(obj)) {
             return fun.call(context, obj);
         }
 
@@ -25,8 +25,9 @@ window.app.utils = (function() {
         return applyFunction(obj, document.querySelector, document);
     }
 
-    function isObject(obj) {
-        return Object.prototype.toString.call(obj) === '[object Object]';
+    function isPrimitive(value) {
+        let type = typeof value;
+        return type !== 'object' && type !== 'function' || value === null;
     }
 
     return module;
