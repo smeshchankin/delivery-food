@@ -27,22 +27,31 @@ window.app.router = (function() {
         let id = window.location.hash.replace('#', '');
         if (id) {
             if (auth.isAuthorized()) {
-                providers.hide();
-                providers.destroy();
-                products.init(id === 'search' ? search.getResult() : db.getRestaurant(id));
-                products.show();
-                window.scrollTo(0, 0);
+                productsView(id, id === 'search' ?
+                    search.getResult() : db.getRestaurant(id));
             } else {
                 window.location.hash = '';
                 auth.toggle(id);
             }
         } else {
-            products.hide();
-            products.destroy();
-            providers.init(db.getRestaurants());
-            providers.show();
-            window.scrollTo(0, 0);
+            providersView(id, db.getRestaurants());
         }
+    }
+
+    function productsView(path, data) {
+        providers.hide();
+        providers.destroy();
+        products.init(data);
+        products.show();
+        window.scrollTo(0, 0);
+    }
+
+    function providersView(path, data) {
+        products.hide();
+        products.destroy();
+        providers.init(data);
+        providers.show();
+        window.scrollTo(0, 0);
     }
 
     return module;
