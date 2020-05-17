@@ -2,7 +2,7 @@
 
 window.app = window.app || {};
 window.app.component = window.app.component || {};
-window.app.component.providers = (function() {
+window.app.component.productsHeader = (function() {
     let utils = window.app.utils;
     let filler = window.app.filler;
     let formatter = window.app.formatter;
@@ -15,14 +15,14 @@ window.app.component.providers = (function() {
     };
 
     let elems = {
-        template: '#providers > .card'
+        template: '#restaurant-info'
     };
     elems = utils.applySelector(elems);
 
     let nodes = [];
 
-    function init(list) {
-        nodes = filler.populate(elems.template, list, formatter.provider);
+    function init(obj) {
+        nodes.push(...filler.populate(elems.template, obj, formatter.provider));
     }
 
     function destroy() {

@@ -15,18 +15,14 @@ window.app.component.products = (function() {
     };
 
     let elems = {
-        restaurantTemplate: '#restaurant-info',
         template: '#products > .card'
     };
     elems = utils.applySelector(elems);
 
     let nodes = [];
 
-    function init(restaurantInfo) {
-        if (restaurantInfo) {
-            nodes.push(...filler.populate(elems.restaurantTemplate, restaurantInfo, formatter.provider));
-            nodes.push(...filler.populate(elems.template, restaurantInfo.products, formatter.product));
-        }
+    function init(obj) {
+        nodes.push(...filler.populate(elems.template, obj.products, formatter.product));
     }
 
     function destroy() {

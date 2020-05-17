@@ -2,10 +2,8 @@
 
 window.app = window.app || {};
 window.app.component = window.app.component || {};
-window.app.component.providers = (function() {
+window.app.component.providersHeader = (function() {
     let utils = window.app.utils;
-    let filler = window.app.filler;
-    let formatter = window.app.formatter;
 
     let module = {
         init: init,
@@ -15,24 +13,24 @@ window.app.component.providers = (function() {
     };
 
     let elems = {
-        template: '#providers > .card'
+        template: '.restaurants-header'
     };
     elems = utils.applySelector(elems);
 
     let nodes = [];
 
     function init(list) {
-        nodes = filler.populate(elems.template, list, formatter.provider);
     }
 
     function destroy() {
-        filler.delete(nodes);
     }
 
     function show() {
+        elems.template.classList.remove('hide');
     }
 
     function hide() {
+        elems.template.classList.add('hide');
     }
 
     return module;
