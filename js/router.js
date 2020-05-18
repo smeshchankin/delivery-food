@@ -41,14 +41,21 @@ window.app.router = (function() {
 
     function route() {
         let id = window.location.hash.replace('#', '');
-        if (id) {
+        if (id === 'search') {
             if (auth.isAuthorized()) {
-                let data = id === 'search' ? search.getResult() : db.getRestaurant(id);
-                let view = config[id === 'search' ? 0 : 1];
+                let data = search.getResult();
+                let view = config[0];
                 renderView(view, [data.products, data]);
             } else {
-                window.location.hash = '';
-                auth.toggle(id);
+                unauthorizedHandler(id);
+            }
+        } else if (id) {
+            if (auth.isAuthorized()) {
+                let data = db.getRestaurant(id);
+                let view = config[1];
+                renderView(view, [data.products, data]);
+            } else {
+                unauthorizedHandler(id);
             }
         } else {
             let data = db.getRestaurants();
@@ -75,6 +82,11 @@ window.app.router = (function() {
         });
 
         window.scrollTo(0, 0);
+    }
+
+    function unauthorizedHandler(path) {
+        window.location.hash = '';
+        auth.toggle(path);
     }
 
     return module;
