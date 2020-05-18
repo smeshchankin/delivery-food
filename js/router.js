@@ -4,16 +4,30 @@ window.app = window.app || {};
 window.app.router = (function() {
     let db = window.app.db;
     let auth = window.app.auth;
-    let products = window.app.component.products;
-    let productsHeader = window.app.component.productsHeader;
-    let providers = window.app.component.providers;
-    let providersHeader = window.app.component.providersHeader;
     let search = window.app.search;
 
     let module = {
         init: init,
         go: go
     };
+
+    let config = [
+        {
+            path: 'search',
+            components: ['products', 'productsHeader']
+        },
+        {
+            path: '{id}',
+            components: ['products', 'productsHeader']
+        },
+        {
+            path: '',
+            components: ['providers', 'providersHeader']
+        }
+    ];
+    // Collect only unique components
+    let components = config.flatMap(view => view.components)
+        .filter((value, index, array) => array.indexOf(value) === index);
 
     function init() {
         window.addEventListener('hashchange', route);
@@ -29,41 +43,36 @@ window.app.router = (function() {
         let id = window.location.hash.replace('#', '');
         if (id) {
             if (auth.isAuthorized()) {
-                let data = id === 'search' ? search.getResult() : db.getRestaurant(id)
-                productsView(data);
+                let data = id === 'search' ? search.getResult() : db.getRestaurant(id);
+                let view = config[id === 'search' ? 0 : 1];
+                renderView(view, [data.products, data]);
             } else {
                 window.location.hash = '';
                 auth.toggle(id);
             }
         } else {
-            providersView(db.getRestaurants());
+            let data = db.getRestaurants();
+            let view = config[2];
+            renderView(view, [data]);
         }
     }
 
-    function productsView(data) {
-        providers.hide();
-        providers.destroy();
-        providersHeader.hide();
-        providersHeader.destroy();
+    function renderView(view, data) {
+        const inactiveComponents = components.filter(componentName => !view.components.includes(componentName));
+        inactiveComponents.forEach(componentName => {
+            let component = window.app.component[componentName];
+            component.hide();
+            component.destroy();
+        });
 
-        productsHeader.init(data);
-        productsHeader.show();
-        products.init(data.products);
-        products.show();
+        let idx = 0;
+        view.components.forEach(componentName => {
+            let componentData = idx < data.length ? data[idx++] : {};
 
-        window.scrollTo(0, 0);
-    }
-
-    function providersView(data) {
-        products.hide();
-        products.destroy();
-        productsHeader.hide();
-        productsHeader.destroy();
-
-        providersHeader.init(data);
-        providersHeader.show();
-        providers.init(data);
-        providers.show();
+            let component = window.app.component[componentName];
+            component.init(componentData);
+            component.show();
+        });
 
         window.scrollTo(0, 0);
     }
