@@ -14,15 +14,34 @@ window.app.router = (function() {
     let config = [
         {
             path: 'search',
-            components: ['products', 'productsHeader']
+            condition: {
+                check: auth.isAuthorized,
+                failed: unauthorizedHandler
+            },
+            components: ['products', 'productsHeader'],
+            data: function(path) {
+                let data = search.getResult();
+                return [data.products, data];
+            }
         },
         {
             path: '{id}',
-            components: ['products', 'productsHeader']
+            condition: {
+                check: auth.isAuthorized,
+                failed: unauthorizedHandler
+            },
+            components: ['products', 'productsHeader'],
+            data: function(path) {
+                let data = db.getRestaurant(path);
+                return [data.products, data];
+            }
         },
         {
             path: '',
-            components: ['providers', 'providersHeader']
+            components: ['providers', 'providersHeader'],
+            data: function(path) {
+                return [db.getRestaurants()];
+            }
         }
     ];
     // Collect only unique components
@@ -40,32 +59,24 @@ window.app.router = (function() {
     }
 
     function route() {
-        let id = window.location.hash.replace('#', '');
-        if (id === 'search') {
-            if (auth.isAuthorized()) {
-                let data = search.getResult();
-                let view = config[0];
-                renderView(view, [data.products, data]);
-            } else {
-                unauthorizedHandler(id);
+        let path = window.location.hash.replace('#', '');
+        let view = findViewByPath(path);
+        if (view.condition && !view.condition.check(path))  {
+            if (view.condition.failed) {
+                view.condition.failed(path);
             }
-        } else if (id) {
-            if (auth.isAuthorized()) {
-                let data = db.getRestaurant(id);
-                let view = config[1];
-                renderView(view, [data.products, data]);
-            } else {
-                unauthorizedHandler(id);
-            }
-        } else {
-            let data = db.getRestaurants();
-            let view = config[2];
-            renderView(view, [data]);
+            return;
         }
+        renderView(view.components, view.data(path));
     }
 
-    function renderView(view, data) {
-        const inactiveComponents = components.filter(componentName => !view.components.includes(componentName));
+    function findViewByPath(path) {
+        let viewId = path === 'search' ? 0 : path ? 1 : 2;
+        return config[viewId];
+    }
+
+    function renderView(activeComponents, data) {
+        const inactiveComponents = components.filter(componentName => !activeComponents.includes(componentName));
         inactiveComponents.forEach(componentName => {
             let component = window.app.component[componentName];
             component.hide();
@@ -73,7 +84,7 @@ window.app.router = (function() {
         });
 
         let idx = 0;
-        view.components.forEach(componentName => {
+        activeComponents.forEach(componentName => {
             let componentData = idx < data.length ? data[idx++] : {};
 
             let component = window.app.component[componentName];
