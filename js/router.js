@@ -3,6 +3,8 @@
 window.app = window.app || {};
 window.app.router = (function() {
     let utils = window.app.utils;
+    let url = window.app.url;
+
     let db = window.app.db;
     let auth = window.app.auth;
     let search = window.app.search;
