@@ -7,8 +7,31 @@
     let search = window.app.search;
     let router = window.app.router;
 
-    db.init()
-        .then(router.init);
+    let data = {
+        search: function(path) {
+            let data = search.getResult();
+            return [data.products, data];
+        },
+        products: function(path) {
+            let data = db.getRestaurant(path);
+            return [data.products, data];
+        },
+        providers: function(path) {
+            return [db.getRestaurants()];
+        }
+    };
+
+    let methods = {
+        isAuthorized: auth.isAuthorized,
+        unauthorizedHandler: function(path) {
+            window.location.hash = '';
+            auth.toggle(path);
+        }
+    };
+
+    db.init().then(function() {
+        router.init('config/router.json', data, methods);
+    });
 
     cart.init();
     auth.addLoginListener(cart.render);
