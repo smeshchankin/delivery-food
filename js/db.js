@@ -2,6 +2,8 @@
 
 window.app = window.app || {};
 window.app.db = (function() {
+    let utils = window.app.utils;
+
     const PATH = 'db/providers.json';
     let restaurants = [];
 
@@ -15,11 +17,11 @@ window.app.db = (function() {
 
     async function init() {
         restaurants = [];
-        const providers = await getData(PATH);
+        const providers = await utils.getData(PATH);
         let promises = providers.map(async function(provider) {
             restaurants.push(provider);
 
-            return getData('db/products/' + provider.products).then(function(products) {
+            return utils.getData('db/products/' + provider.products).then(function(products) {
                 provider.products = products;
             });
         });
@@ -43,14 +45,6 @@ window.app.db = (function() {
     function productById(id) {
         return restaurants.map(res => res.products).flat()
             .find(p => p.id === id);
-    }
-
-    async function getData(url) {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Can\'t read data from ${url}. Status code: ${response.status}`);
-        }
-        return await response.json();
     }
 
     return module;

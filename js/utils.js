@@ -3,9 +3,18 @@
 window.app = window.app || {};
 window.app.utils = (function() {
     let module = {
+        getData: getData,
         applyFunction: applyFunction,
         applySelector: applySelector
     };
+
+    async function getData(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Can\'t read data from ${url}. Status code: ${response.status}`);
+        }
+        return await response.json();
+    }
 
     function applyFunction(obj, fun, context) {
         if (isPrimitive(obj)) {
