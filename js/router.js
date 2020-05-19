@@ -2,6 +2,7 @@
 
 window.app = window.app || {};
 window.app.router = (function() {
+    let utils = window.app.utils;
     let db = window.app.db;
     let auth = window.app.auth;
     let search = window.app.search;
@@ -11,42 +12,45 @@ window.app.router = (function() {
         go: go
     };
 
-    let config = [
-        {
-            path: 'search',
-            condition: {
-                check: auth.isAuthorized,
-                failed: unauthorizedHandler
-            },
-            components: ['products', 'productsHeader'],
-            data: function(path) {
-                let data = search.getResult();
-                return [data.products, data];
-            }
+    let data = {
+        search: function(path) {
+            let data = search.getResult();
+            return [data.products, data];
         },
-        {
-            path: '{id}',
-            condition: {
-                check: auth.isAuthorized,
-                failed: unauthorizedHandler
-            },
-            components: ['products', 'productsHeader'],
-            data: function(path) {
-                let data = db.getRestaurant(path);
-                return [data.products, data];
-            }
+        products: function(path) {
+            let data = db.getRestaurant(path);
+            return [data.products, data];
         },
-        {
-            path: '',
-            components: ['providers', 'providersHeader'],
-            data: function(path) {
-                return [db.getRestaurants()];
-            }
+        providers: function(path) {
+            return [db.getRestaurants()];
         }
-    ];
-    // Collect only unique components
-    let components = config.flatMap(view => view.components)
-        .filter((value, index, array) => array.indexOf(value) === index);
+    };
+
+    let methods = {
+        isAuthorized: auth.isAuthorized,
+        unauthorizedHandler: function(path) {
+            window.location.hash = '';
+            auth.toggle(path);
+        }
+    };
+
+    let config = [];
+    let components = [];
+
+    utils.getData('config/router.json').then(function(result) {
+        config = result;
+        config.forEach(function(view) {
+            view.data = eval(view.data);
+            if (view.condition) {
+                view.condition.check = eval(view.condition.check);
+                view.condition.failed = eval(view.condition.failed);
+            }
+        });
+
+        // Collect only unique components
+        components = config.flatMap(view => view.components)
+            .filter((value, index, array) => array.indexOf(value) === index);
+    });
 
     function init() {
         window.addEventListener('hashchange', route);
@@ -93,11 +97,6 @@ window.app.router = (function() {
         });
 
         window.scrollTo(0, 0);
-    }
-
-    function unauthorizedHandler(path) {
-        window.location.hash = '';
-        auth.toggle(path);
     }
 
     return module;
