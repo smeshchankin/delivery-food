@@ -53,8 +53,14 @@ window.app.router = (function() {
     }
 
     function findViewByPath(path) {
-        let viewId = path === 'search' ? 0 : path ? 1 : 2;
-        return config[viewId];
+        for (let idx = 0; idx < config.length; idx++) {
+            const conf = config[idx];
+            if (conf.url.test(path)) {
+                return conf;
+            }
+        }
+
+        return null; // config wasn't found
     }
 
     function renderView(activeComponents, data) {
@@ -76,15 +82,6 @@ window.app.router = (function() {
 
         window.scrollTo(0, 0);
     }
-
-    (function testUrlModule() {
-        let pattern = '/users/{user_id}_{user_login}/orders/{order_id}/getAll';
-        let str = '/users/123_sergey/orders/orde/r#5/getAll'
-
-        let urlRegExp = url.compile(pattern);
-        console.log('test: ', urlRegExp.test(str));
-        console.dir(urlRegExp.values(str));
-    }());
 
     return module;
 }());

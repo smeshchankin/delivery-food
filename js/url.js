@@ -18,12 +18,8 @@ window.app.url = (function() {
         function constructor(pattern) {
             let v = vars(pattern);
             let reg = v.reduce(function(result, item) {
-                return result.replace('{' + item + '}', '(.*)');
+                return result.replace('{' + item + '}', '(.+)');
             }, pattern);
-
-            if (reg === '') {
-                reg = '.*';
-            }
 
             return {
                 vars: v,
