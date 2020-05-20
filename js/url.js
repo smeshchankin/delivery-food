@@ -21,6 +21,10 @@ window.app.url = (function() {
                 return result.replace('{' + item + '}', '(.*)');
             }, pattern);
 
+            if (reg === '') {
+                reg = '.*';
+            }
+
             return {
                 vars: v,
                 reg: new RegExp('^' + reg + '$')
