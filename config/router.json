@@ -9,7 +9,7 @@
         "data": "data.search"
     },
     {
-        "path": "id",
+        "path": "{id}",
         "condition": {
             "check": "methods.isAuthorized",
             "failed": "methods.unauthorizedHandler"

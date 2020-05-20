@@ -13,10 +13,12 @@ window.app.router = (function() {
     let config = [];
     let components = [];
 
+    // data & methods are used in eval function
     function init(configPath, data, methods) {
         utils.getData(configPath).then(function(result) {
             config = result;
             config.forEach(function(view) {
+                view.url = url.compile(view.path);
                 view.data = eval(view.data);
                 if (view.condition) {
                     view.condition.check = eval(view.condition.check);
