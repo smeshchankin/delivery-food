@@ -60,7 +60,7 @@ window.app.router = (function() {
             }
         }
 
-        return null; // config wasn't found
+        throw new Error('Can\'t find router.view by path=' + path);
     }
 
     function renderView(activeComponents, data) {
