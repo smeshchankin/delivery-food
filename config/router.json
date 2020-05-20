@@ -9,6 +9,15 @@
         "data": "data.search"
     },
     {
+        "path": "search/{search}",
+        "condition": {
+            "check": "methods.isAuthorized",
+            "failed": "methods.unauthorizedHandler"
+        },
+        "components": ["products", "productsHeader"],
+        "data": "data.search"
+    },
+    {
         "path": "{id}",
         "condition": {
             "check": "methods.isAuthorized",
