@@ -9,9 +9,7 @@
 
     let data = {
         search: function(params) {
-            if (params && params.search) {
-                search.search(params.search);
-            }
+            search.search(params.search);
             let data = search.getResult();
             return [data.products, data];
         },

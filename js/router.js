@@ -40,7 +40,7 @@ window.app.router = (function() {
     }
 
     function route() {
-        let path = window.location.hash.replace('#', '');
+        let path = decodeURI(window.location.hash).replace('#', '');
         let view = findViewByPath(path);
         if (view.condition && !view.condition.check(path))  {
             if (view.condition.failed) {

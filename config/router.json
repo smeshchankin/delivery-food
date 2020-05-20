@@ -1,6 +1,6 @@
 [
     {
-        "path": "search",
+        "path": "/search",
         "condition": {
             "check": "methods.isAuthorized",
             "failed": "methods.unauthorizedHandler"
@@ -9,7 +9,7 @@
         "data": "data.search"
     },
     {
-        "path": "search/{search}",
+        "path": "/search/{search}",
         "condition": {
             "check": "methods.isAuthorized",
             "failed": "methods.unauthorizedHandler"
@@ -18,13 +18,18 @@
         "data": "data.search"
     },
     {
-        "path": "{id}",
+        "path": "/provider/{id}",
         "condition": {
             "check": "methods.isAuthorized",
             "failed": "methods.unauthorizedHandler"
         },
         "components": ["products", "productsHeader"],
         "data": "data.products"
+    },
+    {
+        "path": "/",
+        "components": ["providers", "providersHeader"],
+        "data": "data.providers"
     },
     {
         "path": "",
