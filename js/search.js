@@ -10,6 +10,7 @@ window.app.search = (function() {
 
     let module = {
         init: init,
+        search: search,
         getResult: getResult
     };
 
@@ -31,24 +32,28 @@ window.app.search = (function() {
 
     function init() {
         router = window.app.router;
-        elems.search.addEventListener('keydown', search);
+        elems.search.addEventListener('keydown', searchHandler);
+    }
+
+    function search(value) {
+        result.name = 'Search result: ' + value;
+        result.products = db.searchProducts(value);
+        result.price = result.products.length === 0 ? 0 :
+            Math.min(...result.products.map(p => p.price));
     }
 
     function getResult() {
         return result;
     }
 
-    function search(event) {
+    function searchHandler(event) {
         if (event.keyCode === ENTER_KEY_CODE) {
             const target = event.target;
             const value = target.value;
 
             if (validSearch(target)) {
                 target.value = '';
-                result.name = 'Search result: ' + value;
-                result.products = db.searchProducts(value);
-                result.price = result.products.length === 0 ? 0 :
-                    Math.min(...result.products.map(p => p.price));
+                search(value);
                 router.go('search');
             }
         }
