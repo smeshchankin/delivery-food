@@ -8,15 +8,15 @@
     let router = window.app.router;
 
     let data = {
-        search: function(path) {
+        search: function(params) {
             let data = search.getResult();
             return [data.products, data];
         },
-        products: function(path) {
-            let data = db.getRestaurant(path);
+        products: function(params) {
+            let data = db.getRestaurant(params.id);
             return [data.products, data];
         },
-        providers: function(path) {
+        providers: function(params) {
             return [db.getRestaurants()];
         }
     };

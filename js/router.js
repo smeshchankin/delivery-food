@@ -49,14 +49,15 @@ window.app.router = (function() {
             }
             return;
         }
-        renderView(view.components, view.data(path));
+        let params = view.url.values(path);
+        renderView(view.components, view.data(params));
     }
 
     function findViewByPath(path) {
         for (let idx = 0; idx < config.length; idx++) {
-            const conf = config[idx];
-            if (conf.url.test(path)) {
-                return conf;
+            const view = config[idx];
+            if (view.url.test(path)) {
+                return view;
             }
         }
 
