@@ -75,5 +75,14 @@ window.app.router = (function() {
         window.scrollTo(0, 0);
     }
 
+    (function testUrlModule() {
+        let pattern = '/users/{user_id}_{user_login}/orders/{order_id}/getAll';
+        let str = '/users/123_sergey/orders/orde/r#5/getAll'
+
+        let urlRegExp = url.compile(pattern);
+        console.log('test: ', urlRegExp.test(str));
+        console.dir(urlRegExp.values(str));
+    }());
+
     return module;
 }());
