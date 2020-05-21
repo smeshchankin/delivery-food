@@ -59,25 +59,26 @@ window.app.router = (function() {
     }
 
     function findViewByName(name) {
-        for (let idx = 0; idx < config.views.length; idx++) {
-            const view = config.views[idx];
-            if (view.name === name) {
-                return view;
-            }
-        }
-
-        throw new Error('Can\'t find router.view by name=' + name);
+        return findView('name', name, function(view, value) {
+            return view.name === value;
+        });
     }
 
     function findViewByPath(path) {
+        return findView('path', path, function(view, value) {
+            return view.url.test(value);
+        });
+    }
+
+    function findView(name, value, condition) {
         for (let idx = 0; idx < config.views.length; idx++) {
             const view = config.views[idx];
-            if (view.url.test(path)) {
+            if (condition(view, value)) {
                 return view;
             }
         }
 
-        throw new Error('Can\'t find router.view by path=' + path);
+        throw new Error('Can\'t find router.view by ' + name + '=' + value);
     }
 
     function renderView(activeComponents, data) {
