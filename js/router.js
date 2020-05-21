@@ -10,14 +10,14 @@ window.app.router = (function() {
         go: go
     };
 
-    let config = [];
+    let config = { views: [] };
     let components = [];
 
     // data & methods are used in eval function
     function init(configPath, data, methods) {
         utils.getData(configPath).then(function(result) {
             config = result;
-            config.forEach(function(view) {
+            config.views.forEach(function(view) {
                 view.url = url.compile(view.path);
                 view.data = eval(view.data);
                 if (view.condition) {
@@ -27,7 +27,7 @@ window.app.router = (function() {
             });
 
             // Collect only unique components
-            components = config.flatMap(view => view.components)
+            components = config.views.flatMap(view => view.components)
                 .filter((value, index, array) => array.indexOf(value) === index);
         }).then(function() {
             window.addEventListener('hashchange', route);
@@ -53,8 +53,8 @@ window.app.router = (function() {
     }
 
     function findViewByPath(path) {
-        for (let idx = 0; idx < config.length; idx++) {
-            const view = config[idx];
+        for (let idx = 0; idx < config.views.length; idx++) {
+            const view = config.views[idx];
             if (view.url.test(path)) {
                 return view;
             }

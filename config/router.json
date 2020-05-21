@@ -1,39 +1,32 @@
-[
-    {
-        "path": "/search",
-        "condition": {
-            "check": "methods.isAuthorized",
-            "failed": "methods.unauthorizedHandler"
+{
+    "views": [
+        {
+            "path": "/search/{search}",
+            "condition": {
+                "check": "methods.isAuthorized",
+                "failed": "methods.unauthorizedHandler"
+            },
+            "components": ["products", "productsHeader"],
+            "data": "data.search"
         },
-        "components": ["products", "productsHeader"],
-        "data": "data.search"
-    },
-    {
-        "path": "/search/{search}",
-        "condition": {
-            "check": "methods.isAuthorized",
-            "failed": "methods.unauthorizedHandler"
+        {
+            "path": "/provider/{id}",
+            "condition": {
+                "check": "methods.isAuthorized",
+                "failed": "methods.unauthorizedHandler"
+            },
+            "components": ["products", "productsHeader"],
+            "data": "data.products"
         },
-        "components": ["products", "productsHeader"],
-        "data": "data.search"
-    },
-    {
-        "path": "/provider/{id}",
-        "condition": {
-            "check": "methods.isAuthorized",
-            "failed": "methods.unauthorizedHandler"
+        {
+            "path": "/",
+            "components": ["providers", "providersHeader"],
+            "data": "data.providers"
         },
-        "components": ["products", "productsHeader"],
-        "data": "data.products"
-    },
-    {
-        "path": "/",
-        "components": ["providers", "providersHeader"],
-        "data": "data.providers"
-    },
-    {
-        "path": "",
-        "components": ["providers", "providersHeader"],
-        "data": "data.providers"
-    }
-]
+        {
+            "path": "",
+            "components": ["providers", "providersHeader"],
+            "data": "data.providers"
+        }
+    ]
+}
