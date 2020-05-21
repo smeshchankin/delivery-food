@@ -25,12 +25,7 @@
             "path": "/",
             "components": ["providers", "providersHeader"],
             "data": "data.providers"
-        },
-        {
-            "name": "default",
-            "path": "",
-            "components": ["providers", "providersHeader"],
-            "data": "data.providers"
         }
-    ]
+    ],
+    "default": "index"
 }

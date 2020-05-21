@@ -26,6 +26,10 @@ window.app.router = (function() {
                 }
             });
 
+            if (config.default) {
+                config.default = findViewByName(config.default);
+            }
+
             // Collect only unique components
             components = config.views.flatMap(view => view.components)
                 .filter((value, index, array) => array.indexOf(value) === index);
@@ -71,14 +75,19 @@ window.app.router = (function() {
     }
 
     function findView(name, value, condition) {
-        for (let idx = 0; idx < config.views.length; idx++) {
-            const view = config.views[idx];
-            if (condition(view, value)) {
-                return view;
+        if (value) {
+            for (let idx = 0; idx < config.views.length; idx++) {
+                const view = config.views[idx];
+                if (condition(view, value)) {
+                    return view;
+                }
             }
+            throw new Error('Can\'t find router.view by ' + name + '=' + value);
+        } else  if (config.default) {
+            return config.default;
+        } else {
+            throw new Error('router has no default view');
         }
-
-        throw new Error('Can\'t find router.view by ' + name + '=' + value);
     }
 
     function renderView(activeComponents, data) {
