@@ -34,13 +34,14 @@
         }
     };
 
+    cart.init();
+    auth.addLoginListener(cart.render);
+    auth.init();
+
     db.init().then(function() {
         router.init('config/router.json', data, methods);
     });
 
-    cart.init();
-    auth.addLoginListener(cart.render);
-    auth.init();
     search.init();
 
     new Swiper('.swiper-container', {

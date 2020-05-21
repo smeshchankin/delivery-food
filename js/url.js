@@ -51,9 +51,10 @@ window.app.url = (function() {
     };
 
     UrlRegExp.prototype.compile = function(params) {
-        return Object.keys(params).reduce(function(path, key) {
-            return path.split('{' + key + '}').join(encodeURI(params[key]));
-        }, this.pattern);
+        return !params || typeof params !== 'object' ? '' :
+            Object.keys(params).reduce(function(path, key) {
+                return path.split('{' + key + '}').join(encodeURI(params[key]));
+            }, this.pattern);
     };
 
     return module;

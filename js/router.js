@@ -7,7 +7,8 @@ window.app.router = (function() {
 
     let module = {
         init: init,
-        go: go
+        go: go,
+        goByPath: goByPath
     };
 
     let config = { views: [] };
@@ -27,7 +28,13 @@ window.app.router = (function() {
             });
 
             if (config.default) {
-                config.default = findViewByName(config.default);
+                if (typeof config.default === 'string') {
+                    config.default.view = findViewByName(config.default);
+                    config.default.view.params = [];
+                } else {
+                    config.default.view = findViewByName(config.default.view);
+                    config.default.view.params = config.default.params;
+                }
             }
 
             // Collect only unique components
@@ -46,6 +53,10 @@ window.app.router = (function() {
     }
 
     function goByPath(path) {
+        if (!path && config.default) {
+            let view = config.default.view;
+            path = view.url.compile(view.params);
+        }
         window.location.hash = path || '';
     }
 
@@ -58,7 +69,7 @@ window.app.router = (function() {
             }
             return;
         }
-        let params = view.url.values(path);
+        let params = !path && view.params ? view.params : view.url.values(path);
         renderView(view.components, view.data(params));
     }
 
@@ -84,7 +95,7 @@ window.app.router = (function() {
             }
             throw new Error('Can\'t find router.view by ' + name + '=' + value);
         } else  if (config.default) {
-            return config.default;
+            return config.default.view;
         } else {
             throw new Error('router has no default view');
         }

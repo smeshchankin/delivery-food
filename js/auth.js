@@ -76,7 +76,7 @@ window.app.auth = (function() {
 
     function logoutHandler() {
         login('');
-        router.goByPath();
+        router.go();
     }
 
     function login(username) {
