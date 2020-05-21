@@ -42,9 +42,9 @@ window.app.url = (function() {
 
     UrlRegExp.prototype.values = function(str) {
         let result = {};
-        let vals = this.reg.exec(str);
+        let vals = this.reg.exec(str) || [];
         for (let i = 0; i < this.vars.length; i++) {
-            result[this.vars[i]] = vals[i + 1];
+            result[this.vars[i]] = vals[i + 1] || '';
         }
 
         return result;

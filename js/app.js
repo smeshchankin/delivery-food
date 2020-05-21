@@ -15,7 +15,11 @@
         },
         products: function(params) {
             let data = db.getRestaurant(params.id);
-            return [data.products, data];
+            if (data) {
+                return [data.products, data];
+            } else {
+                return [];
+            }
         },
         providers: function(params) {
             return [db.getRestaurants()];

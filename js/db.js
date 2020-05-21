@@ -33,10 +33,14 @@ window.app.db = (function() {
     }
 
     function getRestaurant(id) {
-        return restaurants.find(function(obj) { return obj.id == id; })
+        return restaurants.find(function(obj) { return obj.id == id; }) || null;
     }
 
     function searchProducts(str) {
+        if (!str) {
+            return [];
+        }
+
         let text = str.toLowerCase().trim();
         return restaurants.map(res => res.products).flat()
             .filter(p => p.name.toLowerCase().includes(text));
@@ -44,7 +48,7 @@ window.app.db = (function() {
 
     function productById(id) {
         return restaurants.map(res => res.products).flat()
-            .find(p => p.id === id);
+            .find(p => p.id === id) || null;
     }
 
     return module;
