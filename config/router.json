@@ -1,6 +1,7 @@
 {
     "views": [
         {
+            "name": "search",
             "path": "/search/{search}",
             "condition": {
                 "check": "methods.isAuthorized",
@@ -10,6 +11,7 @@
             "data": "data.search"
         },
         {
+            "name": "provider",
             "path": "/provider/{id}",
             "condition": {
                 "check": "methods.isAuthorized",
@@ -19,11 +21,13 @@
             "data": "data.products"
         },
         {
+            "name": "index",
             "path": "/",
             "components": ["providers", "providersHeader"],
             "data": "data.providers"
         },
         {
+            "name": "default",
             "path": "",
             "components": ["providers", "providersHeader"],
             "data": "data.providers"

@@ -35,7 +35,13 @@ window.app.router = (function() {
         });
     }
 
-    function go(path) {
+    function go(viewName, params) {
+        let view = findViewByName(viewName);
+        let path = view.url.compile(params);
+        goByPath(path);
+    }
+
+    function goByPath(path) {
         window.location.hash = path || '';
     }
 
@@ -50,6 +56,17 @@ window.app.router = (function() {
         }
         let params = view.url.values(path);
         renderView(view.components, view.data(params));
+    }
+
+    function findViewByName(name) {
+        for (let idx = 0; idx < config.views.length; idx++) {
+            const view = config.views[idx];
+            if (view.name === name) {
+                return view;
+            }
+        }
+
+        throw new Error('Can\'t find router.view by name=' + name);
     }
 
     function findViewByPath(path) {

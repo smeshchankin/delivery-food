@@ -53,7 +53,7 @@ window.app.search = (function() {
 
             if (validSearch(target)) {
                 target.value = '';
-                router.go('/search/' + encodeURI(value));
+                router.go('search', { search: value });
             }
         }
     }

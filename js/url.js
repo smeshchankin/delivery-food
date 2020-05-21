@@ -12,6 +12,7 @@ window.app.url = (function() {
 
     function UrlRegExp(pattern) {
         let construct = constructor(pattern);
+        this.pattern = pattern;
         this.vars = construct.vars;
         this.reg = construct.reg;
 
@@ -47,6 +48,12 @@ window.app.url = (function() {
         }
 
         return result;
+    };
+
+    UrlRegExp.prototype.compile = function(params) {
+        return Object.keys(params).reduce(function(path, key) {
+            return path.split('{' + key + '}').join(encodeURI(params[key]));
+        }, this.pattern);
     };
 
     return module;

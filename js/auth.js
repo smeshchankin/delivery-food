@@ -67,7 +67,7 @@ window.app.auth = (function() {
         event.preventDefault();
         if (login(elems.form.username.value)) {
             clearForm();
-            router.go(redirect);
+            router.goByPath(redirect);
             toggle();
         } else {
             elems.form.username.style.borderColor = 'red';
@@ -76,7 +76,7 @@ window.app.auth = (function() {
 
     function logoutHandler() {
         login('');
-        router.go();
+        router.goByPath();
     }
 
     function login(username) {
