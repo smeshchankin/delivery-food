@@ -29,11 +29,11 @@ window.app.router = (function() {
 
             if (config.default) {
                 if (typeof config.default === 'string') {
-                    config.default = findViewByName(config.default);
+                    config.default = cloneView(findViewByName(config.default));
                     config.default.params = [];
                 } else {
                     let params = config.default.params;
-                    config.default = findViewByName(config.default.view);
+                    config.default = cloneView(findViewByName(config.default.view));
                     config.default.params = params;
                 }
             }
@@ -100,6 +100,22 @@ window.app.router = (function() {
         } else {
             throw new Error('router has no default view');
         }
+    }
+
+    function cloneView(view) {
+        if (!view) {
+            throw new Error('Can\'t clone empty view');
+        }
+
+        let clone = JSON.parse(JSON.stringify(view));
+        clone.url = view.url;
+        if (view.condition) {
+            clone.condition = view.condition;
+        }
+        if (view.data) {
+            clone.data = view.data;
+        }
+        return clone;
     }
 
     function renderView(activeComponents, data) {
