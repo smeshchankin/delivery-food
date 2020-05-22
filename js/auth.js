@@ -10,6 +10,7 @@ window.app.auth = (function() {
     let module = {
         init: init,
         toggle: toggle,
+        open: open,
         isAuthorized: isAuthorized,
         getUser: getUser,
         addLoginListener: addLoginListener
@@ -43,6 +44,11 @@ window.app.auth = (function() {
     function toggle(url) {
         redirect = typeof url === 'string' ? url || '' : '';
         return dialog.toggle(elems.modal.id)();
+    }
+
+    function open(url) {
+        redirect = typeof url === 'string' ? url || '' : '';
+        return dialog.open(elems.modal.id)();
     }
 
     function isAuthorized() {

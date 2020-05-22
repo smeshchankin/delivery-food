@@ -30,7 +30,7 @@
         isAuthorized: auth.isAuthorized,
         unauthorizedHandler: function(path) {
             window.location.hash = '';
-            auth.toggle(path);
+            auth.open(path);
         }
     };
 
