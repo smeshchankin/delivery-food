@@ -29,11 +29,12 @@ window.app.router = (function() {
 
             if (config.default) {
                 if (typeof config.default === 'string') {
-                    config.default.view = findViewByName(config.default);
-                    config.default.view.params = [];
+                    config.default = findViewByName(config.default);
+                    config.default.params = [];
                 } else {
-                    config.default.view = findViewByName(config.default.view);
-                    config.default.view.params = config.default.params;
+                    let params = config.default.params;
+                    config.default = findViewByName(config.default.view);
+                    config.default.params = params;
                 }
             }
 
@@ -54,7 +55,7 @@ window.app.router = (function() {
 
     function goByPath(path) {
         if (!path && config.default) {
-            let view = config.default.view;
+            let view = config.default;
             path = view.url.compile(view.params);
         }
         window.location.hash = path || '';
@@ -95,7 +96,7 @@ window.app.router = (function() {
             }
             throw new Error('Can\'t find router.view by ' + name + '=' + value);
         } else  if (config.default) {
-            return config.default.view;
+            return config.default;
         } else {
             throw new Error('router has no default view');
         }
