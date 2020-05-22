@@ -28,9 +28,6 @@
         }
     ],
     "default": {
-        "view": "provider",
-        "params": {
-            "id": "tn"
-        }
+        "view": "index"
     }
 }
