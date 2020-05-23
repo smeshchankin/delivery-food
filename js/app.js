@@ -8,21 +8,24 @@
     let router = window.app.router;
 
     let data = {
-        search: function(params) {
+        searchHeader: function(params) {
+            search.search(params.search);
+            return search.getResult();
+        },
+        searchList: function(params) {
             search.search(params.search);
             let data = search.getResult();
-            return [data.products, data];
+            return data ? data.products : [];
         },
-        products: function(params) {
+        productsHeader: function(params) {
+            return db.getRestaurant(params.id);
+        },
+        productsList: function(params) {
             let data = db.getRestaurant(params.id);
-            if (data) {
-                return [data.products, data];
-            } else {
-                return [];
-            }
+            return data ? data.products : [];
         },
         providers: function(params) {
-            return [db.getRestaurants()];
+            return db.getRestaurants();
         }
     };
 

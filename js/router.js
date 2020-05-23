@@ -13,7 +13,7 @@ window.app.router = (function() {
     };
 
     let config = { views: [] };
-    let components = [];
+    let components = {};
 
     // data & methods are used in eval function
     function init(configPath, data, methods) {
@@ -21,18 +21,31 @@ window.app.router = (function() {
             config = result;
 
             if (config.components) {
-                config.components = config.components.map(function(component) {
-                    return builder.build(component);
-                });
+                config.components = config.components.reduce(function(map, componentConfig) {
+                    map[componentConfig.name] = builder.build(componentConfig);
+                    return map;
+                }, {});
             }
 
             config.views.forEach(function(view) {
                 view.url = url.compile(view.path);
-                view.data = !view.data ? function() { return []; } : eval(view.data);
+
+                let dataMap = {};
+                for (let i = 0; i < view.components.length; i++) {
+                    dataMap[view.components[i]] = view.data && view.data[i] ?
+                        eval(view.data[i]) : function() { return {}; };
+                }
+                view.data = dataMap;
+
                 if (view.condition) {
                     view.condition.check = eval(view.condition.check);
                     view.condition.failed = eval(view.condition.failed);
                 }
+
+                view.components = view.components.reduce(function(map, componentName) {
+                    map[componentName] = window.app.component[componentName];
+                    return map;
+                }, {});
             });
 
             if (config.default) {
@@ -47,8 +60,11 @@ window.app.router = (function() {
             }
 
             // Collect only unique components
-            components = config.views.flatMap(view => view.components)
-                .filter((value, index, array) => array.indexOf(value) === index);
+            config.views.forEach(view => {
+                Object.keys(view.components).forEach(key => {
+                    components[key] = view.components[key];
+                })
+            });
         }).then(function() {
             window.addEventListener('hashchange', route);
             route();
@@ -79,7 +95,7 @@ window.app.router = (function() {
             return;
         }
         let params = !path && view.params ? view.params : view.url.values(path);
-        renderView(view.components, view.data(params));
+        renderView(view.components, view.data, params);
     }
 
     function findViewByName(name) {
@@ -120,25 +136,26 @@ window.app.router = (function() {
         if (view.condition) {
             clone.condition = view.condition;
         }
+        clone.components = view.components;
         if (view.data) {
             clone.data = view.data;
         }
         return clone;
     }
 
-    function renderView(activeComponents, data) {
-        const inactiveComponents = components.filter(componentName => !activeComponents.includes(componentName));
-        inactiveComponents.forEach(componentName => {
-            let component = window.app.component[componentName];
-            component.hide();
-            component.destroy();
-        });
+    function renderView(activeComponents, data, params) {
+        let activeComponentsNames = Object.keys(activeComponents);
+        Object.keys(components)
+            .filter(componentName => !activeComponentsNames.includes(componentName))
+            .forEach(componentName => {
+                let component = components[componentName];
+                component.hide();
+                component.destroy();
+            });
 
-        let idx = 0;
-        activeComponents.forEach(componentName => {
-            let componentData = idx < data.length ? data[idx++] : {};
-
-            let component = window.app.component[componentName];
+        activeComponentsNames.forEach(componentName => {
+            let componentData = data[componentName](params);
+            let component = activeComponents[componentName];
             component.init(componentData);
             component.show();
         });

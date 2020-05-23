@@ -8,7 +8,7 @@
                 "failed": "methods.unauthorizedHandler"
             },
             "components": ["products", "productsHeader"],
-            "data": "data.search"
+            "data": ["data.searchList", "data.searchHeader"]
         },
         {
             "name": "provider",
@@ -18,7 +18,7 @@
                 "failed": "methods.unauthorizedHandler"
             },
             "components": ["products", "productsHeader"],
-            "data": "data.products"
+            "data": ["data.productsList", "data.productsHeader"]
         },
         {
             "name": "404",
@@ -29,7 +29,7 @@
             "name": "index",
             "path": "/",
             "components": ["providers", "providersHeader"],
-            "data": "data.providers"
+            "data": ["data.providers"]
         }
     ],
     "default": {
