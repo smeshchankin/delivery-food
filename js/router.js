@@ -43,7 +43,15 @@ window.app.router = (function() {
                 }
 
                 view.components = view.components.reduce(function(map, componentName) {
-                    map[componentName] = window.app.component[componentName];
+                    let component = window.app.component[componentName];
+                    if (!component) {
+                        component = config.components[componentName];
+                        if (!component) {
+                            throw new Error('Component ' + componentName + ' is not declared');
+                        }
+                    }
+                    map[componentName] = component;
+
                     return map;
                 }, {});
             });
