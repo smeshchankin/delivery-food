@@ -21,6 +21,11 @@
             "data": "data.products"
         },
         {
+            "name": "404",
+            "path": "/404",
+            "components": ["page404"]
+        },
+        {
             "name": "index",
             "path": "/",
             "components": ["providers", "providersHeader"],

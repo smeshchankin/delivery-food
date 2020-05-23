@@ -20,7 +20,7 @@ window.app.router = (function() {
             config = result;
             config.views.forEach(function(view) {
                 view.url = url.compile(view.path);
-                view.data = eval(view.data);
+                view.data = !view.data ? function() { return []; } : eval(view.data);
                 if (view.condition) {
                     view.condition.check = eval(view.condition.check);
                     view.condition.failed = eval(view.condition.failed);
