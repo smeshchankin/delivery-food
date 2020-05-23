@@ -2,6 +2,7 @@
 
 window.app = window.app || {};
 window.app.router = (function() {
+    let builder = window.app.component.builder;
     let utils = window.app.utils;
     let url = window.app.url;
 
@@ -18,6 +19,13 @@ window.app.router = (function() {
     function init(configPath, data, methods) {
         utils.getData(configPath).then(function(result) {
             config = result;
+
+            if (config.components) {
+                config.components = config.components.map(function(component) {
+                    return builder.build(component);
+                });
+            }
+
             config.views.forEach(function(view) {
                 view.url = url.compile(view.path);
                 view.data = !view.data ? function() { return []; } : eval(view.data);
