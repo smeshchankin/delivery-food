@@ -33,7 +33,7 @@ window.app.router = (function() {
                 let dataMap = {};
                 for (let i = 0; i < view.components.length; i++) {
                     dataMap[view.components[i]] = view.data && view.data[i] ?
-                        eval(view.data[i]) : function() { return {}; };
+                        eval(view.data[i]) : function() { return null; };
                 }
                 view.data = dataMap;
 

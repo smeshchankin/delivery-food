@@ -41,6 +41,18 @@
             "template": ".restaurants-header"
         },
         {
+            "name": "providers",
+            "template": "#providers > .card"
+        },
+        {
+            "name": "productsHeader",
+            "template": "#restaurant-info"
+        },
+        {
+            "name": "products",
+            "template": "#products > .card"
+        },
+        {
             "name": "page404",
             "template": "#page404"
         }

@@ -2,7 +2,7 @@
   {
     "id": "pp",
     "name": "Pizza Plus",
-    "time_of_delivery": 50,
+    "tag": 50,
     "rating": 4.5,
     "price": 900,
     "category": "Pizza",
@@ -12,7 +12,7 @@
   {
     "id": "tn",
     "name": "Tanuki",
-    "time_of_delivery": 60,
+    "tag": 60,
     "rating": 4.3,
     "price": 1200,
     "category": "Sushi, rolls",
@@ -22,7 +22,7 @@
   {
     "id": "fb",
     "name": "FoodBand",
-    "time_of_delivery": 40,
+    "tag": 40,
     "rating": 4.4,
     "price": 450,
     "category": "Pizza",
@@ -32,7 +32,7 @@
   {
     "id": "ps",
     "name": "Palki skalki",
-    "time_of_delivery": 55,
+    "tag": 55,
     "rating": 4.1,
     "price": 500,
     "category": "Pizza",
@@ -42,7 +42,7 @@
   {
     "id": "gl",
     "name": "Gusi Lebedi",
-    "time_of_delivery": 75,
+    "tag": 75,
     "rating": 4.7,
     "price": 1000,
     "category": "Russian cuisine",
@@ -52,7 +52,7 @@
   {
     "id": "pb",
     "name": "PizzaBurger",
-    "time_of_delivery": 45,
+    "tag": 45,
     "rating": 4.6,
     "price": 700,
     "category": "Pizza",
