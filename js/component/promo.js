@@ -21,15 +21,11 @@ window.app.component.promo = (function() {
 
     function init(list) {
         nodes = filler.populate(template, list);
-        swiper = new Swiper('.swiper-container', {
-            autoplay: true,
-            loop: true
-        });
+        swiper = new Swiper('.swiper-container');
     }
 
     function destroy() {
         swiper.destroy(true, false);
-        nodes = utils.applySelector('.promo swiper-slide');
         filler.delete(nodes);
         nodes = [];
     }
