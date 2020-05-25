@@ -6,9 +6,11 @@ window.app.db = (function() {
 
     const PATH = 'db/providers.json';
     let restaurants = [];
+    let menu = [];
 
     let module = {
         init: init,
+        getMenu: getMenu,
         getRestaurants: getRestaurants,
         getRestaurant: getRestaurant,
         searchProducts: searchProducts,
@@ -16,6 +18,8 @@ window.app.db = (function() {
     };
 
     async function init() {
+        menu = await utils.getData('db/menu.json');
+
         restaurants = [];
         const providers = await utils.getData(PATH);
         let promises = providers.map(async function(provider) {
@@ -25,7 +29,12 @@ window.app.db = (function() {
                 provider.products = products;
             });
         });
+
         return Promise.all(promises);
+    }
+
+    function getMenu() {
+        return menu;
     }
 
     function getRestaurants() {

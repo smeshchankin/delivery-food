@@ -1,0 +1,18 @@
+[
+    {
+        "id": "info/restaurants",
+        "name": "For Restaurants"
+    },
+    {
+        "id": "info/couriers",
+        "name": "For Couriers"
+    },
+    {
+        "id": "info/press",
+        "name": "Press Center"
+    },
+    {
+        "id": "info/contacts",
+        "name": "Contacts"
+    }
+]

@@ -26,6 +26,9 @@
         },
         providers: function(params) {
             return db.getRestaurants();
+        },
+        menu: function(params) {
+            return db.getMenu();
         }
     };
 

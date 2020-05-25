@@ -7,8 +7,8 @@
                 "check": "methods.isAuthorized",
                 "failed": "methods.unauthorizedHandler"
             },
-            "components": ["products", "productsHeader"],
-            "data": ["data.searchList", "data.searchHeader"]
+            "components": ["menu", "products", "productsHeader"],
+            "data": ["data.menu", "data.searchList", "data.searchHeader"]
         },
         {
             "name": "provider",
@@ -17,8 +17,8 @@
                 "check": "methods.isAuthorized",
                 "failed": "methods.unauthorizedHandler"
             },
-            "components": ["products", "productsHeader"],
-            "data": ["data.productsList", "data.productsHeader"]
+            "components": ["menu", "products", "productsHeader"],
+            "data": ["data.menu", "data.productsList", "data.productsHeader"]
         },
         {
             "name": "404",
@@ -28,8 +28,8 @@
         {
             "name": "index",
             "path": "/",
-            "components": ["providers", "providersHeader"],
-            "data": ["data.providers"]
+            "components": ["menu", "providers", "providersHeader"],
+            "data": ["data.menu", "data.providers"]
         }
     ],
     "default": {
@@ -55,6 +55,10 @@
         {
             "name": "page404",
             "template": "#page404"
+        },
+        {
+            "name": "menu",
+            "template": ".footer-link"
         }
     ]
 }
