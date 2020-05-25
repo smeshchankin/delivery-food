@@ -29,6 +29,9 @@
         },
         menu: function(params) {
             return db.getMenu();
+        },
+        social: function(params) {
+            return db.getSocial();
         }
     };
 

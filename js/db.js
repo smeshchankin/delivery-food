@@ -5,12 +5,15 @@ window.app.db = (function() {
     let utils = window.app.utils;
 
     const PATH = 'db/providers.json';
-    let restaurants = [];
     let menu = [];
+    let social= [];
+    let restaurants = [];
+
 
     let module = {
         init: init,
         getMenu: getMenu,
+        getSocial: getSocial,
         getRestaurants: getRestaurants,
         getRestaurant: getRestaurant,
         searchProducts: searchProducts,
@@ -19,6 +22,7 @@ window.app.db = (function() {
 
     async function init() {
         menu = await utils.getData('db/menu.json');
+        social = await utils.getData('db/social.json');
 
         restaurants = [];
         const providers = await utils.getData(PATH);
@@ -35,6 +39,10 @@ window.app.db = (function() {
 
     function getMenu() {
         return menu;
+    }
+
+    function getSocial() {
+        return social;
     }
 
     function getRestaurants() {

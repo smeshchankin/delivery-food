@@ -1,0 +1,17 @@
+[
+    {
+        "id": "social/instagram",
+        "image": "icon/social/instagram.svg",
+        "alt": "Instagram"
+    },
+    {
+        "id": "social/facebook",
+        "image": "icon/social/fb.svg",
+        "alt": "Facebook"
+    },
+    {
+        "id": "social/vkontakte",
+        "image": "icon/social/vk.svg",
+        "alt": "VKontakte"
+    }
+]
