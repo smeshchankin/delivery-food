@@ -1,0 +1,22 @@
+[
+    {
+        "class": "swiper-slide pizza",
+        "title": "Home Food Delivery Online Service",
+        "text": "Dishes from your favorite restaurant will be delivered by a courier in gloves, a mask and an antiseptic"
+    },
+    {
+        "class": "swiper-slide kebab",
+        "title": "Kebabs for May with a 35% discount",
+        "text": "Order kebabs in any restaurant until May 10 and get a discount on OMAGAD promo code"
+    },
+    {
+        "class": "swiper-slide vegetables",
+        "title": "20% discount on all food with LOVE.JS promo code",
+        "text": "A dish from the restaurant will be brought along with two front-end gift books"
+    },
+    {
+        "class": "swiper-slide sushi",
+        "title": "Sets with up to 30% discount in restaurants",
+        "text": "Discounts for sets until May 30 according to the DADADA promo code"
+    }
+]

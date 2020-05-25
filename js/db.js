@@ -6,13 +6,15 @@ window.app.db = (function() {
 
     const PATH = 'db/providers.json';
     let menu = [];
-    let social= [];
+    let promo = [];
+    let social = [];
     let restaurants = [];
 
 
     let module = {
         init: init,
         getMenu: getMenu,
+        getPromo: getPromo,
         getSocial: getSocial,
         getRestaurants: getRestaurants,
         getRestaurant: getRestaurant,
@@ -22,6 +24,7 @@ window.app.db = (function() {
 
     async function init() {
         menu = await utils.getData('db/menu.json');
+        promo = await utils.getData('db/promo.json');
         social = await utils.getData('db/social.json');
 
         restaurants = [];
@@ -39,6 +42,10 @@ window.app.db = (function() {
 
     function getMenu() {
         return menu;
+    }
+
+    function getPromo() {
+        return promo;
     }
 
     function getSocial() {

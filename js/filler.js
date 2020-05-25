@@ -57,6 +57,10 @@ window.app.filler = (function() {
     function fillNode(node, data) {
         let obj = Object.assign({}, data);
 
+        if (obj.class) {
+            node.className = fill(node.className, 'class', obj.class);
+        }
+
         if (node.href && obj.id) {
             node.href = fill(node.href, 'id', obj.id);
         }

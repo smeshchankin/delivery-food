@@ -40,30 +40,9 @@
         <div class="container">
             <div class="container-promo swiper-container">
                 <div class="swiper-wrapper">
-                    <section class="swiper-slide promo pizza">
-                        <h1 class="promo-title">Home Food Delivery Online Service</h1>
-                        <p class="promo-text">
-                            Dishes from your favorite restaurant will be delivered
-                            by a courier in gloves, a mask and an antiseptic
-                        </p>
-                    </section>
-                    <section class="swiper-slide promo kebab">
-	    				<h1 class="promo-title">Kebabs for May with a 35% discount</h1>
-    					<p class="promo-text">
-					    	Order kebabs in any restaurant until May 10 and get a discount on OMAGAD promo code
-				    	</p>
-			    	</section>
-		    		<section class="swiper-slide promo vegetables">
-	    				<h1 class="promo-title">20% discount on all food with LOVE.JS promo code</h1>
-    					<p class="promo-text">
-					    	A dish from the restaurant will be brought along with two front-end gift books
-				    	</p>
-			    	</section>
-		    		<section class="swiper-slide promo sushi">
-	    				<h1 class="promo-title">Sets with up to 30% discount in restaurants</h1>
-    					<p class="promo-text">
-						    Discounts for sets until May 30 according to the DADADA promo code
-					    </p>
+                    <section class="promo hide {{class}}">
+                        <h1 class="promo-title">{{title}}</h1>
+                        <p class="promo-text">{{text}}</p>
                     </section>
                 </div>
             </div>
@@ -210,6 +189,7 @@
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/component/builder.js"></script>
+    <script src="js/component/promo.js"></script>
     <script src="js/search.js"></script>
     <script src="js/url.js"></script>
     <script src="js/router.js"></script>

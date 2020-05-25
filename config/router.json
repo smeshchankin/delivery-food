@@ -7,8 +7,8 @@
                 "check": "methods.isAuthorized",
                 "failed": "methods.unauthorizedHandler"
             },
-            "components": ["menu", "social", "products", "productsHeader"],
-            "data": ["data.menu", "data.social", "data.searchList", "data.searchHeader"]
+            "components": ["promo", "menu", "social", "products", "productsHeader"],
+            "data": ["data.promo", "data.menu", "data.social", "data.searchList", "data.searchHeader"]
         },
         {
             "name": "provider",
@@ -17,8 +17,8 @@
                 "check": "methods.isAuthorized",
                 "failed": "methods.unauthorizedHandler"
             },
-            "components": ["menu", "social", "products", "productsHeader"],
-            "data": ["data.menu", "data.social", "data.productsList", "data.productsHeader"]
+            "components": ["promo", "menu", "social", "products", "productsHeader"],
+            "data": ["data.promo", "data.menu", "data.social", "data.productsList", "data.productsHeader"]
         },
         {
             "name": "404",
@@ -28,8 +28,8 @@
         {
             "name": "index",
             "path": "/",
-            "components": ["menu", "social", "providers", "providersHeader"],
-            "data": ["data.menu", "data.social", "data.providers"]
+            "components": ["promo", "menu", "social", "providers", "providersHeader"],
+            "data": ["data.promo", "data.menu", "data.social", "data.providers"]
         }
     ],
     "default": {

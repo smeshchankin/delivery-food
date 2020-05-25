@@ -27,6 +27,9 @@
         providers: function(params) {
             return db.getRestaurants();
         },
+        promo: function(params) {
+            return db.getPromo();
+        },
         menu: function(params) {
             return db.getMenu();
         },
@@ -52,9 +55,4 @@
     });
 
     search.init();
-
-    new Swiper('.swiper-container', {
-        loop: true,
-        autoplay: true
-    });
 }());
