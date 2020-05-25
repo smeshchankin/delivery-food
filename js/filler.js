@@ -7,11 +7,11 @@ window.app.filler = (function() {
         delete: remove
     };
 
-    function populate(templateNode, data, formatFunction) {
+    function populate(templateNode, data) {
         if (data instanceof Array) {
-            return populateList(templateNode, data, formatFunction);
+            return populateList(templateNode, data);
         } else {
-            return populateList(templateNode, [data], formatFunction);
+            return populateList(templateNode, [data]);
         }
     }
 
@@ -24,7 +24,7 @@ window.app.filler = (function() {
         });
     }
 
-    function populateList(templateNode, data, formatFunction) {
+    function populateList(templateNode, data) {
         let next = removeComponents(templateNode);
         let nodes = [];
         if (data) {
@@ -34,7 +34,7 @@ window.app.filler = (function() {
                 component.dataset.component = '';
                 component.classList.remove('hide');
                 parent.insertBefore(component, next);
-                fillNode(component, data[i], formatFunction);
+                fillNode(component, data[i]);
 
                 nodes.push(component);
             }
@@ -54,11 +54,8 @@ window.app.filler = (function() {
         return next;
     }
 
-    function fillNode(node, data, formatFunction) {
+    function fillNode(node, data) {
         let obj = Object.assign({}, data);
-        if (formatFunction) {
-            obj = formatFunction(obj);
-        }
 
         if (node.href && obj.id) {
             node.href = fill(node.href, 'id', obj.id);

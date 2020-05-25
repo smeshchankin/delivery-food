@@ -78,7 +78,7 @@
                     <h2 class="restaurants-title">{{name}}</h2>
                     <div class="card-info">
                         <div class="rating">{{rating}}</div>
-                        <div class="price">{{price}}</div>
+                        <div class="price">From ${{price}}.00</div>
                         <div class="category">{{category}}</div>
                     </div>
                 </div>
@@ -89,11 +89,11 @@
                         <div class="card-text">
                             <div class="card-header">
                                 <h3 class="card-title">{{name}}</h3>
-                                <span class="card-tag tag">{{tag}}</span>
+                                <span class="card-tag tag">{{tag}} min</span>
                             </div>
                             <div class="card-info">
                                 <div class="rating">{{rating}}</div>
-                                <div class="price">{{price}}</div>
+                                <div class="price">From ${{price}}.00</div>
                                 <div class="category">{{category}}</div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                                 <span class="button-text button-card-text">Add to cart</span>
                                 <img src="icon/cart-white.svg" alt="Add to the shopping cart" class="button-card-icon" />
                             </button>
-                            <strong class="card-price-bold">{{price}}</strong>
+                            <strong class="card-price-bold">${{price}}.00</strong>
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
             <div id="product-list" class="modal-body">
                 <div class="product-row hide">
                     <span class="product-name">{{name}}</span>
-                    <strong class="product-price">{{price}}</strong>
+                    <strong class="product-price">${{price}}.00</strong>
                     <div class="product-counter">
                         <img src="icon/trash.svg" alt="Trash" onclick="app.cart.remove('{{id}}')" />
                         <button class="button-counter" onclick="app.cart.add('{{id}}', -1)">-</button>
@@ -176,7 +176,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <span class="price-tag tag">$99.95</span>
+                <span class="price-tag tag hide">${{total}}.00</span>
                 <div class="buttons">
                     <button class="button button-primary">Checkout</button>
                     <button class="button" onclick="app.cart.clear()">Cancel</button>
@@ -213,7 +213,6 @@
 
     <script src="js/dialog.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/formatter.js"></script>
     <script src="js/db.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/filler.js"></script>

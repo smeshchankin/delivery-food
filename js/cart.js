@@ -3,7 +3,6 @@
 window.app = window.app || {};
 window.app.cart = (function() {
     let filler = window.app.filler;
-    let formatter = window.app.formatter;
     let dialog = window.app.dialog;
     let utils = window.app.utils;
     let db = window.app.db;
@@ -84,9 +83,9 @@ window.app.cart = (function() {
             elems.button.classList.add('hide');
         }
         list = storage.cart.get(user());
-        filler.populate(elems.modal.template, list, formatter.product);
+        filler.populate(elems.modal.template, list);
         const total = list.reduce((sum, row) => sum + row.price * row.count, 0);
-        elems.modal.total.textContent = formatter.price(total);
+        filler.populate(elems.modal.total, { total: total });
     }
 
     function toggle() {
