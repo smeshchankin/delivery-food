@@ -11,9 +11,7 @@ window.app.db = (function() {
 
     let module = {
         init: init,
-        getMenu: getMenu,
-        getPromo: getPromo,
-        getSocial: getSocial,
+        getStorage: getStorage,
         getRestaurants: getRestaurants,
         getRestaurant: getRestaurant,
         searchProducts: searchProducts,
@@ -41,16 +39,8 @@ window.app.db = (function() {
         return Promise.all(promisesConfig, promisesProviders);
     }
 
-    function getMenu() {
-        return storage.menu;
-    }
-
-    function getPromo() {
-        return storage.promo;
-    }
-
-    function getSocial() {
-        return storage.social;
+    function getStorage(name) {
+        return storage[name];
     }
 
     function getRestaurants() {

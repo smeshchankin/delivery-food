@@ -28,13 +28,13 @@
             return db.getRestaurants();
         },
         promo: function(params) {
-            return db.getPromo();
+            return db.getStorage('promo');
         },
         menu: function(params) {
-            return db.getMenu();
+            return db.getStorage('menu');
         },
         social: function(params) {
-            return db.getSocial();
+            return db.getStorage('social');
         }
     };
 
