@@ -5,9 +5,7 @@ window.app.db = (function() {
     let utils = window.app.utils;
 
     const PATH = 'db/providers.json';
-    let menu = [];
-    let promo = [];
-    let social = [];
+    let storage = {};
     let restaurants = [];
 
 
@@ -23,13 +21,16 @@ window.app.db = (function() {
     };
 
     async function init() {
-        menu = await utils.getData('db/menu.json');
-        promo = await utils.getData('db/promo.json');
-        social = await utils.getData('db/social.json');
+        const config = await utils.getData('config/db.json');
+        const promisesConfig = config.map(async function(record) {
+            return utils.getData('db/' + record.path).then(function(data) {
+                storage[record.name] = data;
+            });
+        });
 
         restaurants = [];
         const providers = await utils.getData(PATH);
-        let promises = providers.map(async function(provider) {
+        const promisesProviders = providers.map(async function(provider) {
             restaurants.push(provider);
 
             return utils.getData('db/products/' + provider.products).then(function(products) {
@@ -37,19 +38,19 @@ window.app.db = (function() {
             });
         });
 
-        return Promise.all(promises);
+        return Promise.all(promisesConfig, promisesProviders);
     }
 
     function getMenu() {
-        return menu;
+        return storage.menu;
     }
 
     function getPromo() {
-        return promo;
+        return storage.promo;
     }
 
     function getSocial() {
-        return social;
+        return storage.social;
     }
 
     function getRestaurants() {
