@@ -11,6 +11,7 @@ window.app.db = (function() {
         init: init,
         getStorage: getStorage,
         getStorageRecord: getStorageRecord,
+        getStorageConnectionRecord: getStorageConnectionRecord,
         searchProducts: searchProducts,
         productById: productById
     };
@@ -22,7 +23,8 @@ window.app.db = (function() {
                 storage[record.name] = data;
                 if (record.connection) {
                     return data.map(async function(dataRow) {
-                        dataRow[record.connection] = await utils.getData('db/' + dataRow[record.connection]);
+                        dataRow[record.connection] =
+                            await utils.getData('db/' + dataRow[record.connection]);
                     })
                 }
             });
@@ -39,6 +41,11 @@ window.app.db = (function() {
         return getStorage(name).find(function(obj) { return obj[key] == value; }) || null;
     }
 
+    function getStorageConnectionRecord(name, connection, key, value) {
+        return getStorage(name).map(res => res[connection]).flat()
+            .find(p => p[key] == value) || null;
+    }
+
     function searchProducts(str) {
         if (!str) {
             return [];
@@ -50,8 +57,7 @@ window.app.db = (function() {
     }
 
     function productById(id) {
-        return getStorage('providers').map(res => res.products).flat()
-            .find(p => p.id === id) || null;
+        return getStorageConnectionRecord('providers', 'products', 'id', id);
     }
 
     return module;
