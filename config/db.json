@@ -1,0 +1,14 @@
+[
+    {
+        "name": "menu",
+        "path": "menu.json"
+    },
+    {
+        "name": "promo",
+        "path": "promo.json"
+    },
+    {
+        "name": "social",
+        "path": "social.json"
+    }
+]
