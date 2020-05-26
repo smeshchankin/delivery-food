@@ -46,14 +46,20 @@ window.app.db = (function() {
             .find(p => p[key] == value) || null;
     }
 
-    function searchProducts(str) {
-        if (!str) {
+    function searchConnectionRecords(text, name, connection, filter) {
+        if (!text) {
             return [];
         }
 
-        let text = str.toLowerCase().trim();
-        return getStorage('providers').map(res => res.products).flat()
-            .filter(p => p.name.toLowerCase().includes(text));
+        return getStorage(name).map(res => res[connection]).flat()
+            .filter(p => filter(p, text));
+    }
+
+    function searchProducts(str) {
+        return searchConnectionRecords(str.toLowerCase().trim(), 'providers', 'products',
+            function(obj, text) {
+                return obj.name.toLowerCase().includes(text)
+            });
     }
 
     function productById(id) {

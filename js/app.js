@@ -52,7 +52,6 @@
 
     db.init().then(function() {
         router.init('config/router.json', data, methods);
+        search.init();
     });
-
-    search.init();
 }());
