@@ -52,6 +52,8 @@
 
     db.init().then(function() {
         router.init('config/router.json', data, methods);
+    }).then(function() {
+        console.log(db.getStorage('providers'));
     });
 
     search.init();

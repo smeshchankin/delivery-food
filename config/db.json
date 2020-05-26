@@ -10,5 +10,9 @@
     {
         "name": "social",
         "path": "social.json"
+    },
+    {
+        "name": "providers",
+        "path": "providers.json"
     }
 ]
