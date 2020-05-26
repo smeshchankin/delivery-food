@@ -25,7 +25,7 @@
             return data ? data.products : [];
         },
         providers: function(params) {
-            return db.getRestaurants();
+            return db.getStorage('providers');
         },
         promo: function(params) {
             return db.getStorage('promo');
@@ -52,8 +52,6 @@
 
     db.init().then(function() {
         router.init('config/router.json', data, methods);
-    }).then(function() {
-        console.log(db.getStorage('providers'));
     });
 
     search.init();

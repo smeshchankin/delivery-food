@@ -6,13 +6,10 @@ window.app.db = (function() {
 
     const PATH = 'db/providers.json';
     let storage = {};
-    let restaurants = [];
-
 
     let module = {
         init: init,
         getStorage: getStorage,
-        getRestaurants: getRestaurants,
         getRestaurant: getRestaurant,
         searchProducts: searchProducts,
         productById: productById
@@ -20,40 +17,26 @@ window.app.db = (function() {
 
     async function init() {
         const config = await utils.getData('config/db.json');
-        const promisesConfig = config.map(async function(record) {
+        const promises = config.map(async function(record) {
             return utils.getData('db/' + record.path).then(function(data) {
                 storage[record.name] = data;
                 if (record.connection) {
                     return data.map(async function(dataRow) {
-                        dataRow[record.connection] = await utils.getData('db/products/' + dataRow[record.connection]);
+                        dataRow[record.connection] = await utils.getData('db/' + dataRow[record.connection]);
                     })
                 }
             });
         });
 
-        restaurants = [];
-        const providers = await utils.getData(PATH);
-        const promisesProviders = providers.map(async function(provider) {
-            restaurants.push(provider);
-
-            return utils.getData('db/products/' + provider.products).then(function(products) {
-                provider.products = products;
-            });
-        });
-
-        return Promise.all(promisesConfig, promisesProviders);
+        return Promise.all(promises);
     }
 
     function getStorage(name) {
         return storage[name];
     }
 
-    function getRestaurants() {
-        return restaurants;
-    }
-
     function getRestaurant(id) {
-        return restaurants.find(function(obj) { return obj.id == id; }) || null;
+        return getStorage('providers').find(function(obj) { return obj.id == id; }) || null;
     }
 
     function searchProducts(str) {
@@ -62,12 +45,12 @@ window.app.db = (function() {
         }
 
         let text = str.toLowerCase().trim();
-        return restaurants.map(res => res.products).flat()
+        return getStorage('providers').map(res => res.products).flat()
             .filter(p => p.name.toLowerCase().includes(text));
     }
 
     function productById(id) {
-        return restaurants.map(res => res.products).flat()
+        return getStorage('providers').map(res => res.products).flat()
             .find(p => p.id === id) || null;
     }
 

@@ -7,7 +7,7 @@
     "price": 900,
     "category": "Pizza",
     "image": "img/providers/pizza-plus.jpg",
-    "products": "pizza-plus.json"
+    "products": "products/pizza-plus.json"
   },
   {
     "id": "tn",
@@ -17,7 +17,7 @@
     "price": 1200,
     "category": "Sushi, rolls",
     "image": "img/providers/tanuki.jpg",
-    "products": "tanuki.json"
+    "products": "products/tanuki.json"
   },
   {
     "id": "fb",
@@ -27,7 +27,7 @@
     "price": 450,
     "category": "Pizza",
     "image": "img/providers/food-band.jpg",
-    "products": "food-band.json"
+    "products": "products/food-band.json"
   },
   {
     "id": "ps",
@@ -37,7 +37,7 @@
     "price": 500,
     "category": "Pizza",
     "image": "img/providers/palki-skalki.jpg",
-    "products": "palki-skalki.json"
+    "products": "products/palki-skalki.json"
   },
   {
     "id": "gl",
@@ -47,7 +47,7 @@
     "price": 1000,
     "category": "Russian cuisine",
     "image": "img/providers/gusi-lebedi.jpg",
-    "products": "gusi-lebedi.json"
+    "products": "products/gusi-lebedi.json"
   },
   {
     "id": "pb",
@@ -57,6 +57,6 @@
     "price": 700,
     "category": "Pizza",
     "image": "img/providers/pizza-burger.jpg",
-    "products": "pizza-burger.json"
+    "products": "products/pizza-burger.json"
   }
 ]
