@@ -36,8 +36,11 @@ window.app.search = (function() {
     }
 
     function search(value) {
-        result.name = 'Search result: ' + (value ? value : '');
-        result.products = db.searchProducts(value);
+        let text = value ? value.toLowerCase().trim() : '';
+        result.name = 'Search result: ' + text;
+        result.products = db.searchJoinRecords(text, 'providers',
+            (obj, text) => obj.name.toLowerCase().includes(text));
+
         result.price = result.products.length === 0 ? 0 :
             Math.min(...result.products.map(p => p.price));
     }

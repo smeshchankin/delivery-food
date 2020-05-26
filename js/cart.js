@@ -43,7 +43,7 @@ window.app.cart = (function() {
         if (row) {
             row.count += count;
         } else {
-            const product = db.productById(id);
+            const product = db.getStorageJoinRecord('providers', 'id', id);
             if (product) {
                 row = {
                     id: product.id,
