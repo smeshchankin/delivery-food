@@ -23,6 +23,11 @@ window.app.db = (function() {
         const promisesConfig = config.map(async function(record) {
             return utils.getData('db/' + record.path).then(function(data) {
                 storage[record.name] = data;
+                if (record.connection) {
+                    return data.map(async function(dataRow) {
+                        dataRow[record.connection] = await utils.getData('db/products/' + dataRow[record.connection]);
+                    })
+                }
             });
         });
 

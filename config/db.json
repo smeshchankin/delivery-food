@@ -13,6 +13,7 @@
     },
     {
         "name": "providers",
-        "path": "providers.json"
+        "path": "providers.json",
+        "connection": "products"
     }
 ]
