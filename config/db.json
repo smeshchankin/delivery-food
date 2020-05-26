@@ -14,6 +14,6 @@
     {
         "name": "providers",
         "path": "providers.json",
-        "connection": "products"
+        "join": "products"
     }
 ]

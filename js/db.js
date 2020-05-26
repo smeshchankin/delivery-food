@@ -11,7 +11,7 @@ window.app.db = (function() {
         init: init,
         getStorage: getStorage,
         getStorageRecord: getStorageRecord,
-        getStorageConnectionRecord: getStorageConnectionRecord,
+        getStorageJoinRecord: getStorageJoinRecord,
         searchProducts: searchProducts,
         productById: productById
     };
@@ -21,10 +21,10 @@ window.app.db = (function() {
         const promises = config.map(async function(record) {
             return utils.getData('db/' + record.path).then(function(data) {
                 storage[record.name] = data;
-                if (record.connection) {
+                if (record.join) {
                     return data.map(async function(dataRow) {
-                        dataRow[record.connection] =
-                            await utils.getData('db/' + dataRow[record.connection]);
+                        dataRow[record.join] =
+                            await utils.getData('db/' + dataRow[record.join]);
                     })
                 }
             });
@@ -41,29 +41,29 @@ window.app.db = (function() {
         return getStorage(name).find(function(obj) { return obj[key] == value; }) || null;
     }
 
-    function getStorageConnectionRecord(name, connection, key, value) {
-        return getStorage(name).map(res => res[connection]).flat()
+    function getStorageJoinRecord(name, join, key, value) {
+        return getStorage(name).map(res => res[join]).flat()
             .find(p => p[key] == value) || null;
     }
 
-    function searchConnectionRecords(text, name, connection, filter) {
+    function searchJoinRecords(text, name, join, filter) {
         if (!text) {
             return [];
         }
 
-        return getStorage(name).map(res => res[connection]).flat()
+        return getStorage(name).map(res => res[join]).flat()
             .filter(p => filter(p, text));
     }
 
     function searchProducts(str) {
-        return searchConnectionRecords(str.toLowerCase().trim(), 'providers', 'products',
+        return searchJoinRecords(str.toLowerCase().trim(), 'providers', 'products',
             function(obj, text) {
                 return obj.name.toLowerCase().includes(text)
             });
     }
 
     function productById(id) {
-        return getStorageConnectionRecord('providers', 'products', 'id', id);
+        return getStorageJoinRecord('providers', 'products', 'id', id);
     }
 
     return module;
