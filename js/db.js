@@ -10,7 +10,7 @@ window.app.db = (function() {
     let module = {
         init: init,
         getStorage: getStorage,
-        getRestaurant: getRestaurant,
+        getStorageRecord: getStorageRecord,
         searchProducts: searchProducts,
         productById: productById
     };
@@ -35,8 +35,8 @@ window.app.db = (function() {
         return storage[name];
     }
 
-    function getRestaurant(id) {
-        return getStorage('providers').find(function(obj) { return obj.id == id; }) || null;
+    function getStorageRecord(name, key, value) {
+        return getStorage(name).find(function(obj) { return obj[key] == value; }) || null;
     }
 
     function searchProducts(str) {

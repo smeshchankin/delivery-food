@@ -18,10 +18,10 @@
             return data ? data.products : [];
         },
         productsHeader: function(params) {
-            return db.getRestaurant(params.id);
+            return db.getStorageRecord('providers', 'id', params.id);
         },
         productsList: function(params) {
-            let data = db.getRestaurant(params.id);
+            let data = db.getStorageRecord('providers', 'id', params.id);
             return data ? data.products : [];
         },
         providers: function(params) {
