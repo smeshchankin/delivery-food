@@ -6,6 +6,7 @@ window.app.db = (function() {
 
     const PATH = 'db/providers.json';
     let storage = {};
+    let joins = {};
 
     let module = {
         init: init,
@@ -22,6 +23,7 @@ window.app.db = (function() {
             return utils.getData('db/' + record.path).then(function(data) {
                 storage[record.name] = data;
                 if (record.join) {
+                    joins[record.name] = record.join;
                     return data.map(async function(dataRow) {
                         dataRow[record.join] =
                             await utils.getData('db/' + dataRow[record.join]);
@@ -41,29 +43,31 @@ window.app.db = (function() {
         return getStorage(name).find(function(obj) { return obj[key] == value; }) || null;
     }
 
-    function getStorageJoinRecord(name, join, key, value) {
+    function getStorageJoinRecord(name, key, value) {
+        const join = joins[name];
         return getStorage(name).map(res => res[join]).flat()
             .find(p => p[key] == value) || null;
     }
 
-    function searchJoinRecords(text, name, join, filter) {
+    function searchJoinRecords(text, name, filter) {
         if (!text) {
             return [];
         }
 
+        const join = joins[name];
         return getStorage(name).map(res => res[join]).flat()
             .filter(p => filter(p, text));
     }
 
     function searchProducts(str) {
-        return searchJoinRecords(str.toLowerCase().trim(), 'providers', 'products',
+        return searchJoinRecords(str.toLowerCase().trim(), 'providers',
             function(obj, text) {
                 return obj.name.toLowerCase().includes(text)
             });
     }
 
     function productById(id) {
-        return getStorageJoinRecord('providers', 'products', 'id', id);
+        return getStorageJoinRecord('providers', 'id', id);
     }
 
     return module;
