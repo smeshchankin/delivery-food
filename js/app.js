@@ -26,15 +26,6 @@
         },
         providers: function(params) {
             return db.getStorage('providers');
-        },
-        promo: function(params) {
-            return db.getStorage('promo');
-        },
-        menu: function(params) {
-            return db.getStorage('menu');
-        },
-        social: function(params) {
-            return db.getStorage('social');
         }
     };
 

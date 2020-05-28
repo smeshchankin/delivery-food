@@ -8,7 +8,7 @@
                 "failed": "methods.unauthorizedHandler"
             },
             "components": ["promo", "menu", "social", "products", "productsHeader"],
-            "data": ["data.promo", "data.menu", "data.social", "data.searchList", "data.searchHeader"]
+            "data": ["promo", "menu", "social", "{{data.searchList}}", "{{data.searchHeader}}"]
         },
         {
             "name": "provider",
@@ -18,7 +18,7 @@
                 "failed": "methods.unauthorizedHandler"
             },
             "components": ["promo", "menu", "social", "products", "productsHeader"],
-            "data": ["data.promo", "data.menu", "data.social", "data.productsList", "data.productsHeader"]
+            "data": ["promo", "menu", "social", "{{data.productsList}}", "{{data.productsHeader}}"]
         },
         {
             "name": "404",
@@ -29,7 +29,7 @@
             "name": "index",
             "path": "/",
             "components": ["promo", "menu", "social", "providers", "providersHeader"],
-            "data": ["data.promo", "data.menu", "data.social", "data.providers"]
+            "data": ["promo", "menu", "social", "{{data.providers}}"]
         }
     ],
     "default": {

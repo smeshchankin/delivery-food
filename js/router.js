@@ -5,6 +5,7 @@ window.app.router = (function() {
     let builder = window.app.component.builder;
     let utils = window.app.utils;
     let url = window.app.url;
+    let db = window.app.db;
 
     let module = {
         init: init,
@@ -32,8 +33,17 @@ window.app.router = (function() {
 
                 let dataMap = {};
                 for (let i = 0; i < view.components.length; i++) {
-                    dataMap[view.components[i]] = view.data && view.data[i] ?
-                        eval(view.data[i]) : function() { return null; };
+                    if (view.data && view.data[i]) {
+                        let expression = view.data[i];
+                        if (new RegExp(/^\{\{.+\}\}$/g).test(expression)) {
+                            dataMap[view.components[i]] = eval(expression);
+                        } else {
+                            dataMap[view.components[i]] = function() { return db.getStorage(expression); };
+                        }
+                    } else {
+                        dataMap[view.components[i]] = function() { return null; };
+                    }
+                    
                 }
                 view.data = dataMap;
 
