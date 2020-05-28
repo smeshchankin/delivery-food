@@ -23,9 +23,6 @@
         productsList: function(params) {
             let data = db.getStorageRecord('providers', 'id', params.id);
             return data ? data.products : [];
-        },
-        providers: function(params) {
-            return db.getStorage('providers');
         }
     };
 

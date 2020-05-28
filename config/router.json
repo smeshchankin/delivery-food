@@ -29,7 +29,7 @@
             "name": "index",
             "path": "/",
             "components": ["promo", "menu", "social", "providers", "providersHeader"],
-            "data": ["promo", "menu", "social", "{{data.providers}}"]
+            "data": ["promo", "menu", "social", "providers"]
         }
     ],
     "default": {
