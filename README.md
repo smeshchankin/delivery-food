@@ -12,3 +12,5 @@ Project Technologies:
 * Pure JavaScript
 * HTML 5
 * CSS 3
+* Swiper.js - JavaScript slider
+* Google Fonts: Roboto
